@@ -9,7 +9,7 @@ const PORT = 3000;
 
 let xx = "nombre";
 // Middleware para servir archivos estáticos
-app.use(express.static(path.join(__dirname, '../Testeando')));
+app.use(express.static(path.join(__dirname, '../MyEcom')));
 app.use(express.json());
 
 app.post('/crearArchivo/:nombreArchivo', (req, res) => {
