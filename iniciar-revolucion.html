@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Eureka.ar - Iniciar Revolucion</title>
+
+
+</head>
+
+<body>
+  <!-- STEP 1 -->
+  <section>
+    <div id="IniciarDiv">
+
+      <div id="form-revolucion-0" class="step1">
+        <a href="index.html">
+          <img style="margin-top: 1%;" class="mb-3" src="images/eureka-logo-300.png" alt="">
+        </a>
+        <h4 class="mb-5">¡Unite a la Revolución Online!</h4>
+        <h6>Carga > Gesitona > ¡VENDE! </h6>
+        <h5 class="mb-3">¡Crea tu tienda online sin costo!</h5>
+        <div class="mb-3 row">
+          <h6>Ingresa tu Email</h6>
+          <div class="mb-3 col-md-12">
+            <input id="brandEmail" type="text" class="form-control" placeholder="Escribe tu Email" aria-label="Email"
+              aria-describedby="basic-addon1">
+          </div>
+          <h6>Ingresa tu Contraseña</h6>
+          <div class="mb-3 col-md-12">
+            <input id="brandPassword" type="password" class="form-control" placeholder="Escribe tu Contraseña"
+              aria-label="Password" aria-describedby="basic-addon1">
+          </div>
+          <div class="mb-2 form-check form-switch">
+            <input id="checkTAC" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Acepto los <a href="#">Términos y
+                condiciones</a> y las <a href="#">Políticas de Privacidad</a> de Eureka.</label>
+          </div>
+
+
+          <button id="btnToFR1" class="btn btn-primary btn-lg mb-1 ">¡INICIAR REVOLUCION!</button>
+          <label class="form-check-label" for="flexSwitchCheckDefault">¿Ya tenes una tienda en Eureka? <a
+              href="#">Accedé.</a></label>
+
+        </div>
+      </div>
+
+      <div style="display: none;" id="form-revolucion-1" class="step1">
+        <a href="index.html">
+          <img style="margin-top: 1%;" class="mb-3" src="images/eureka-logo-300.png" alt="">
+        </a>
+        <div class="mb-3 row">
+          <h4 class="mb-5">¡Iniciemos la Revolución!</h4>
+
+
+          <h6>Nombres del Titular</h6>
+          <div class="mb-3 col-md-12">
+            <input id="titularName" type="text" class="form-control" placeholder="Escribe tu nombre"
+              aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <h6>Apellidos del Titular</h6>
+          <div class="mb-3 col-md-12">
+            <input id="titularLastname" type="text" class="form-control" placeholder="Escribe tu apellido"
+              aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+
+          <h5 class="mb-5">Te pediremos unos datos de tu negocio para crearla de la mejor manera.</h5>
+
+          <h6 class="mb-5">Nota: Toda tu informacion se cargara en el ultimo paso.</h5>
+
+          <button id="btnToFR2" class="btn btn-primary btn-lg mb-1 ">¡QUIERO INICIAR!</button>
+          <button style="width: 30%;margin-right: 35%; margin-left: 35%;" id="btnBToFR0"
+            class="btn btn-primary btn-sm mb-1 ">VOLVER</button>
+        </div>
+      </div>
+      <div style="display: none;" id="form-revolucion-2" class="step1">
+        <a href="index.html">
+          <img style="margin-top: 1%;" class="mb-3" src="images/eureka-logo-300.png" alt="">
+        </a>
+        <div class="mb-3 row">
+          <h6>Nombre de tu Tienda</h6>
+          <div class="mb-3 col-md-12">
+            <input id="brandName" type="text" class="form-control" placeholder="Escribe tu marca" aria-label="Username"
+              aria-describedby="basic-addon1">
+          </div>
+          <h6>Tipo de Tienda</h6>
+          <div class="mb-3 col-md-12">
+              <select id="typeSelector" class="form-control" placeholder="Escribe tu marca" aria-label="Username"
+              aria-describedby="basic-addon1">
+                <option value="">Selecciona Una</option>
+                <option value="Agro">Agro</option>
+                <option value="Alimentos y Bebidas">Alimentos y Bebidas</option>
+                <option value="Animales">Animales</option>
+                <option value="Vehiculos">Vehiculos</option>
+                <option value="Belleza">Belleza</option>
+                <option value="Fotografia">Fotografia</option>
+                <option value="Celulares y Telefonos">Celulares y Telefonos</option>
+                <option value="Computacion">Computacion</option>
+                <option value="Consolas y Videojuegos">Consolas y Videojuegos</option>
+                <option value="Construccion">Construccion</option>
+                <option value="Deportes y Fitness">Deportes y Fitness</option>
+                <option value="Electrodomesticos">Electrodomesticos</option>
+                <option value="Eventos">Eventos</option>
+                <option value="Hogar, Muebles y Jardin">Hogar, Muebles y Jardin</option>
+                <option value="Industrias y Oficinas">Industrias y Oficinas</option>
+                <option value="Inmuebles">Inmuebles</option>
+                <option value="Musica">Musica</option>
+                <option value="Joyeria y Relojes">Joyeria y Relojes</option>
+                <option value="Juegos y Juguetes">Juegos y Juguetes</option>
+                <option value="Ropa y Accesorios">Ropa y Accesorios</option>
+                <option value="Salud">Salud</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Souvenirs, Cotillon y Fiestas">Souvenirs, Cotillon y Fiestas</option>
+                <option value="Otros">Otros</option>
+              </select>
+          </div>
+          <h6>WhatsApp Comercial</h6>
+          <div class="mb-3 col-md-12">
+            <input id="whatsappNumber" type="text" class="form-control" placeholder="Solo Numeros"
+              aria-label="Password" aria-describedby="basic-addon1">
+          </div>
+          <h6>Instagram Comercial</h6>
+          <div class="input-group mb-3 col-md-12">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <input id="redInstagram" type="text" class="form-control" placeholder="Instagram" aria-label="Instagram"
+              aria-describedby="basic-addon1">
+          </div>
+          <h6>Facebook Comercial</h6>
+          <div class="mb-3 col-md-12">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon3">www.facebook.com/</span>
+              <input id="redFacebook" type="text" class="form-control" id="basic-url"
+                aria-describedby="basic-addon3 basic-addon4">
+            </div>
+          </div>
+          <button id="btnToFR3" class="btn btn-primary btn-lg mb-1 ">¡QUIERO INICIAR!</button>
+          <button style="width: 30%;margin-right: 35%; margin-left: 35%;" id="btnBToFR1"
+            class="btn btn-primary btn-sm mb-1 ">VOLVER</button>
+        </div>
+      </div>
+      <div class="elegant-bk">
+        <img src="images/iniciar-revolucion.png" alt="No data filter">
+      </div>
+    </div>
+
+    <div id="CargaDatos">
+
+      <div style="display: none;" id="form-revolucion-3" class="form-revolucion">
+        <div class="fr-header">
+          <a href="index.html">
+            <img style="margin-top: 1%;" class="mb-3" src="images/eureka-logo-300.png" alt="">
+          </a>
+          <h2 class="mb-3">¡ LA REVOLUCION ESTA CADA VEZ MAS CERCA !</h2>
+        </div>
+        <div class="logos-fr mb-3">
+          <div class="title-fr3 mb-3">
+            <h3>Logo - Ubicacion</h3>
+          </div>
+          <div id="logo-image" class="mb-3">
+            <div class="title--fr3">
+              <h3 style="display: left;">Logo de tu Emprendimiento</h3>
+            </div>
+            <div class="input-group">
+              <input type="button" id="seleccionLogo" class="form-control" value="Elegir imagen de logo..." disabled>
+              <button class="btn btn-primary" for="seleccionLogo" id="btnCargaLogo" type="button">Cargar!</button>
+            </div>
+            <div id="logoDiv" value="0"></div>
+
+            <span>Esta sera la imagen que se presentara como Logo en tu E-commerce!</span>
+          </div>
+          <div id="logo-image" class="mb-3">
+            <div class="title--fr3">
+              <h3 style="display: left;">Ubicación de tu Emprendimiento</h3>
+            </div>
+            <div class="input-group">
+              <input type="text" id="inputGoogleMaps" class="form-control" placeholder="Pegar link de Google Maps">
+            </div>
+            <span>Pega aqui el link que te provee <a href="https://www.google.com/maps" target="_blank">Google
+                Maps!</a></span>
+          </div>
+        </div>
+        <div class="address-fr" class="mb-3">
+          <div class="title-fr3 mb-3">
+            <h3>Favicon - Email</h3>
+          </div>
+          <div id="logo-image" class="mb-3">
+            <div class="title--fr3">
+              <h3 style="display: left;">Favicon de tu Emprendimiento</h3>
+            </div>
+            <div class="input-group">
+              <input type="button" id="seleccionFavicon" class="form-control" value="Elegir imagen de Favicon..." disabled>
+              <button class="btn btn-primary" for="seleccionFavicon" id="btnCargaFavicon" type="button">Cargar!</button>
+            </div>
+            <div id="faviconDiv" value="0"></div>
+
+            <span>El Favicon es la imagen que se vera en la pestaña del navegador.</span>
+
+          </div>
+          <div id="logo-image" class="mb-3">
+            <div class="title--fr3 mb-3">
+              <h3 style="display: left;">Email de tu Emprendimiento</h3>
+            </div>
+            <div class="input-group">
+              <input type="text" id="inputEmail" class="form-control" placeholder="Ingresa el Email de tu empresa!">
+            </div>
+            <span>El Email donde podran contactarse contigo proveedores y mas!</span>
+          </div>
+        </div>
+        <button style="float:left; width: 30%;margin-left: 10%;" id="btnBToFR2"
+          class="btn btn-primary btn-lg mb-1 ">VOLVER</button>
+        <button style="float:right; width: 30%;margin-right: 10%;" id="btnToFR4"
+          class="btn btn-primary btn-lg mb-1 ">SIGUIENTE</button>
+
+        <div id="footer-slider" class="footer-login-create-area-fr">
+          <div class="slider">
+            <div class="slide-track">
+              <div class="slide">
+                <figure style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>Si puedes soñarlo, puedes lograrlo.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Walt Disney.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>La innovacion distingue a un lider de un seguidor.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Steve Jobs.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>El precio es lo que pagas, el valor es lo que recibes.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Warren Buffet.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>Tu actitud, no tu aptitud, determinará tu altitud.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Zig Ziglar.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>El fracaso, es no intentarlo.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Silvina Casanoves.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>Ser sencillo es lo que te hace grande.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Anonimo.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" id="form-revolucion-4" class="form-revolucion">
+        <div class="fr-header">
+          <a href="index.html">
+            <img style="margin-top: 1%;" class="mb-3" src="images/eureka-logo-300.png" alt="">
+          </a>
+          <div class="title-fr3">
+            <h3>ELIGE UN TEMA PARA TU SITIO</h3>
+          </div>
+        </div>
+        <div class="shop--Card mb-3">
+          <div class="Card mb-3">
+            <img src="templates/vanderbilt/images/img-theme.png" alt="">
+            <div class="overlay-card">
+              <a id="choiceTheme-1" href="#" class="boton-card mb-3">Elegir Tema</a>
+              <a href="templates/vanderbilt/vanderbilt.html" target="_blank" class="boton-card">Ver Demo</a>
+            </div>
+          </div>
+
+          <div class="Card">
+            <img src="images/cards/shop--card.png" alt="">
+            <p style="font-weight: bold;" class="pieShop">INACTIVA</p>
+            <div class="overlay-card">
+            </div>
+          </div>
+          <div class="Card">
+            <img src="images/cards/shop--card.png" alt="">
+            <p style="font-weight: bold;" class="pieShop">INACTIVA</p>
+            <div class="overlay-card">
+            </div>
+          </div>
+          <div class="Card">
+            <img src="images/cards/shop--card.png" alt="">
+            <p style="font-weight: bold;" class="pieShop">INACTIVA</p>
+            <div class="overlay-card">
+            </div>
+          </div>
+        </div>
+        <div class="btn-volver-form-4">
+          <button style="width: 30%;" id="btnBToFR3" class="btn btn-primary btn-lg mb-1 ">VOLVER</button>
+
+        </div>
+
+        <div class="footer-login-create-area-fr">
+          <div class="slider">
+            <div class="slide-track">
+              <div class="slide">
+                <figure style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>Si puedes soñarlo, puedes lograrlo.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Walt Disney.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>La innovacion distingue a un lider de un seguidor.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Steve Jobs.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>El precio es lo que pagas, el valor es lo que recibes.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Warren Buffet.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>Tu actitud, no tu aptitud, determinará tu altitud.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Zig Ziglar.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>El fracaso, es no intentarlo.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Silvina Casanoves.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+              <div class="slide">
+                <figure class="slide" style="float: left;">
+                  <blockquote class="blockquote">
+                    <p>Ser sencillo es lo que te hace grande.</p>
+                    <figcaption class="blockquote-footer">
+                      <cite title="Source Title">Anonimo.</cite>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script> 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="js/js.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+    
+  <script type="module">
+    //CONECTAR FIREBASE
+    //FIREBASE 
+    // IMPORTS + CONFIGURATION
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
+      from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
+
+    import { getDatabase, onValue, ref, set, child, get, update, remove }
+      from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAeYmYuIobZrOhJ2UVg2K_bRNsIamNYa10",
+  authDomain: "myecom-415a4.firebaseapp.com",
+  databaseURL: "https://myecom-415a4-default-rtdb.firebaseio.com",
+  projectId: "myecom-415a4",
+  storageBucket: "myecom-415a4.appspot.com",
+  messagingSenderId: "219326371024",
+  appId: "1:219326371024:web:a13405d51310e091377ad5",
+  measurementId: "G-J7MJ3W5PZT"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const realdb = getDatabase();
+
+    //REGISTRAR NUEVA TIENDA 
+
+    if (typeof document.getElementById('btnToFR1') === "object" && document.getElementById('btnToFR1') !== null) {
+    // El objeto existe y es de tipo objeto, ejecutar código específico
+    const btn = document.getElementById('btnToFR1');
+
+
+    btn.addEventListener('click', function(){
+        if(!ValidationA()){
+            return;
+        };
+        EmailValidation();
+    });
+
+} 
+
+
+    if (typeof document.getElementById('choiceTheme-1') === "object" && document.getElementById('choiceTheme-1') !== null) {
+      // El objeto existe y es de tipo objeto, ejecutar código específico
+      const btn = document.getElementById('choiceTheme-1');
+
+
+      btn.addEventListener('click', function () {
+        const email = brandEmail.value;
+        let antesDelArroba = email.split('@')[0];
+        const nombreArchivo = antesDelArroba;
+
+      if (nombreArchivo.trim() !== '') {
+        // Envía una solicitud al servidor para crear el archivo HTML con el nombre especificado
+        fetch(`/crearArchivo/${nombreArchivo}`, {
+          method: 'POST',
+        })
+        .then(response => response.text())
+        .then(message => alert(message))
+        .catch(error => console.error('Error:', error));
+      } 
+        UploadAllImages();
+      });
+
+    }
+    //REFERENCIAS
+    function EmailValidation() {
+      const dbRef = ref(realdb);
+      const patron = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      if (patron.test(brandEmail.value)) {
+        const email = brandEmail.value;
+      let antesDelArroba = email.split('@')[0];
+      get(child(dbRef, "Usuarios/" + antesDelArroba)).then((snapshot) => {
+            if (snapshot.exists()) {
+              swal({
+                title: "El Email de esta tienda ya existe!",
+                icon: "warning",
+                button: "OK!",
+              });
+              
+            }
+            else {
+                      // Verificar si el checkbox está marcado
+              if (checkTAC.checked) {
+                  document.getElementById('form-revolucion-0').style.display = "none";
+                  document.getElementById('form-revolucion-1').style.display = "block";
+                } else {
+                  swal({
+                      title: "Debes Aceptar Terminos y Condiciones!",
+                      icon: "warning",
+                      button: "OK!",
+                      });
+              }
+            }
+          });
+        } else {
+          swal({
+                title: "Debes ingresar un Email Valido!",
+                text: "Ejemplo: Eureka-tiendas@gmail.com",
+                icon: "warning",
+                button: "OK!",
+            });
+      }
+
+    }
+
+    function encPass(){
+            var pass12 = CryptoJS.AES.encrypt(brandPassword.value, brandPassword.value);
+            return pass12.toString();
+        }
+
+    function RegisterUser() {
+      const dbRef = ref(realdb);
+      const email = brandEmail.value;
+      let antesDelArroba = email.split('@')[0];
+          get(child(dbRef, "Usuarios/" + antesDelArroba)).then((snapshot) => {
+            if (snapshot.exists()) {
+              swal({
+                title: "Email ya registrado!",
+                icon: "warning",
+                button: "OK!",
+              });
+            }
+            else {
+
+              set(ref(realdb, "Usuarios/" + antesDelArroba),
+                {
+                  brandEmail: brandEmail.value,
+                  brandPassword: encPass(),
+                  titularName: titularName.value,
+                  titularLastname: titularLastname,
+                  brandName: brandName.value,
+                  marketType: typeSelector.value,
+                  whatsappNumber: whatsappNumber.value,
+                  redInstagram: redInstagram.value,
+                  redFacebook: redFacebook.value,
+                  inputGoogleMaps: inputGoogleMaps.value,
+                  inputEmail: inputEmail.value,
+                  xPedidos: 10000,
+                  zVistas: 0,
+                  LinkOfLogo: ImageLinksArray,
+                  LinkOfFavicon: ImageLinksArrayF
+
+
+
+                })
+                .then(() => {
+                  swal({
+                    title: "Excelente!",
+                    text: "Datos Cargados Exitosamente!",
+                    icon: "success",
+                    button: "Ir al Panel de Configuracion",
+                  }).then(function () {
+                    window.location = "/tiendas/"+`${antesDelArroba}/`+`epanel-${antesDelArroba}.html`;
+                  });
+                })
+                .catch((error) => {
+                  alert("error" + error);
+                })
+
+                //ADD CATEGORIAS EJEMPLO
+                let cat1 = "Categoria 1";
+                let cat2 = "Categoria 2";
+                let cat3 = "Categoria 3";
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zCategorias/" + cat1),
+                {
+                  category: cat1,
+                })
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zCategorias/" + cat2),
+                {
+                  category: cat2,
+                })
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zCategorias/" + cat3),
+                {
+                  category: cat3,
+                })
+
+                //ADD MARCAS EJEMPLO
+                let brand1 = "Marca 1";
+                let brand2 = "Marca 2";
+                let brand3 = "Marca 3";
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zMarcas/" + brand1),
+                {
+                  brand: brand1,
+                })
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zMarcas/" + brand2),
+                {
+                  brand: brand2,
+                })
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zMarcas/" + brand3),
+                {
+                  brand: brand3,
+                })
+                //colores
+                let fondoHeader = "#ffffff";
+                let fondoNavegador = "#000000";
+                let colorLetrasNav = "#ffffff";
+                let fondoBotonesHeader = "#ffffff";
+                let letraBotonesHeader = "#000000";
+                let fondoShopList = "#ffffff";
+                let fondoProducto = "#ffffff";
+                let colorPrecio = "#000000";
+                let colorFondoPrecio = "#ffffff";
+                let colorLinksProducto = "#000000";
+                let fondoFooter = "#000000";
+                let colorLetrasFooter = "#ffffff";
+                let colorLinksFooter = "#0011ff";
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/Header" ),
+                {
+                  color1: fondoHeader,
+                  color2: fondoNavegador,
+                  color3: colorLetrasNav,
+                  color4: fondoBotonesHeader,
+                  color5: letraBotonesHeader
+
+                })
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/ShopList" ),
+                {
+                  color6: fondoShopList
+                })
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/Producto" ),
+                {
+                  color7: fondoProducto,
+                  color8: colorPrecio,
+                  color9: colorFondoPrecio,
+                  color10: colorLinksProducto
+                })
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/Footer" ),
+                {
+                  color11: fondoFooter,
+                  color12: colorLetrasFooter,
+                  color13: colorLinksFooter
+                })
+                //Banners
+                let bannerHeader1 = "0";
+                let bannerHeader2 = "0";
+                let bannerHeader3 = "0";
+                let bannerHeader4 = "0";
+                let bannerHeader5 = "0";
+                let subBanner = "0";
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zBannersHeaderLinks" ),
+                {
+                  banner1: bannerHeader1,
+                  banner2: bannerHeader2,
+                  banner3: bannerHeader3,
+                  banner4: bannerHeader4,
+                  banner5: bannerHeader5,
+                  banner6: subBanner
+
+
+                })
+
+                let arial = "Arial, sans-serif";
+
+                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zFuente" ),
+                {
+                  fuente: arial
+                })
+            }
+          });
+        }
+      
+
+
+            //CARGA LOGO
+            var Files = []; 
+            var FileReaders = []; 
+            var ImageLinksArray = []; 
+
+            const selBtn = document.getElementById('seleccionLogo');
+            const imgdiv = document.getElementById('logoDiv');
+            const upIMG = document.getElementById('btnCargaLogo');
+
+
+            function IsAllImagesUploaded(){
+                return ImageLinksArray.length == Files.length;
+            }
+
+            function RestoreBack(){
+                selBtn.disabled = false;
+            }
+
+            upIMG.addEventListener('click', OpenFileDialog);
+
+            let imgX = false;
+
+            function OpenFileDialog(){
+              Files = [];
+
+                let inp = document.createElement('input');
+                inp.type = 'file';
+                inp.multiple = 'multiple';
+
+
+                inp.onchange = (e)=>{
+                    AssignImgsToFilesArray(e.target.files);
+                    CreateImgTags();
+                }
+
+                inp.click();
+
+            }
+
+            function AssignImgsToFilesArray(thefiles){
+                let num = Files.length + thefiles.length;
+                let looplim = (num <=1) ? thefiles.length : (1-Files.length);
+                
+                for (let i = 0; i < looplim; i++) {
+                    Files.push(thefiles[i]);
+                }
+
+                if(num>1) swal({
+                        title: "Solo se permite 1 Imagen!",
+                        icon: "warning",
+                        button: "OK!",
+                        });
+            }
+
+            function CreateImgTags(){
+
+                imgdiv.innerHTML='';
+                imgdiv.classList.add('imagesDivStyle');
+
+                for (let i = 0; i < Files.length; i++){
+                    FileReaders[i] = new FileReader();
+
+                    FileReaders[i].onload = function() {
+                        var img = document.createElement('img');
+                        img.id = 'imgNo' + i;
+                        img.classList.add('imgs');
+                        img.src = FileReaders[i].result;
+                        imgdiv.append(img);
+                    }
+                    imgX = true;
+                    FileReaders[i].readAsDataURL(Files[i]);
+                }
+                selBtn.value = "Has seleccionado un bello logo!"
+                upIMG.textContent = "Cambiar!"
+            }
+
+
+            //CARGA FAVICON
+            var FilesF = []; 
+            var FileReadersF = []; 
+            var ImageLinksArrayF = []; 
+
+            const selBtnF = document.getElementById('seleccionFavicon');
+            const imgdivF = document.getElementById('faviconDiv');
+            const upIMGF = document.getElementById('btnCargaFavicon');
+
+
+            function IsAllImagesUploadedF(){
+                return ImageLinksArrayF.length == FilesF.length;
+            }
+
+            function RestoreBackF(){
+                selBtnF.disabled = false;
+            }
+
+            upIMGF.addEventListener('click', OpenFileDialogF);
+
+            let imgXF = false;
+
+            function OpenFileDialogF(){
+              FilesF = [];
+
+                let inp = document.createElement('input');
+                inp.type = 'file';
+                inp.multiple = 'multiple';
+
+
+                inp.onchange = (e)=>{
+                    AssignImgsToFilesArrayF(e.target.files);
+                    CreateImgTagsF();
+                }
+
+                inp.click();
+
+            }
+
+            function AssignImgsToFilesArrayF(thefiles){
+                let num = FilesF.length + thefiles.length;
+                let looplim = (num <=1) ? thefiles.length : (1-FilesF.length);
+                
+                for (let i = 0; i < looplim; i++) {
+                    FilesF.push(thefiles[i]);
+                }
+
+                if(num>1) swal({
+                        title: "Solo se permite 1 Imagen!",
+                        icon: "warning",
+                        button: "OK!",
+                        });
+            }
+
+            function CreateImgTagsF(){
+
+                imgdivF.innerHTML='';
+                imgdivF.classList.add('imagesDivStyleFavicon');
+
+                for (let i = 0; i < FilesF.length; i++){
+                    FileReadersF[i] = new FileReader();
+
+                    FileReadersF[i].onload = function() {
+                        var img = document.createElement('img');
+                        img.id = 'imgNo' + i;
+                        img.classList.add('imgs');
+                        img.src = FileReadersF[i].result;
+                        imgdivF.append(img);
+                    }
+                    imgXF = true;
+                    FileReadersF[i].readAsDataURL(FilesF[i]);
+                }
+                selBtnF.value = "Has seleccionado un bello Favicon!"
+                upIMGF.textContent = "Cambiar!"
+            }
+
+            //FIN CARGA FAVICON
+            
+            //UPLOAD IMAGES TO FIREBASE 
+            //LOGO
+            function UploadAllImages(){
+                if ( imgX == false){
+                  console.log('entro');
+                    swal({
+                    title: "ERROR!",
+                    text: "Debe seleccionar un logo antes de cargar!",
+                    icon: "warning",
+                    button: "OK",
+                    })
+                 } else {
+                    selBtn.disabled = true;
+                    upIMG.disabled = true;
+                    ImageLinksArray=[];
+
+                    for (let i = 0; i < Files.length; i++) {
+                      console.log(Files);
+
+                        UploadAnImage(Files[i], i);
+                        
+                    }
+                 }
+
+                
+            }
+
+            function UploadAnImage(imgToUpload, imgNo){
+              const email = brandEmail.value;
+               let antesDelArroba = email.split('@')[0];
+                const metadata = {
+                    contentType: imgToUpload.type
+                };
+                const storage = getStorage();
+                const skut = document.getElementById('sku-tittle');
+                const ImageAdress = "TheImages/" + antesDelArroba + "/imgLogo#"+(imgNo+1);
+                const storageRef = sRef(storage, ImageAdress);
+                const UploadTask = uploadBytesResumable(storageRef, imgToUpload,metadata);
+
+                    UploadTask.on('state_changed', (snapshot) =>{
+                      swal({
+                        title: "Cargando Logo...",
+                        icon: "success"
+                        });                    },
+                    (error) => {
+                        swal({
+                        title: "Carga Logo Fallida",
+                        icon: "error",
+                        button: "OK!",
+                        });
+                    },
+                    ()=>{
+                        getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                            ImageLinksArray.push(downloadURL);
+                            if(IsAllImagesUploaded()){
+                              swal({
+                                title: "Logo Cargado con Exito!",
+                                icon: "success",
+                                button: "Continuar!"
+                                }).then(() => {
+                                  UploadAllImagesF();
+                                });                                 
+                            }
+                        });
+                    });
+
+            }
+            //FIN LOGO
+            //FAVICON
+            function UploadAllImagesF(){
+                if ( imgXF == false){
+                    swal({
+                    title: "ERROR!",
+                    text: "Debe seleccionar un logo antes de cargar!",
+                    icon: "warning",
+                    button: "OK",
+                    })
+                 } else {
+                    selBtnF.disabled = true;
+                    upIMGF.disabled = true;
+
+                    for (let i = 0; i < FilesF.length; i++) {
+                        UploadAnImageF(FilesF[i], i);
+                        
+                    }
+                 }
+
+                
+            }
+
+            function UploadAnImageF(imgToUpload, imgNo){
+              const email = brandEmail.value;
+               let antesDelArroba = email.split('@')[0];
+                const metadata = {
+                    contentType: imgToUpload.type
+                };
+                const storage = getStorage();
+                const ImageAdress = "TheImages/" + antesDelArroba + "/imgFavicon#"+(imgNo+1);
+                const storageRef = sRef(storage, ImageAdress);
+                const UploadTask = uploadBytesResumable(storageRef, imgToUpload,metadata);
+
+                    UploadTask.on('state_changed', (snapshot) =>{
+                      swal({
+                        title: "Cargando Favicon...",
+                        icon: "success"
+                        });                    
+                      },
+                    (error) => {
+                        swal({
+                        title: "Carga Favicon Fallida",
+                        icon: "error",
+                        button: "OK!",
+                        });
+                    },
+                    ()=>{
+                        getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                            ImageLinksArrayF.push(downloadURL);
+                            if(IsAllImagesUploadedF()){
+                              swal({
+                                title: "Favicon Cargado con Exito!",
+                                icon: "success",
+                                button: "Continuar!"
+                                }).then(() => {
+                                  RegisterUser();
+                                });                                  
+                            }
+                        });
+                    });
+
+
+            }
+
+    //PASAR A ELEGIR TEMA 
+    if (typeof document.getElementById('btnToFR4') === "object" && document.getElementById('btnToFR4') !== null) {
+    // El objeto existe y es de tipo objeto, ejecutar código específico
+    const btn = document.getElementById('btnToFR4');
+
+
+    btn.addEventListener('click', function(){
+        if(!ValidationC()){
+            return;
+        };
+        const patron = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        if (patron.test(inputEmail.value)){
+            if ( imgX == false){
+                swal({
+                title: "ERROR!",
+                text: "Debe seleccionar un logo antes de cargar!",
+                icon: "warning",
+                button: "OK",
+                })
+             } else {
+              if ( imgXF == false){
+                swal({
+                title: "ERROR!",
+                text: "Debe seleccionar un Favicon antes de cargar!",
+                icon: "warning",
+                button: "OK",
+                })
+             } else {
+                document.getElementById('form-revolucion-3').style.display = "none";
+                document.getElementById('form-revolucion-4').style.display = "block";
+             }
+             }
+        } else {
+            swal({
+                title: "Debes ingresar un Email Valido!",
+                text: "Ejemplo: Eureka-tiendas@gmail.com",
+                icon: "warning",
+                button: "OK!",
+            });
+        }
+        
+    });
+
+} 
+//fin pasar a elegir tema
+
+  </script>
+</body>
+
+</html>

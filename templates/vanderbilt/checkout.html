@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Vanderbilt</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-tema1.png">
+
+</head>
+
+<body>
+
+  <div class="whatsapp-button">
+    <a id="btnWhatsApp" href="#" target="_blank">
+      <img src="images/whatsapp-logo.png" alt="WhatsApp">
+    </a>
+  </div>
+    <!--================================
+        START HEADER AREA
+    =================================-->
+    <header style="background-color: #192223;" id="header">
+      <div class="logo-header" >
+          <a href="vanderbilt.html">
+                  <img id="logo-pc" src="images/logo-tema1.png" alt="">
+                  <img id="logo-mobile" src="images/logo-mobile.png" alt="">
+
+           </a>
+      </div>
+      <div class="searcher">
+        <div class="input-group mb-3">
+          <input  id="searchInput" type="text" class="form-control" placeholder="Buscar Producto" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <button style="background-color: #01eea3;" class="btn" type="button" id="button-addon2">Buscar</button>
+      </div>
+      </div>
+
+
+  </header>
+  <!--================================
+      END HEADER AREA
+  =================================-->
+  <!--================================
+        START NAV-SLIDER AREA
+    =================================-->
+  <section style="background-color: #4decba;" id="nav-slider-area">
+    <nav style="border: solid 1px rgb(221, 220, 220);" class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Inicio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Apple</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Samsung</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Motorola</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tienda.html">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">CONTACTO</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+  </section>
+  <!--================================
+        END NAV-SLIDER AREA
+    =================================-->
+  <!--================================
+        START CHECKOUT AREA
+    =================================-->
+  <section style="padding: 3% ; background-color: whitesmoke;">
+    <div id="checkout-form" class="checkout-form">
+      <div class="form-data">
+        <h3 id="tittle-form-data">DETALLES DE FACTURACION</h3>
+        <div class="form-data-values mb-3">
+          <div class="col-md-6">
+            <h5>Nombre</h5>
+            <input id="name" type="text" placeholder="Carlos">
+          </div>
+          <div class="col-md-6">
+            <h5>Apellido</h5>
+            <input id="lastname" type="text" placeholder="Almada">
+          </div>
+        </div> 
+        <div class="form-data-values mb-3">
+          <div class="col-md-6">
+            <h5>Pais</h5>
+            <input id="country" type="text" placeholder="Argentina">
+          </div>
+          <div class="col-md-6">
+            <h5>Provincia</h5>
+            <input id="province" type="text" placeholder="Cordoba">
+          </div>
+        </div>
+        <div class="form-data-values mb-3">
+          <div class="col-md-6">
+            <h5>Ciudad</h5>
+            <input id="city" type="text" placeholder="Sobremonte 957">
+          </div>
+          <div class="col-md-6">
+            <h5>Codigo Postal</h5>
+            <input id="postalCode" type="number" placeholder="5960">
+          </div>
+        </div>
+        <div class="form-data-values mb-3">
+          <div class="col-md-6">
+            <h5>Telefono</h5>
+            <input id="phone" type="number" placeholder="+54341-5847965">
+          </div>
+          <div class="col-md-6">
+            <h5>Email</h5>
+            <input id="email" type="text" placeholder="alguien@gmail.com">
+          </div>
+        </div>
+        <div style="width: 100%;" class=" mb-3">
+          <h5>Notas del Pedido(Opcional)</h5>
+          <textarea id="references" style="width: 100%;" name="textarea"  rows="10" cols="50"
+            placeholder="Notas sobre tu pedido, por ejemplo, notas especiales de entrega."></textarea>
+        </div>
+      </div>
+
+      <div class="form-cart">
+        <h3 id="tittle-form-data" style="font-weight: bold;">Tu Pedido</h3>
+
+        <div style="border-bottom: solid 1px grey; display: flex;">
+          <h5>Productos</h5>
+          <h5 style="margin-left: 38%;">Subtotal</h5>
+        </div>
+        <div id="lista-productos">
+
+        </div>
+        <div style="padding: 5%; border-bottom: solid 1px grey;">
+          <span style="font-weight: bold;">TOTAL:</span>
+          <span style="float: right;" id="total"></span>
+        </div>
+
+        <div id="subtotal-envio-total">
+          <p style="display: none;" id="cantidad-carrito"></p>
+          <div style="padding: 5%; height: auto;  border-bottom: solid 1px grey;" class="mb-3">
+            <span style="float: left; font-weight: bold; margin-top: 1%;" class="mb-3">ENVIO</span>
+
+            <div style="margin-left: 25%;">
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Recoger por el Local.
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Enviar a Domicilio.
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div style="padding: 5%; border-bottom: solid 1px grey;" id="opciones-de-pago">
+          <span style="float: left; font-weight: bold; margin-top: 1%;" class="mb-3">PAGO</span>
+
+          <div style="margin-left: 25%;">
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Pago en Domicilio.
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                Transferencia Bancaria.
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                MercadoPago.
+              </label>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 1%; padding: 5%; text-align: center;" id="realizar-compra">
+          <p>Sus datos personales se utilizarán para procesar su pedido, respaldar su experiencia en este sitio web y
+            para otras finalidades descritas en nuestra <a href="#">política de privacidad.</a></p>
+          <button id="realizar-pedido" style="background-color:#192223;" class="btn btn-primary btn--lg">REALIZAR
+            PEDIDO</button>
+        </div>
+      </div>
+    </div>
+    <div style="display: none;" id="order-received" >
+      <div id="gracias-checkout" class="mb-3">
+        <h3>Pedido procesado con exito, muchas gracias!</h3>
+      </div>
+      <div id="info-pedido" class="mb-3">
+        <div>
+
+          <p>NUMERO DEL PEDIDO:</p>
+
+          <span id="num-pedido">10995</span>
+        </div>
+        <div>
+
+          <p>FECHA:</p>
+
+          <span id="fecha-pedido">13/10/2023</span>
+        </div>
+        <div>
+
+          <p>EMAIL:</p>
+
+          <span id="email-comprador">eureka.tiendas@gmail.com</span>
+        </div>
+        <div>
+
+          <p>TOTAL:</p>
+
+          <span style="color: red;" id="total-pedido">$10.000</span>
+        </div>
+        <div>
+
+          <p>METODO DE PAGO:</p>
+
+          <span id="tipo-pago-pedido">Transferencia Bancaria</span>
+        </div>
+      </div>
+      <div id="header-detalles-pedido">
+        <span style="color: white; font-weight: bold; font-size: 200%;" >DETALLES DEL PEDIDO</span>
+      </div>
+      <div id="detalles-pedido" class="mb-3">
+
+        <div id="direccion-facturacion">
+          <div>
+            <span id="nombre-apellido" for=""></span>
+          </div>
+          <div>
+            <span id="pais" for=""></span>
+          </div>
+          <div>
+            <span id="provincia" for=""></span>
+          </div>
+          <div>
+            <span id="ciudad" for=""></span>
+          </div>
+          <div>
+            <span id="codigo-postal" for=""></span>
+          </div>
+          <div>
+            <span id="telefono" for=""></span>
+          </div>
+          <div>
+            <span id="correo-electronico" for=""></span>
+          </div>
+          <div>
+            <span id="notas-de-pedido" for=""></span>
+          </div>
+        </div> 
+          <div id="lista-productos-pedido">
+
+          </div>
+      </div>
+      <div id="total-btn">
+        <div style="width: 50%;" >
+          <span>TOTAL:</span>
+          <span id="total-checkout"></span>
+        </div>
+        <div style="width: 50%;" >
+          <a id="btnEnviarPedido" class="btn btn-primary" >ENVIAR PEDIDO AL VENDEDOR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================================
+        END CHECKOUT AREA
+    =================================-->
+
+    <!--================================ 
+        START FOOTER AREA
+    =================================-->
+    <footer id="footer-area">
+        <div style="margin: 1%;" class="subfoot-t1">
+          <p>© 2023 <a href="">Vanderbilt Theme</a>. All rights reserved. Created by <a href="#">Eureka.ar</a>.</p>
+        </div>
+
+    </footer>
+    <!--================================
+        END FOOTER AREA
+    =================================-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="../../js/js.js"></script>
+  <script src="js.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+  <script>
+
+    window.onload = function () {
+
+      obtenerProductosDesdeLocalStorage();
+    }
+    const realizarPedido = document.getElementById('realizar-pedido');
+    const name1 = document.getElementById('name');
+    const lastName = document.getElementById('lastname');
+    const country = document.getElementById('country');
+    const province = document.getElementById('province');
+    const city = document.getElementById('city');
+    const postalCode = document.getElementById('postalCode');
+    const phoneNumber = document.getElementById('phone');
+    const email = document.getElementById('email');
+    const references = document.getElementById('references');
+
+
+    realizarPedido.addEventListener('click', function () {
+      if (name1.value == "" || lastName.value == "" ||
+        country.value == "" || province.value == "" || city.value == "" ||
+        postalCode.value == "" || phoneNumber.value == "" || email.value == "" ||
+        references.value == "") {
+        swal({
+          title: "No Puedes Dejar Casilleros Vacios!",
+          icon: "warning",
+          button: "OK!",
+        });
+      } else {
+        swal({
+          title: "Chequeaste la info?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Pedido Procesado con Exito!", {
+                icon: "success",
+              }).then(function () {
+
+                const nombre = document.getElementById('name').value;
+                const apellido = document.getElementById('lastname').value;
+                const pais = document.getElementById('country').value;
+                const provincia = document.getElementById('province').value;
+                const ciudad = document.getElementById('city').value;
+                const codigoPostal = document.getElementById('postalCode').value;
+                const telefono = document.getElementById('phone').value;
+                const correoElectronico = document.getElementById('email').value;
+                const notasPedido = document.getElementById('references').value;
+
+                document.getElementById('nombre-apellido').innerHTML = "Nombre y Apellido: " + nombre +" "+ apellido ;
+                document.getElementById('pais').innerHTML = "Pais: " + pais ;
+                document.getElementById('provincia').innerHTML = "Provincia: " + provincia ;
+                document.getElementById('ciudad').innerHTML = "Ciudad: " + ciudad ;
+                document.getElementById('codigo-postal').innerHTML = "Codigo Postal: " +  codigoPostal ;
+                document.getElementById('telefono').innerHTML = "Telefono: " +  telefono ;
+                document.getElementById('correo-electronico').innerHTML = "Email: " +  correoElectronico ;
+                document.getElementById('notas-de-pedido').innerHTML = "Notas: " +  notasPedido ;
+
+                
+                document.getElementById('checkout-form').style.display = "none";
+                document.getElementById('order-received').style.display = "block";
+                obtenerProductosDesdeLocalStorage()
+              });
+
+            } else {
+              swal({
+                title: "Dale un vistazo Nuevamente!",
+                icon: "warning",
+              });
+            }
+          });
+      }
+    });
+    const enviarPedido = document.getElementById('btnEnviarPedido');
+
+    enviarPedido.addEventListener('click', function(){
+      swal({
+          title: "Felicidades!",
+          text: "Has completado la compra de prueba para evaluar el tema Vanderbilt.",
+          icon: "success",
+          buttons: true,
+        }).then(function () {
+          limpiarCarrito();
+          window.location = "vanderbilt.html";
+        })
+    })
+  </script>
+</body>
+
+</html>
