@@ -12,7 +12,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Eureka.ar - Iniciar Revolucion</title>
+  <title>MyEcom.com.ar - Iniciar Revolucion</title>
 
 
 </head>
@@ -30,7 +30,7 @@
         <h6>Carga > Gesitona > ¡VENDE! </h6>
         <h5 class="mb-3">¡Crea tu tienda online sin costo!</h5>
         <div class="mb-3 row">
-          <h6>Ingresa tu Email</h6>
+          <h6>Ingresa el Email de tu negocio.</h6>
           <div class="mb-3 col-md-12">
             <input id="brandEmail" type="text" class="form-control" placeholder="Escribe tu Email" aria-label="Email"
               aria-describedby="basic-addon1">
@@ -43,12 +43,12 @@
           <div class="mb-2 form-check form-switch">
             <input id="checkTAC" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
             <label class="form-check-label" for="flexSwitchCheckDefault">Acepto los <a href="#">Términos y
-                condiciones</a> y las <a href="#">Políticas de Privacidad</a> de Eureka.</label>
+                condiciones</a> y las <a href="#">Políticas de Privacidad</a> de MyEcom.</label>
           </div>
 
 
           <button id="btnToFR1" class="btn btn-primary btn-lg mb-1 ">¡INICIAR REVOLUCION!</button>
-          <label class="form-check-label" for="flexSwitchCheckDefault">¿Ya tenes una tienda en Eureka? <a
+          <label class="form-check-label" for="flexSwitchCheckDefault">¿Ya tenes una tienda en MyEcom? <a
               href="#">Accedé.</a></label>
 
         </div>
@@ -305,24 +305,6 @@
             </div>
           </div>
 
-          <div class="Card">
-            <img src="images/cards/shop--card.png" alt="">
-            <p style="font-weight: bold;" class="pieShop">INACTIVA</p>
-            <div class="overlay-card">
-            </div>
-          </div>
-          <div class="Card">
-            <img src="images/cards/shop--card.png" alt="">
-            <p style="font-weight: bold;" class="pieShop">INACTIVA</p>
-            <div class="overlay-card">
-            </div>
-          </div>
-          <div class="Card">
-            <img src="images/cards/shop--card.png" alt="">
-            <p style="font-weight: bold;" class="pieShop">INACTIVA</p>
-            <div class="overlay-card">
-            </div>
-          </div>
         </div>
         <div class="btn-volver-form-4">
           <button style="width: 30%;" id="btnBToFR3" class="btn btn-primary btn-lg mb-1 ">VOLVER</button>
@@ -467,9 +449,9 @@
 
 
       btn.addEventListener('click', function () {
-        const email = brandEmail.value;
-        let antesDelArroba = email.split('@')[0];
-        const nombreArchivo = antesDelArroba;
+        const name = brandName.value;
+        const arrayDePalabras = name.replace(/\s+/g, '');
+        const nombreArchivo = arrayDePalabras;
 
       if (nombreArchivo.trim() !== '') {
         // Envía una solicitud al servidor para crear el archivo HTML con el nombre especificado
@@ -517,7 +499,7 @@
         } else {
           swal({
                 title: "Debes ingresar un Email Valido!",
-                text: "Ejemplo: Eureka-tiendas@gmail.com",
+                text: "Ejemplo: MyEcom-tiendas@gmail.com",
                 icon: "warning",
                 button: "OK!",
             });
@@ -532,9 +514,9 @@
 
     function RegisterUser() {
       const dbRef = ref(realdb);
-      const email = brandEmail.value;
-      let antesDelArroba = email.split('@')[0];
-          get(child(dbRef, "Usuarios/" + antesDelArroba)).then((snapshot) => {
+      const name = brandName.value;
+        const arrayDePalabras = name.replace(/\s+/g, '');
+          get(child(dbRef, "Usuarios/" + arrayDePalabras)).then((snapshot) => {
             if (snapshot.exists()) {
               swal({
                 title: "Email ya registrado!",
@@ -544,7 +526,7 @@
             }
             else {
 
-              set(ref(realdb, "Usuarios/" + antesDelArroba),
+              set(ref(realdb, "Usuarios/" + arrayDePalabras),
                 {
                   brandEmail: brandEmail.value,
                   brandPassword: encPass(),
@@ -572,7 +554,7 @@
                     icon: "success",
                     button: "Ir al Panel de Configuracion",
                   }).then(function () {
-                    window.location = "/tiendas/"+`${antesDelArroba}/`+`epanel-${antesDelArroba}.html`;
+                    window.location = "/tiendas/"+`${arrayDePalabras}/`+`epanel-${arrayDePalabras}.html`;
                   });
                 })
                 .catch((error) => {
@@ -584,15 +566,15 @@
                 let cat2 = "Categoria 2";
                 let cat3 = "Categoria 3";
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zCategorias/" + cat1),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zCategorias/" + cat1),
                 {
                   category: cat1,
                 })
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zCategorias/" + cat2),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zCategorias/" + cat2),
                 {
                   category: cat2,
                 })
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zCategorias/" + cat3),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zCategorias/" + cat3),
                 {
                   category: cat3,
                 })
@@ -602,15 +584,15 @@
                 let brand2 = "Marca 2";
                 let brand3 = "Marca 3";
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zMarcas/" + brand1),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zMarcas/" + brand1),
                 {
                   brand: brand1,
                 })
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zMarcas/" + brand2),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zMarcas/" + brand2),
                 {
                   brand: brand2,
                 })
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zMarcas/" + brand3),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zMarcas/" + brand3),
                 {
                   brand: brand3,
                 })
@@ -629,7 +611,7 @@
                 let colorLetrasFooter = "#ffffff";
                 let colorLinksFooter = "#0011ff";
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/Header" ),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zColores/Header" ),
                 {
                   color1: fondoHeader,
                   color2: fondoNavegador,
@@ -639,12 +621,12 @@
 
                 })
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/ShopList" ),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zColores/ShopList" ),
                 {
                   color6: fondoShopList
                 })
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/Producto" ),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zColores/Producto" ),
                 {
                   color7: fondoProducto,
                   color8: colorPrecio,
@@ -652,7 +634,7 @@
                   color10: colorLinksProducto
                 })
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zColores/Footer" ),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zColores/Footer" ),
                 {
                   color11: fondoFooter,
                   color12: colorLetrasFooter,
@@ -666,7 +648,7 @@
                 let bannerHeader5 = "0";
                 let subBanner = "0";
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zBannersHeaderLinks" ),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zBannersHeaderLinks" ),
                 {
                   banner1: bannerHeader1,
                   banner2: bannerHeader2,
@@ -680,7 +662,7 @@
 
                 let arial = "Arial, sans-serif";
 
-                set(ref(realdb, "Usuarios/" + antesDelArroba+ "/zFuente" ),
+                set(ref(realdb, "Usuarios/" + arrayDePalabras+ "/zFuente" ),
                 {
                   fuente: arial
                 })
@@ -873,14 +855,14 @@
             }
 
             function UploadAnImage(imgToUpload, imgNo){
-              const email = brandEmail.value;
-               let antesDelArroba = email.split('@')[0];
+              const name = brandName.value;
+        const arrayDePalabras = name.replace(/\s+/g, '');
                 const metadata = {
                     contentType: imgToUpload.type
                 };
                 const storage = getStorage();
                 const skut = document.getElementById('sku-tittle');
-                const ImageAdress = "TheImages/" + antesDelArroba + "/imgLogo#"+(imgNo+1);
+                const ImageAdress = "TheImages/" + arrayDePalabras + "/imgLogo#"+(imgNo+1);
                 const storageRef = sRef(storage, ImageAdress);
                 const UploadTask = uploadBytesResumable(storageRef, imgToUpload,metadata);
 
@@ -936,13 +918,13 @@
             }
 
             function UploadAnImageF(imgToUpload, imgNo){
-              const email = brandEmail.value;
-               let antesDelArroba = email.split('@')[0];
+              const name = brandName.value;
+              const arrayDePalabras = name.replace(/\s+/g, '');
                 const metadata = {
                     contentType: imgToUpload.type
                 };
                 const storage = getStorage();
-                const ImageAdress = "TheImages/" + antesDelArroba + "/imgFavicon#"+(imgNo+1);
+                const ImageAdress = "TheImages/" + arrayDePalabras + "/imgFavicon#"+(imgNo+1);
                 const storageRef = sRef(storage, ImageAdress);
                 const UploadTask = uploadBytesResumable(storageRef, imgToUpload,metadata);
 
@@ -1012,7 +994,7 @@
         } else {
             swal({
                 title: "Debes ingresar un Email Valido!",
-                text: "Ejemplo: Eureka-tiendas@gmail.com",
+                text: "Ejemplo: MyEcom-tiendas@gmail.com",
                 icon: "warning",
                 button: "OK!",
             });

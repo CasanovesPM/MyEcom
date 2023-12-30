@@ -9,7 +9,7 @@ const PORT = 3000;
 
 let xx = "nombre";
 // Middleware para servir archivos estáticos
-app.use(express.static(path.join(__dirname, '../MyEcom')));
+app.use(express.static(path.join(__dirname, '../Testeando')));
 app.use(express.json());
 
 app.post('/crearArchivo/:nombreArchivo', (req, res) => {
@@ -7539,8 +7539,8 @@ function addVista(){
              var emailContact = ArrayOfContacto[3];
 
              inputUbicationModify.href = ArrayOfContacto[7];
-             inputPhoneModify.href = "https://wa.me/" + ArrayOfContacto[12];
-             inputPhoneModify.textContent = ArrayOfContacto[12];
+             inputPhoneModify.href = "https://wa.me/" + ArrayOfContacto[13];
+             inputPhoneModify.textContent = ArrayOfContacto[13];
              inputEmailModify.textContent = emailContact;
 
 
@@ -11909,9 +11909,9 @@ function AddCTPCE(cat, index) {
         snapshot.forEach(cat => {
           ArrayOfContacto.push(cat.val());
         });
-        inputUbicationModify.value = ArrayOfContacto[6];
-        inputPhoneModify.value = ArrayOfContacto[11];
-        inputEmailModify.value = ArrayOfContacto[5];
+        inputUbicationModify.value = ArrayOfContacto[7];
+        inputPhoneModify.value = ArrayOfContacto[13];
+        inputEmailModify.value = ArrayOfContacto[6];
 
       });
     }

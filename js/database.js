@@ -38,12 +38,14 @@ if (typeof document.getElementById('btnIndex') === "object" && document.getEleme
 
 //TRAER TIENDAS// 
 function addTiendasToList(product, index){
+            const name = product['brandName'];
+            const arrayDePalabras = name.replace(/\s+/g, '');
             let html =
             `
                     <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                     <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                     <div class="overlay-card">
-                        <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                        <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                     </div>
             `
             let newProd = document.createElement('div');
@@ -97,8 +99,11 @@ function addTiendas(){
           console.log(idprod);
           var index = idprod;
           localStorage.id = JSON.stringify(index);
-          console.log(index);
-          window.location = "http://localhost:3000/tiendas/"+index+"/"+index+".html"
+          const name = index;
+          const arrayDePalabras = name.replace(/\s+/g, '');  
+          console.log(arrayDePalabras);
+          
+          window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
           //window.location = "product-details.html";
       }
         
@@ -248,7 +253,10 @@ function addTiendas(){
                       console.log(parteAntesDelPunto);
                 const txtInSearch = parteAntesDelPunto;
                     localStorage.Searcher = JSON.stringify(txtInSearch);
-                    window.location = "http://localhost:3000/tiendas/"+parteAntesDelPunto+"/"+parteAntesDelPunto+".html"
+                    const name = parteAntesDelPunto;
+                    const arrayDePalabras = name.replace(/\s+/g, '');  
+                    console.log(arrayDePalabras);
+                    window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
                 }
             }
         });
@@ -280,13 +288,15 @@ if (typeof document.getElementById('btnCategoryPage') === "object" && document.g
 
 function addTiendasToList(product, index){
   let vacia = 0;      
-  if(product['marketType'] == deturno){      
+  if(product['marketType'] == deturno){   
+    const name = product['brandName'];
+    const arrayDePalabras = name.replace(/\s+/g, '');   
             let html =
             `
                     <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                     <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                     <div class="overlay-card">
-                        <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                        <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                     </div>
             `
             let newProd = document.createElement('div');
@@ -362,8 +372,10 @@ function addTiendas(){
           console.log(idprod);
           var index = idprod;
           localStorage.id = JSON.stringify(index);
-          console.log(index);
-          window.location = "http://localhost:3000/tiendas/"+index+"/"+index+".html"
+          const name = index;
+          const arrayDePalabras = name.replace(/\s+/g, '');  
+          console.log(arrayDePalabras);
+          window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
           //window.location = "product-details.html";
       }
         
@@ -513,7 +525,10 @@ function addTiendas(){
                       console.log(parteAntesDelPunto);
                 const txtInSearch = parteAntesDelPunto;
                     localStorage.Searcher = JSON.stringify(txtInSearch);
-                    window.location = "http://localhost:3000/tiendas/"+parteAntesDelPunto+"/"+parteAntesDelPunto+".html"
+                    const name = parteAntesDelPunto;
+                    const arrayDePalabras = name.replace(/\s+/g, '');  
+                    console.log(arrayDePalabras);
+                    window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
                 }
             }
         });
@@ -529,12 +544,14 @@ if (typeof document.getElementById('btnAllMarkets') === "object" && document.get
 //TRAER TIENDAS// 
 function addTiendasToList(product, index){
     if(product['brandName'][0] == "A"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');  
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -555,12 +572,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "B"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -582,12 +601,14 @@ function addTiendasToList(product, index){
     }
 
     if(product['brandName'][0] == "C"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -609,12 +630,14 @@ function addTiendasToList(product, index){
     }
 
     if(product['brandName'][0] == "D"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -636,12 +659,14 @@ function addTiendasToList(product, index){
     }
 
     if(product['brandName'][0] == "E"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -662,12 +687,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "F"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -689,12 +716,14 @@ function addTiendasToList(product, index){
     }
 
     if(product['brandName'][0] == "G"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -715,12 +744,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "H"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -742,12 +773,14 @@ function addTiendasToList(product, index){
     }
 
     if(product['brandName'][0] == "I"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -768,12 +801,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "J"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -794,12 +829,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "K"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -820,12 +857,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "L"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -847,12 +886,14 @@ function addTiendasToList(product, index){
     }
 
     if(product['brandName'][0] == "M"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -873,12 +914,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "N"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -899,12 +942,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "Ñ"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -925,12 +970,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "O"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -951,12 +998,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "P"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -977,12 +1026,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "Q"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1003,12 +1054,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "R"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1029,12 +1082,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "S"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1055,12 +1110,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "T"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1081,12 +1138,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "U"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1107,12 +1166,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "V"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1133,12 +1194,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "W"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1159,12 +1222,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "X"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1185,12 +1250,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "Y"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1211,12 +1278,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
     if(product['brandName'][0] == "X"){
+        const name = product['brandName'];
+        const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1237,12 +1306,14 @@ function addTiendasToList(product, index){
         OuterDiv.append(newProd); 
     }
         if(product['brandName'][0] == "Z"){
+            const name = product['brandName'];
+            const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
         `
                 <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
                 <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                 <div class="overlay-card">
-                    <a href="tiendas/`+product['brandName']+`/`+product['brandName']+`.html" class="boton-card">Visitar Tienda</a>
+                    <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" class="boton-card">Visitar Tienda</a>
                 </div>
         `
         let newProd = document.createElement('div');
@@ -1305,9 +1376,11 @@ function addTiendas(){
         function GoToTiendaWeb(idprod) {
           console.log(idprod);
           var index = idprod;
-          localStorage.id = JSON.stringify(index);
-          console.log(index);
-          window.location = "http://localhost:3000/tiendas/"+index+"/"+index+".html"
+          const name = index;
+          const arrayDePalabras = name.replace(/\s+/g, '');  
+          localStorage.id = JSON.stringify(arrayDePalabras);
+          console.log(arrayDePalabras);
+          window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
           //window.location = "product-details.html";
       }
         
@@ -1329,6 +1402,7 @@ function addTiendas(){
             for (let index = 0; index < ProductsBuscador.length; index++) {
                 products.push(ProductsBuscador[index]);
             }
+
 
             // Agregar un ID numérico a cada producto
             const productsWithIds = products.map((product, index) => ({ id: products[index]['brandName'], name: products[index]['brandName'], category: products[index]['marketType']}));
@@ -1454,10 +1528,14 @@ function addTiendas(){
                           // Si no hay punto, la variable tomará el valor completo del input
                           parteAntesDelPunto = searchInput.value;
                       }
-                      console.log(parteAntesDelPunto);
                 const txtInSearch = parteAntesDelPunto;
+                
                     localStorage.Searcher = JSON.stringify(txtInSearch);
-                    window.location = "http://localhost:3000/tiendas/"+parteAntesDelPunto+"/"+parteAntesDelPunto+".html"
+                    const name = parteAntesDelPunto;
+                    const arrayDePalabras = name.replace(/\s+/g, '');
+                    console.log(arrayDePalabras);
+
+                    window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
                 }
             }
         });

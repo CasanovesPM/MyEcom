@@ -268,13 +268,7 @@
         }
     
         #btnComenzar {
-            position: absolute;
-            top: 30%; /* Ajusta la posición vertical del botón */
-            right: 5%; /* Ajusta la posición horizontal del botón */
-            padding: 10px 20px; /* Ajusta el padding según sea necesario */
-    
-            border: none;
-            border-radius: 5px;
+            width: 100%;
             cursor: pointer;
             font-size: 300%;
         }
@@ -345,17 +339,6 @@
                     font-size: 200% !important;
                 }
 
-                #btnComenzar {
-                    position: absolute;
-                    top: 38%; /* Ajusta la posición vertical del botón */
-                    right: 5%; /* Ajusta la posición horizontal del botón */
-                    padding: 10px 20px; /* Ajusta el padding según sea necesario */
-            
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-size: 100%;
-                }
 
                 .bannersContact{
                     font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
