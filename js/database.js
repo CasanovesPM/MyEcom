@@ -103,7 +103,7 @@ function addTiendas(){
           const arrayDePalabras = name.replace(/\s+/g, '');  
           console.log(arrayDePalabras);
           
-          window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
+          window.location = "/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
           //window.location = "product-details.html";
       }
         
@@ -256,7 +256,7 @@ function addTiendas(){
                     const name = parteAntesDelPunto;
                     const arrayDePalabras = name.replace(/\s+/g, '');  
                     console.log(arrayDePalabras);
-                    window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
+                    window.location = "/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
                 }
             }
         });
@@ -375,7 +375,7 @@ function addTiendas(){
           const name = index;
           const arrayDePalabras = name.replace(/\s+/g, '');  
           console.log(arrayDePalabras);
-          window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
+          window.location = "/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
           //window.location = "product-details.html";
       }
         
@@ -528,7 +528,7 @@ function addTiendas(){
                     const name = parteAntesDelPunto;
                     const arrayDePalabras = name.replace(/\s+/g, '');  
                     console.log(arrayDePalabras);
-                    window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
+                    window.location = "/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
                 }
             }
         });
@@ -1380,7 +1380,7 @@ function addTiendas(){
           const arrayDePalabras = name.replace(/\s+/g, '');  
           localStorage.id = JSON.stringify(arrayDePalabras);
           console.log(arrayDePalabras);
-          window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
+          window.location = "/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
           //window.location = "product-details.html";
       }
         
@@ -1535,7 +1535,7 @@ function addTiendas(){
                     const arrayDePalabras = name.replace(/\s+/g, '');
                     console.log(arrayDePalabras);
 
-                    window.location = "http://localhost:3000/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
+                    window.location = "/tiendas/"+arrayDePalabras+"/"+arrayDePalabras+".html"
                 }
             }
         });
