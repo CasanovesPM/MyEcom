@@ -1,0 +1,5495 @@
+
+      <!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.5/dist/xlsx.full.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title id="title-web"></title>
+  <!-- Favicon -->
+  <link id="favicon" rel="icon" type="image/png" sizes="16x16" href="#">
+  <style>
+    .dropdown {
+      z-index: 999;
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #192223;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #fff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #3d4b4d;
+    }
+  </style>
+  <script>
+  function pagoPedido(checkbox) {
+    // Obtén el ID del checkbox
+    var idCheckbox = checkbox.id;
+
+    // Extrae el número del ID usando la función
+    var numero = extraerDespuesDeGuion(idCheckbox);
+
+    // Imprime el resultado
+    document.getElementById('inputPagoPedido').value = Number(numero);
+    btnPagoPedido.click();
+  }
+  function envioPedido(checkbox) {
+    // Obtén el ID del checkbox
+    var idCheckbox = checkbox.id;
+
+    // Extrae el número del ID usando la función
+    var numero = extraerDespuesDeGuion(idCheckbox);
+    // Imprime el resultado
+    document.getElementById('inputEnvioPedido').value = Number(numero);
+    btnEnvioPedido.click();
+  }
+
+  function cancelarPedido(checkbox) {
+    // Obtén el ID del checkbox
+    var idCheckbox = checkbox.id;
+
+    // Extrae el número del ID usando la función
+    var numero = extraerDespuesDeGuion(idCheckbox);
+
+    // Imprime el resultado
+    document.getElementById('inputCancelarPedido').value = Number(numero);
+    btnCancelarPedido.click();
+  }
+
+  function extraerDespuesDeGuion(id) {
+// Verificar si el guion está presente en el ID
+const indiceGuion = id.indexOf("-");
+
+// Si hay un guion, extraer la parte después del guion
+if (indiceGuion !== -1) {
+  const parteDespues = id.substring(indiceGuion + 1);
+  return parteDespues;
+} else {
+  // Si no hay guion, devolver el ID original
+  return id;
+}
+}
+
+    var editVar = 0;
+    function editProductList(boton) {
+      var valor = boton.value;
+      if (editVar == 0) {
+        toggleContent(21);
+        const inputEditar = document.getElementById("skuEditar");
+
+        inputEditar.value = valor;
+        btnSearchEdit.click();
+      } else {
+        const inputEditar = document.getElementById("skuEditar");
+
+        inputEditar.value = valor;
+        btnSearchEdit.click();
+      }
+
+      editVar = 1;
+    }
+
+    //CARGAR PRODUCTOS DE EXCEL 
+    function cargarListaExcel() {
+      var inputFile = document.getElementById('inputExcel');
+      var file = inputFile.files[0];
+
+      if (file) {
+        mostrarCargando();
+
+        var formData = new FormData();
+        formData.append('archivo', file);
+
+        // Realizar la solicitud POST al servidor
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/cargar-archivo', true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            // Mostrar mensaje de éxito
+            mostrarExito();
+
+            // Limpiar el campo de entrada de archivos
+            inputFile.value = '';
+          } else {
+            // Mostrar mensaje de error
+            mostrarError();
+          }
+        };
+        xhr.onerror = function () {
+          // Mostrar mensaje de error
+          mostrarError();
+        };
+        xhr.send(formData);
+      } else {
+        mostrarError();
+      }
+    }
+
+    function mostrarCargando() {
+      swal({
+        title: "Cargando..!",
+        text: " Tu Archivo se esta Cargando!",
+        icon: "success",
+        button: "OK!",
+      });
+    }
+
+    function mostrarExito() {
+      swal({
+        title: "Archivo cargado con exito!",
+        icon: "success",
+        button: "OK!",
+      });
+      toggleContent(25);
+    }
+
+    function mostrarError() {
+      swal({
+        title: "ERROR!",
+        text: "Hubo un error al cargar el archivo!",
+        icon: "warning",
+        button: "OK!",
+      });
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <!--================================
+          START LOGIN AREA
+        =================================-->
+  <section style="display: none;" id="login">
+    <div class="login--header">
+      <div class="logo mb-3">
+        <a href="index.html">
+          <img id="logo-login" src="#" alt="logo image" class="img-fluid">
+        </a>
+      </div>
+      <!-- end .login_header -->
+
+      <div class="login-form mb-3">
+        <h4 class="mb-3">Ingresar al EPanel</h4>
+        <div class="form-group mb-3">
+          <input id="userInp" type="text" class="text_field" placeholder="Ingresar Email...">
+        </div>
+
+        <div class="form-group mb-3">
+          <input id="passInp" type="password" class="text_field" placeholder="Ingresar Contraseña...">
+        </div>
+
+        <button id="sub_btn" class="btn btn-primary btn--lg" type="button">Entrar!</button>
+      </div>
+      <!-- end .login--form -->
+      <img id="logo-eureka300" src="../eureka-logo-300.png" alt="Logo">
+
+    </div>
+    <!-- end .cardify -->
+  </section>
+  <!--================================
+              END LOGIN AREA
+      =================================-->
+  <section style="display: none;" id="panel-logueado">
+    <!--================================
+                  START HEADER AREA
+              =================================-->
+    <header>
+      <div style="width: 70%;" class="logo-header">
+        <a href="CasanovesMayoristaSanitarios.html">
+          <img id="logo-pc" src="#" alt="">
+          <img id="logo-mobile" src="#" alt="">
+        </a>
+      </div>
+      <div style="display: inline-block; margin-top: 2%; margin-left: 28%; width: 30%;">
+        <span>Powered By: </span>
+        <img style="margin-bottom: 0%;" width="200px" height="50px" src="../eureka-logo.png" alt="">
+      </div>
+    </header>
+    <!--================================
+                    END HEADER AREA
+                =================================-->
+    <!--================================
+                  START NAV-SLIDER AREA
+              =================================-->
+    <section style="background-color: #ffc46a;" id="nav-slider-area">
+      <div id="nav-header-header">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+
+
+                <li class="nav-item">
+                  <a style="text-decoration: underline;" id="webConfig" class="nav-link" href="#">Web Config</a>
+                </li>
+                <li class="nav-item">
+                  <a id="pProductos" class="nav-link" href="#">Productos</a>
+                </li>
+                <li class="nav-item">
+                  <a id="pPedidos" class="nav-link" href="#">Pedidos</a>
+                </li>
+
+                <li class="nav-item">
+                  <a id="pSoporte" class="nav-link" href="#">Soporte</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div id="div-carrito">
+          <button id="btnCerrarSesion" class="btn btn-primary btn--lg">CERRAR SESION</button>
+        </div>
+      </div>
+    </section>
+    <!--================================
+                    END NAV-SLIDER AREA
+                =================================-->
+    <div id="panelWebconfig">
+      <div id="vista-lateral-paneles">
+        <button class="btnDespliegue" onclick="toggleContent(1)">
+          Logo / Favicon
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content1">
+          <div>
+            <div id="logo-image" class="mb-3">
+              <div class="title--fr3">
+                <h3>Logo</h3>
+              </div>
+              <div>
+                <img height="100%" width="100%" id="logoDivPanel" src="??"></img>
+                <button class="btn btn-primary" for="seleccionLogo" id="btnCambiarLogo" type="button">Cambiar!</button>
+              </div>
+              <div class="title--fr3">
+                <h3>Favicon</h3>
+              </div>
+              <div>
+                <img height="50%" width="100%" id="faviconDivPanel" src="??"></img>
+                <button class="btn btn-primary" for="seleccionLogo" id="btnCambiarFavicon"
+                  type="button">Cambiar!</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(2)">
+          Header
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content2">
+          <div class="title--fr3 mb-3">
+            <h3>Menu Header</h3>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(11)">
+            Categorias
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content11">
+            <div id="divNavModify">
+              <table id="tabla-categorias" class="table">
+                <thead>
+                  <th>Categorias</th>
+                  <th>Eliminar</th>
+                </thead>
+                <tbody id="tbodycat">
+                  <td>GRIFERIAS</td>
+                </tbody>
+              </table>
+              <input id="catInp" style="text-align: center;" type="text" class="mb-3" placeholder="Agregar Categoria">
+
+              <button class="btn btn-primary mb-3" id="btnAddCategory" type="button">Agregar</button>
+
+            </div>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(12)">
+            Marcas
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content12">
+            <div id="divNavModify">
+
+              <span>(Max. 3).</span>
+
+              <table id="tabla-marcas" class="table">
+                <thead>
+                  <th>Marcas</th>
+                  <th>Eliminar</th>
+                </thead>
+                <tbody id="tbodybrand">
+                  <td>GRIFERIAS</td>
+                </tbody>
+              </table>
+              <input id="brandInp" style="text-align: center;" type="text" class="mb-3" placeholder="Agregar Marca">
+
+              <button class="btn btn-primary" id="btnAddBrand" type="button">Agregar</button>
+
+            </div>
+          </div>
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(3)">
+          Banners
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content3">
+          <div>
+            <button class="btnDespliegue" onclick="toggleContent(14)">
+              Banners Slider
+              <span class="arrowDespliegue"></span>
+            </button>
+            <div class="contenidoDespliegue" id="content14">
+              <div>
+                <span style="font-weight: bold;">Banner 1</span>
+                <img height="100%" width="100%" id="bannerHead-1" src="../banner-header-ejemplo.png"></img>
+                <span>Recomendado: 1366x340 </span>
+                <button class="btn btn-primary mb-3" id="btnChangeBanner1" type="button">Cambiar!</button>
+              </div>
+              <div>
+                <span style="font-weight: bold;">Banner 2</span>
+                <img height="100%" width="100%" id="bannerHead-2" src="../banner-header-ejemplo.png"></img>
+                <span>Recomendado: 1366x340 </span>
+                <button class="btn btn-primary mb-3" id="btnChangeBanner2" type="button">Cambiar!</button>
+              </div>
+              <div>
+                <span style="font-weight: bold;">Banner 3</span>
+                <img height="100%" width="100%" id="bannerHead-3" src="../banner-header-ejemplo.png"></img>
+                <span>Recomendado: 1366x340 </span>
+                <button class="btn btn-primary mb-3" id="btnChangeBanner3" type="button">Cambiar!</button>
+              </div>
+              <div>
+                <span style="font-weight: bold;">Banner 4</span>
+                <img height="100%" width="100%" id="bannerHead-4" src="../banner-header-ejemplo.png"></img>
+                <span>Recomendado: 1366x340 </span>
+                <button class="btn btn-primary mb-3" id="btnChangeBanner4" type="button">Cambiar!</button>
+              </div>
+              <div>
+                <span style="font-weight: bold;">Banner 5</span>
+                <img height="100%" width="100%" id="bannerHead-5" src="../banner-header-ejemplo.png"></img>
+                <span>Recomendado: 1366x340 </span>
+                <button class="btn btn-primary mb-3" id="btnChangeBanner5" type="button">Cambiar!</button>
+              </div>
+            </div>
+            <button class="btnDespliegue" onclick="toggleContent(15)">
+              SubBanner
+              <span class="arrowDespliegue"></span>
+            </button>
+            <div class="contenidoDespliegue" id="content15">
+              <div>
+                <img height="50%" width="100%" id="subBannerHead" src="../banner-head-chico-ejemplo.png"></img>
+                <span>Recomendado: 1366x142 </span>
+
+                <button class="btn btn-primary" id="btnChangeSubBanner" type="button">Cambiar!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(4)">
+          Colores
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content4">
+          <button class="btnDespliegue" onclick="toggleContent(16)">
+            Header
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content16">
+            <h5>Fondo Header</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorHeaderLogo" class="colorInput" onchange="cambiarHeader()">
+              <label for="hexCodeInputHeader">Cód.:</label>
+              <input type="text" id="hexCodeInputHeader" readonly>
+            </div>
+            <h5>Fondo Navegador</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorNav" class="colorInput" onchange="cambiarNav()">
+              <label for="hexCodeInputNav">Cód.:</label>
+              <input type="text" id="hexCodeInputNav" readonly>
+            </div>
+
+            <h5>Color de Letra Nav</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorNavItem" class="colorInput" onchange="cambiarNavItem()">
+              <label for="hexCodeInputNavItem">Cód.:</label>
+              <input type="text" id="hexCodeInputNavItem" readonly>
+            </div>
+
+            <h5>Fondo Botones</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorHeadBtns" class="colorInput" onchange="cambiarHeadBtns()">
+              <label for="hexCodeInputHeadBtns">Cód.:</label>
+              <input type="text" id="hexCodeInputHeadBtns" readonly>
+            </div>
+
+            <h5>Letras Botones</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorHeadBtnsLetras" class="colorInput" onchange="cambiarHeadBtnsLetras()">
+              <label for="hexCodeInputHeadBtnsLetras">Cód.:</label>
+              <input type="text" id="hexCodeInputHeadBtnsLetras" readonly>
+            </div>
+            <button class="btn btn-primary mb-3" id="btnModifyColorsHeader" type="button">Aplicar Cambios</button>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(17)">
+            ShopList
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content17">
+            <h5>Fondo ShopList</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorFondoShopList" class="colorInput" onchange="cambiarFondoShopList()">
+              <label for="hexCodeFondoShopList">Cód.:</label>
+              <input type="text" id="hexCodeFondoShopList" readonly>
+            </div>
+
+            <button class="btn btn-primary mb-3" id="btnModifyColorsShopList" type="button">Aplicar Cambios</button>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(18)">
+            Productos
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content18">
+            <h5>Fondo Producto</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorFondoProductos" class="colorInput" onchange="cambiarFondoProductos()">
+              <label for="hexCodeFondoProductos">Cód.:</label>
+              <input type="text" id="hexCodeFondoProductos" readonly>
+            </div>
+            <h5>Color Precio</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorPrecio" class="colorInput" onchange="cambiarColorPrecio()">
+              <label for="hexCodeColorPrecio">Cód.:</label>
+              <input type="text" id="hexCodeColorPrecio" readonly>
+            </div>
+
+            <h5>Fondo Precio</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorFondoPrecio" class="colorInput" onchange="cambiarFondoPrecio()">
+              <label for="hexCodeFondoPrecio">Cód.:</label>
+              <input type="text" id="hexCodeFondoPrecio" readonly>
+            </div>
+
+            <h5>Color Links</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorLinks" class="colorInput" onchange="cambiarColorLinks()">
+              <label for="hexCodeColorLinks">Cód.:</label>
+              <input type="text" id="hexCodeColorLinks" readonly>
+            </div>
+
+            <button class="btn btn-primary mb-3" id="btnModifyColorsProducto" type="button">Aplicar Cambios</button>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(19)">
+            Footer
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content19">
+            <h5>Fondo Footer</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorFondoFooter" class="colorInput" onchange="cambiarFondoFooter()">
+              <label for="hexCodeFondoFooter">Cód.:</label>
+              <input type="text" id="hexCodeFondoFooter" readonly>
+            </div>
+            <h5>Color Letras</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorLetrasFooter" class="colorInput" onchange="cambiarLetrasFooter()">
+              <label for="hexCodeLetrasFooter">Cód.:</label>
+              <input type="text" id="hexCodeLetrasFooter" readonly>
+            </div>
+
+            <h5>Color Links</h5>
+
+            <div class="colorDiv mb-3">
+              <input type="color" id="colorLinksFooter" class="colorInput" onchange="cambiarLinksFooter()">
+              <label for="hexCodeLinksFooter">Cód.:</label>
+              <input type="text" id="hexCodeLinksFooter" readonly>
+            </div>
+
+            <button class="btn btn-primary mb-3" id="btnModifyColorsFooter" type="button">Aplicar Cambios</button>
+          </div>
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(8)">
+          Tipo de Letra
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content8">
+          <label for="fontSelector">Selecciona una fuente:</label>
+          <select id="fontSelector" class="mb-3">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="Helvetica, sans-serif">Helvetica</option>
+            <option value="Times New Roman, serif">Times New Roman</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+            <option value="Georgia, serif">Georgia</option>
+          </select>
+
+          <h5 class="fontTest">Ejemplo de Fuente</h5>
+          <p class="fontTest">Este es un párrafo de muestra para ver como quedaria el texto con el cambio de fuente.</p>
+          <button class="btn btn-primary mb-3" id="btnModifyLetra" type="button">Aplicar Cambios</button>
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(7)">
+          Contacto
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content7">
+          <div style="text-align: center;" id="contactModify">
+
+            <div style="text-align: center;" id="logo-image" class="mb-3">
+              <div class="title--fr3 mb-3">
+                <h3>Ubicación</h3>
+              </div>
+              <div style="width: 100%;">
+                <input type="text" id="inputUbication" class="form-control">
+              </div>
+              <span>Pega aqui el link que te provee <a href="https://www.google.com/maps" target="_blank">Google
+                  Maps!</a></span>
+            </div>
+            <div style="text-align: center;" id="logo-image" class="mb-3">
+              <div class="title--fr3 mb-3">
+                <h3>WhatsApp</h3>
+              </div>
+              <div style="width: 100%;">
+                <input type="text" id="inputPhone" class="form-control">
+              </div>
+              <span>Este sera el numero donde recibiras todas las consultas y compras!</span>
+            </div>
+            <div style="text-align: center;" id="logo-image" class="mb-3">
+              <div class="title--fr3 mb-3">
+                <h3>Email</h3>
+              </div>
+              <div style="width: 100%;">
+                <input type="text" id="inputEmail" class="form-control">
+              </div>
+              <span>El Email donde podran contactarse contigo proveedores y mas!</span>
+
+            </div>
+            <button class="btn btn-primary mb-3" id="btnModifyContacto" type="button">Aplicar Cambios</button>
+
+          </div>
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(5)">
+          Envios
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content5">En Desarrollo</div>
+        <button class="btnDespliegue" onclick="toggleContent(6)">
+          Pagos
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content6">En Desarrollo</div>
+      </div>
+      <div id="vista-index">
+        <!--================================
+              START HEADER AREA
+          =================================-->
+        <header id="header">
+          <div class="logo-header">
+            <a href="CasanovesMayoristaSanitarios.html">
+              <img id="logo-pc-header" src="#" alt="">
+              <img id="logo-mobile" src="#" alt="">
+            </a>
+          </div>
+          <div class="searcher">
+            <div class="input-group mb-3">
+              <input id="searchInput" type="text" class="form-control" placeholder="Buscar Producto"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+              <button class="btn btn-primary btn-header" type="button" id="button-addon2">Buscar</button>
+            </div>
+          </div>
+
+
+        </header>
+        <!--================================
+            END HEADER AREA
+        =================================-->
+        <!--================================
+            START NAV-SLIDER AREA
+        =================================-->
+        <section id="nav-slider-area">
+          <div id="nav-header">
+            <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link link-header" href="#">Home</a>
+                    </li>
+                    <li class="dropdown">
+                      <a class="nav-link link-header" href="#">Categorias ▼</a>
+                      <div id="cat-display" class="dropdown-content">
+
+                      </div>
+                    </li>
+                    <div style="display: flex;" id="brand-display">
+
+                    </div>
+                    <li class="nav-item">
+                      <a class="nav-link link-header" href="tienda.html">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link link-header" href="contact.html">CONTACTO</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+            <div id="div-carrito">
+              <!-- Botón de carrito con lista desplegable -->
+              <div id="carrito" class="btn-header" onmouseover="mostrarListaCarrito()"
+                onmouseout="ocultarListaCarrito()">
+                <span id="cantidad-carrito">(0)</span> <span id="carrito-logo">🛒</span>
+
+                <div id="lista-carrito">
+                  <div id="titulo-de-lista">
+                    <h3>Carrito de Compras</h3>
+                  </div>
+                  <div id="lista-productos">
+
+                  </div>
+                  <!-- Lista de productos en el carrito -->
+                  <div id="mensaje-carrito-vacio">
+                    <p>Tu carrito está vacío.</p>
+                    <a href="tienda.html">IR A TIENDA</a>
+                  </div>
+                  <div id="btnIniciarCompra">
+                    <div class="mb-3">
+                      <span>TOTAL:</span>
+                      <span style="float: right;" id="total"></span>
+                    </div>
+                    <div>
+                      <a href="checkout.html" style="float: right;" class="btn btn-primary btnCheckout">Iniciar
+                        Compra</a>
+                      <button style="float: left;background-color: red;" onclick="limpiarCarrito()"
+                        class="btn btn-primary btn--lg">Limpiar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="carouselHeader" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselHeader" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselHeader" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselHeader" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselHeader" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselHeader" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img id="bannerHeader-1" src="#" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img id="bannerHeader-2" src="#" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img id="bannerHeader-3" src="#" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img id="bannerHeader-4" src="#" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img id="bannerHeader-5" src="#" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHeader" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHeader" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </div>
+        </section>
+        <!--================================
+            END NAV-SLIDER AREA
+        =================================-->
+
+        <!--================================
+            START SHOPS LIST AREA
+        =================================-->
+        <section id="shops-list-area">
+          <div class="banners">
+            <img id="subBannerHeaders" src="#" class="d-block w-100" alt="...">
+          </div>
+          <div id="banner-categorias">
+            <div id="banner-categorias-contenido">
+
+              <div id="carrousel-banner-categorias" class="carousel slide" data-bs-ride="carousel">
+                <div id="carousel-indicators-slider" class="carousel-indicators">
+
+                </div>
+                <div id="carousel-inner-catslider" class="carousel-inner">
+
+                </div>
+                <button class="carousel-control-prev cc" type="button" data-bs-target="#carrousel-banner-categorias"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next cc" type="button" data-bs-target="#carrousel-banner-categorias"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Siguiente</span>
+                </button>
+              </div>
+            </div>
+            <div>
+
+            </div>
+          </div>
+          <div style="margin-top: 0;" class="shopList" id="shopList">
+
+
+          </div>
+
+
+        </section>
+        <!--================================
+            END SHOPS LIST AREA
+        =================================-->
+
+        <!--================================ 
+            START FOOTER AREA
+        =================================-->
+        <footer id="footer-area">
+          <div style="margin: 1%;" class="subfoot-t1">
+            <p>© 2023 <a href="" class="linksFooter">CasanovesMayoristaSanitarios</a>. All rights reserved. Created by <a href="#"
+                class="linksFooter">MyEcom</a>.</p>
+          </div>
+
+        </footer>
+        <!--================================
+            END FOOTER AREA
+        =================================-->
+      </div>
+    </div>
+    <div id="panelProductos" style="display: none;">
+      <div id="prodConfig">
+
+        <button class="btnDespliegue" onclick="toggleContent(20)">
+          CARGAR UN PRODUCTO
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content20">
+          <div class="modules__content">
+
+            <div class="form-group mb-3">
+              <label>Nombre del Producto
+                <span>(Max 60 Caracteres)</span>
+              </label>
+              <input type="text" id="nameProduct" maxlength="60" class="text_field inputList"
+                placeholder="Ingresa el nombre de producto aqui...">
+            </div>
+
+
+            <div class="form-group mb-3">
+              <label>Seleccionar Categoria:</label>
+              <div class="select-wrap select-wrap2">
+                <select name="country" id="catProduct" class="text_field">
+                  <option value="">Selecciona Una</option>
+                </select>
+                <span class="lnr lnr-chevron-down"></span>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label>SKU:</label>
+                    <input type="number" maxlength="11" id="skuProduct" class="text_field inputList"
+                      placeholder="Codigo de Sistema...">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label>Precio:</label>
+                    <input type="text" maxlength="11" id="priceProduct" class="text_field inputList"
+                      placeholder="00.00">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label>Marca:</label>
+                    <input type="text" maxlength="11" id="marcaProduct" class="text_field inputList" placeholder="FV">
+                  </div>
+                </div>
+              </div>
+              <!-- end /.col-md-6 -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label>Stock:</label>
+                    <input type="text" maxlength="11" id="stockProduct" class="text_field inputList"
+                      placeholder="Ej: 4">
+                  </div>
+                </div>
+              </div>
+              <!-- end /.col-md-6 -->
+
+            </div>
+            <!-- end /.row -->
+
+
+
+
+            <div class="form-group no-margin mb-3">
+              <p class="label">Descripción del Producto</p>
+              <!--<div id="trumbowyg-demo"></div>-->
+              <textarea id="descripProduct" placeholder="Ingresa la descripcion de producto aqui..."
+                maxlength="200"></textarea>
+
+            </div>
+
+          </div>
+
+
+          <div id="divNavModify" style="border: solid 1px gray; padding: 1%;" class="mb-3">
+            <p>Imagen Principal</p>
+
+
+            <img src="../imagenPrinciaplBase.png" alt="Imagen predefinida" id="imgPrincipal" width="250px"
+              style="margin-bottom: 5%;" height="250px">
+            <button id="btnImgPrincipal" class="btn btn-primary btn--lg">CARGAR IMAGEN</button>
+            <input class="btn btn-primary mb-3" type="file" id="fileInputPrincipal" accept="image/*"
+              style="display: none;">
+
+          </div>
+
+          <div id="divNavModify" style="border: solid 1px gray; padding: 1%;" class="mb-3">
+            <p>Imagenes Secundarias</p>
+            <div class="contenedor-imgSecundarias">
+
+              <img class="previewSecundaria" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                alt="No Data Filter">
+              <img class="previewSecundaria" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                alt="No Data Filter">
+              <img class="previewSecundaria" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                alt="No Data Filter">
+              <img class="previewSecundaria" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                alt="No Data Filter">
+            </div>
+
+            <button id="btnImgSecundarias" class="btn btn-primary btn--lg">CARGAR IMAGENES</button>
+
+            <input class="btn btn-primary mb-3" type="file" id="fileInputSecundarias" accept="image/*" multiple
+              style="display: none;">
+
+          </div>
+
+          <button class="btn btn-primary mb-3" style="margin: 5%;" id="btnAddProducto" type="button">CARGAR
+            PRODUCTO</button>
+
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(21)">
+          EDITAR PRODUCTO
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content21">
+          <p>TRAER PRODUCTO PARA EDITAR</p>
+          <div style="border: solid 1px grey; padding: 2%;" class="mb-3">
+            <input id="skuEditar" maxlength="20" type="text" placeholder="SKU del Producto">
+            <button id="btnSearchEdit" class="btn btn-primary">BUSCAR</button>
+          </div>
+          <div id="panelEditar" style="display: none;">
+            <div class="modules__content">
+
+              <div class="form-group mb-3">
+                <label>Nombre del Producto
+                  <span>(Max 60 Caracteres)</span>
+                </label>
+                <input type="text" id="nameProductEdit" maxlength="60" class="text_field inputList"
+                  placeholder="Ingresa el nombre de producto aqui...">
+              </div>
+
+
+              <div class="form-group mb-3">
+                <label>Seleccionar Categoria:</label>
+                <div class="select-wrap select-wrap2">
+                  <select name="country" id="catProductEdit" class="text_field">
+                    <option value="">Selecciona Una</option>
+                  </select>
+                  <span class="lnr lnr-chevron-down"></span>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label>SKU:</label>
+                      <input type="number" maxlength="11" id="skuProductEdit" class="text_field inputList"
+                        placeholder="Codigo de Sistema..." disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label>Precio:</label>
+                      <input type="text" maxlength="11" id="priceProductEdit" class="text_field inputList"
+                        placeholder="00.00">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label>Marca:</label>
+                      <input type="text" maxlength="11" id="marcaProductEdit" class="text_field inputList"
+                        placeholder="FV">
+                    </div>
+                  </div>
+                </div>
+                <!-- end /.col-md-6 -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label>Stock:</label>
+                      <input type="text" maxlength="11" id="stockProductEdit" class="text_field inputList"
+                        placeholder="Ej: 4">
+                    </div>
+                  </div>
+                </div>
+                <!-- end /.col-md-6 -->
+
+              </div>
+              <!-- end /.row -->
+
+
+
+
+
+              <div class="form-group no-margin mb-3">
+                <p class="label">Descripción del Producto</p>
+                <!--<div id="trumbowyg-demo"></div>-->
+                <textarea id="descripProductEdit" placeholder="Ingresa la descripcion de producto aqui..."
+                  maxlength="200"></textarea>
+
+              </div>
+
+            </div>
+
+
+            <div id="divNavModify" style="border: solid 1px gray; padding: 1%;" class="mb-3">
+              <p>Imagen Principal</p>
+              <img id="imgPrincipalEdit" width="250px" style="margin-bottom: 5%;" height="250px"
+                src="../imagenPrinciaplBase.png" alt="No Data Filter">
+
+              <button id="btnEditImgPrincipal" class="btn btn-primary btn--lg">CAMBIAR IMAGENES</button>
+
+              <input class="btn btn-primary mb-3" type="file" id="fileInputEditImgPrincipal" accept="image/*" multiple
+                style="display: none;">
+
+
+            </div>
+
+            <div id="divNavModify" style="border: solid 1px gray; padding: 1%;" class="mb-3">
+              <p>Imagenes Secundarias</p>
+              <div class="contenedor-imgSecundariasEdit">
+                <img class="previewSecundariaEdit" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                  alt="No Data Filter">
+                <img class="previewSecundariaEdit" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                  alt="No Data Filter">
+                <img class="previewSecundariaEdit" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                  alt="No Data Filter">
+                <img class="previewSecundariaEdit" width="100px" height="100px" src="../imagenPrinciaplBase.png"
+                  alt="No Data Filter">
+              </div>
+              <button id="btnImgSecundariasEdit" class="btn btn-primary btn--lg">CAMBIAR IMAGENES</button>
+
+              <input class="btn btn-primary mb-3" type="file" id="fileInputEditImgSecundarias" accept="image/*" multiple
+                style="display: none;">
+
+
+            </div>
+
+            <button class="btn btn-primary mb-3" style="margin: 5%;" id="btnEditarProducto" type="button">EDITAR
+              PRODUCTO</button>
+          </div>
+
+        </div>
+        <button class="btnDespliegue" onclick="toggleContent(22)">
+          CARGAR EXCEL
+          <span class="arrowDespliegue"></span>
+        </button>
+        <div class="contenidoDespliegue" id="content22">
+          <h3>CARGAR EXCEL DE PRODUCTOS</h3>
+          <button class="btnDespliegue" onclick="toggleContent(23)">
+            Modelo Excel MyEcom
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content23">
+            <div style="border: solid 1px grey; padding: 2%;" class="mb-3">
+              Descargar Modelo de Excel:
+              <a href="../../recursos/ModeloMyEcom.xlsx" download="modeloMyEcom.xlsx">DESCARGAR</a>
+            </div>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(24)">
+            Descargar Mi Excel
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content24">
+            <div style="border: solid 1px grey; padding: 2%;" class="mb-3">
+              Descargar <span style="font-weight: bold;">Mi Lista</span>:
+              <a href="excel/CasanovesMayoristaSanitarios.xlsx" download="CasanovesMayoristaSanitarios.xlsx">DESCARGAR</a>
+            </div>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(25)">
+            Reemplazar Mi Excel
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content25">
+            <input type="file" id="inputExcel" class="btn btn-primary mb-3">
+            <button type="submit" class="btn btn-primary mb-3" onclick="cargarListaExcel()">Reemplazar Excel</button>
+          </div>
+          <button class="btnDespliegue" onclick="toggleContent(26)">
+            ACTUALIZAR LISTAS
+            <span class="arrowDespliegue"></span>
+          </button>
+          <div class="contenidoDespliegue" id="content26">
+            <button type="submit" class="btn btn-primary mb-3" id="actListas">ACTUALIZAR LISTAS</button>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div id="prodVista">
+        <h1 class="mb-3">LISTADO DE PRODUCTOS</h1>
+        <div id="searcherProductList">
+          <input type="text" class="search-input" id="searchInputProductList" placeholder="Buscar Productos">
+        </div>
+        <div id="productList">
+          <div class="ProductCardPanel">
+            <div class="imgProductBanner">
+              <img id="imgProductBanner" width="auto" height="100%" src="../imagenPrinciaplBase.png"
+                alt="No Data Filter">
+            </div>
+            <div class="descripProductBanner">
+              <div class="titleProductCard">
+                <span style="font-weight: bold;">TITULO DEL PRODUCTO</span>
+              </div>
+              <div class="descripProductCard">
+                <p>Este es un producto de prueba para verificar que todo...
+                </p>
+              </div>
+              <div class="foootProductCard">
+                <span>Categoria: <span style="font-weight: bold;" id="catPC">PRUEBA</span></span>
+                <span>Marca: <span style="font-weight: bold;" id="brandPC">PRUEBA</span></span>
+              </div>
+              <div class="foootProductCard1">
+                <span>SKU: <span style="font-weight: bold;" id="brandPC">1213</span></span>
+                <span>Precio: <span style="font-weight: bold;" id="pricePC">$3.500</span></span>
+              </div>
+            </div>
+            <div class="modifyProductBanner">
+              <button class="btn btn-primary" onclick="toggleContent(21)">EDITAR</button>
+              <button class="btn btn-primary btn-danger">ELIMINAR</button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <div id="panelPedidos" style="display: none;">
+      <div id="contenedorPanelPedidos">
+
+        <div id="pedidosPanelVista">
+          <p style="margin-top: 1%;">BUSCAR PEDIDO</p>
+          <div style="border: solid 1px grey; padding: 2%; margin-right: 2%; margin-left: 2%;" class="mb-3">
+            <input id="skuBuscarPedido" maxlength="20" type="text" placeholder="Numero del Pedido">
+            <button id="btnSearchPedido" class="btn btn-primary">BUSCAR</button>
+          </div>
+          <button class="btnDespliegue" id="btnPedidosPendientes">
+            PEDIDOS PENDIENTES
+            <span class="arrowDespliegue"></span>
+          </button>
+          <button class="btnDespliegue" id="btnPedidosCompletados">
+            PEDIDOS COMPLETADOS
+            <span class="arrowDespliegue"></span>
+          </button>
+          <button class="btnDespliegue" id="btnPedidosCancelados">
+            PEDIDOS CANCELADOS
+            <span class="arrowDespliegue"></span>
+          </button>
+
+        </div>
+        <div id="pedidosVista">
+          <div id="ultimoPedido">
+            <h3 style="margin-top: 1%;">ULTIMO PEDIDO</h3>
+            <div style="margin-left: 2%; margin-right: 2%; width: 96% !important;" class="zonaPedido">
+              <div class="zonaPedidoOptions">
+                <div class="subdivPedidoSolicitado">
+                  <span>NUMERO: <span id="numLastPedido"></span></span>
+                </div>
+                <div class="subdivPedidoSolicitado">
+                  <span>TOTAL <span id="totalLastPedido"></span></span>
+                </div>
+                <div class="subdivPedidoSolicitado">
+                  <span style="margin-right: 10%;">PAGO</span>
+                  <input id="pagoLastPedido" type="checkbox" />
+                </div>
+                <div class="subdivPedidoSolicitado">
+                  <span style="margin-right: 10%;">ENVIO</span>
+                  <input id="envioLastPedido" type="checkbox" />
+                </div>
+                <div class="subdivPedidoSolicitado descargarPedidoSolicitado">
+                  <a id="descargarUltimoPedido" href="#" style="text-decoration: none; color: black;">DESCARGAR</a>
+                </div>
+                <div class="eliminarPedidoSolicitado">
+                  <span style="margin-right: 10%;">CANCELAR</span>
+                  <input id="btnCancelarLastPedido" type="checkbox" />
+                </div>
+              </div>
+              <div id="imgPedido">
+                <img id="imgLastPedido" width="100%" height="100%" src="#" alt="No Data Filter">
+              </div>
+
+            </div>
+          </div>
+          <div style="display: none;" id="pedidosSolicitados">
+            <h3 style="margin-top: 1%;">PEDIDO SOLICITADO</h3>
+            <div style="margin-left: 2%; margin-right: 2%; width: 96% !important;" class="zonaPedido">
+              <div class="zonaPedidoOptions">
+                <div class="subdivPedidoSolicitado">
+                  <span>NUMERO: <span id="nroPedidoSolicitado"></span></span>
+                </div>
+                <div class="subdivPedidoSolicitado">
+                  <span>TOTAL <span id="nroTotalPedidoSolicitado"></span></span>
+                </div>
+                <div class="subdivPedidoSolicitado">
+                  <span style="margin-right: 10%;">PAGO</span>
+                  <input id="pagoPedidoSolicitado" type="checkbox" />
+                </div>
+                <div class="subdivPedidoSolicitado">
+                  <span style="margin-right: 10%;">ENVIO</span>
+                  <input id="envioPedidoSolicitado" type="checkbox" />
+                </div>
+                <div class="subdivPedidoSolicitado descargarPedidoSolicitado">
+                  <a href="#" id="descargarPedidoSolicitado" style="text-decoration: none; color: black;">DESCARGAR</a>
+                </div>
+                <div class="eliminarPedidoSolicitado">
+                  <span style="margin-right: 10%;">CANCELAR</span>
+                  <input id="btnCancelarPedidoSolicitado" type="checkbox" />
+                </div>
+              </div>
+              <div id="imgPedido">
+                <img id="imgPedidoSolicitado" width="100%" height="100%" src="#" alt="No Data Filter">
+              </div>
+
+            </div>
+          </div>
+          <div style="display: none;" id="pedidosPendientes">
+            <h3 style="margin-top: 1%;" class="mb-3">PEDIDOS PENDIENTES</h3>
+            <button id="btnCancelarPedido" style="display:none"></button>
+            <input id="inputCancelarPedido" style="display: none;" />
+            <button id="btnPagoPedido" style="display:none"></button>
+            <input id="inputPagoPedido" style="display: none;" />
+            <button id="btnEnvioPedido" style="display:none"></button>
+            <input id="inputEnvioPedido" style="display: none;" />
+            <div id="pedidosPendientesList">
+
+            </div>
+          </div>
+          <div style="display: none;" id="pedidosCompletados">
+            <h3 style="margin-top: 1%;" class="mb-3">PEDIDOS COMPLETOS</h3>
+            <div id="pedidosCompletadosList">
+
+            </div>
+
+          </div>
+          <div style="display: none;" id="pedidosCancelados">
+            <h3 style="margin-top: 1%;" class="mb-3">PEDIDOS CANCELADOS</h3>
+            <div id="pedidosCanceladosList">
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div id="panelSoporte" style="display: none;">
+      <p>cacona</p>
+
+    </div>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+
+  <script src="../js.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+  <!--================================
+              START SCRIPT BASE
+          =================================-->
+  <script>
+    var price = localStorage.price;
+    var prod = localStorage.prod;
+    var titulo = localStorage.Titulo;
+    window.onload = function () {
+
+
+      obtenerProductosDesdeLocalStorage();
+
+      agregarAlCarrito();
+      AssignAllEvents();
+    }
+
+    //CLICKEAR PRODUCTO E IR A PRODUCT DETAIL CON SUS STATS
+    function GetProductIndex(id) {
+      var indstart = id.indexOf('-') + 1;
+      var indend = id.length;
+      return Number(id.substring(indstart, indend));
+    }
+
+    function GotoProductDetails(event) {
+      var index = GetProductIndex(event.target.id);
+
+      if (index == 0) {
+        const titulo = document.getElementById('titulo-p0').value;
+        const bigimg = document.getElementById('p0').value;
+        const price = document.getElementById('pr0').value;
+        const stock = document.getElementById('stk0').value;
+        localStorage.price = price;
+        localStorage.prod = 0;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+      if (index == 1) {
+        const titulo = document.getElementById('titulo-p1').value;
+        const bigimg = document.getElementById('p1').value;
+        const price = document.getElementById('pr1').value;
+        const stock = document.getElementById('stk1').value;
+        localStorage.price = price;
+        localStorage.prod = 1;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+
+      if (index == 2) {
+        const titulo = document.getElementById('titulo-p2').value;
+        const bigimg = document.getElementById('p2').value;
+        const price = document.getElementById('pr2').value;
+        const stock = document.getElementById('stk2').value;
+        localStorage.price = price;
+        localStorage.prod = 2;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+
+      if (index == 3) {
+        const titulo = document.getElementById('titulo-p3').value;
+        const bigimg = document.getElementById('p3').value;
+        const price = document.getElementById('pr3').value;
+        const stock = document.getElementById('stk3').value;
+        localStorage.price = price;
+        localStorage.prod = 3;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+
+      if (index == 4) {
+        const titulo = document.getElementById('titulo-p4').value;
+        const bigimg = document.getElementById('p4').value;
+        const price = document.getElementById('pr4').value;
+        const stock = document.getElementById('stk4').value;
+        localStorage.price = price;
+        localStorage.prod = 4;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+      if (index == 5) {
+        const titulo = document.getElementById('titulo-p5').value;
+        const bigimg = document.getElementById('p5').value;
+        const price = document.getElementById('pr5').value;
+        const stock = document.getElementById('stk5').value;
+        localStorage.price = price;
+        localStorage.prod = 5;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+      if (index == 6) {
+        const titulo = document.getElementById('titulo-p6').value;
+        const bigimg = document.getElementById('p6').value;
+        const price = document.getElementById('pr6').value;
+        const stock = document.getElementById('stk6').value;
+        localStorage.price = price;
+        localStorage.prod = 6;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+
+      if (index == 7) {
+        const titulo = document.getElementById('titulo-p7').value;
+        const bigimg = document.getElementById('p7').value;
+        const price = document.getElementById('pr7').value;
+        const stock = document.getElementById('stk7').value;
+        localStorage.price = price;
+        localStorage.prod = 7;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+
+      if (index == 8) {
+        const titulo = document.getElementById('titulo-p8').value;
+        const bigimg = document.getElementById('p8').value;
+        const price = document.getElementById('pr8').value;
+        const stock = document.getElementById('stk8').value;
+        localStorage.price = price;
+        localStorage.prod = 8;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+
+      if (index == 9) {
+        const titulo = document.getElementById('titulo-p9').value;
+        const bigimg = document.getElementById('p9').value;
+        const price = document.getElementById('pr9').value;
+        const stock = document.getElementById('stk9').value;
+        localStorage.price = price;
+        localStorage.prod = 9;
+        localStorage.Titulo = titulo;
+        localStorage.Imagen = bigimg;
+        localStorage.Stock = stock;
+        window.location = "product-details.html";
+
+      }
+
+
+    }
+
+    function getShortTitleDescription(title) {
+      if (title.length > 40) title = title.substring(0, 40);
+      else return title;
+      return title + "...";
+    }
+
+    function getShortTitleProduct(title) {
+      if (title.length > 24) title = title.substring(0, 24);
+      else return title;
+      return title + "...";
+    }
+
+    function AssignAllEvents() {
+      var btns = document.getElementsByClassName('productoT1');
+
+      for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', GotoProductDetails);
+
+      }
+    }
+
+    //CAMBIAR COLORES 
+    function cambiarHeader() {
+      const colorHeaderLogo = document.getElementById('colorHeaderLogo');
+      const hexCodeInput = document.getElementById('hexCodeInputHeader');
+
+      const selectedColor = colorHeaderLogo.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const miDiv = document.getElementById('header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      miDiv.style.backgroundColor = nuevoColor;
+    }
+
+    function cambiarNav() {
+      const colorHeaderLogo = document.getElementById('colorNav');
+      const hexCodeInput = document.getElementById('hexCodeInputNav');
+
+      const selectedColor = colorHeaderLogo.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const miDiv = document.getElementById('nav-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      miDiv.style.backgroundColor = nuevoColor;
+    }
+
+    function cambiarNavItem() {
+      const colorHeaderLogo = document.getElementById('colorNavItem');
+      const hexCodeInput = document.getElementById('hexCodeInputNavItem');
+
+      const selectedColor = colorHeaderLogo.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('link-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarHeadBtns() {
+      const colorHeaderLogo = document.getElementById('colorHeadBtns');
+      const hexCodeInput = document.getElementById('hexCodeInputHeadBtns');
+
+      const selectedColor = colorHeaderLogo.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('btn-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.backgroundColor = nuevoColor;
+      }
+    }
+
+    function cambiarHeadBtnsLetras() {
+      const colorHeaderLogo = document.getElementById('colorHeadBtnsLetras');
+      const hexCodeInput = document.getElementById('hexCodeInputHeadBtnsLetras');
+
+      const selectedColor = colorHeaderLogo.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('btn-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarFondoShopList() {
+      const colorFondoShopList = document.getElementById('colorFondoShopList');
+      const hexCodeInput = document.getElementById('hexCodeFondoShopList');
+
+      const selectedColor = colorFondoShopList.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const miDiv = document.getElementById('shopList');
+      const bannerCategorias = document.getElementById('banner-categorias');
+
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      miDiv.style.backgroundColor = nuevoColor;
+      bannerCategorias.style.backgroundColor = nuevoColor;
+
+    }
+
+    function cambiarFondoProductos() {
+      const colorFondoProductos = document.getElementById('colorFondoProductos');
+      const hexCodeInput = document.getElementById('hexCodeFondoProductos');
+
+      const selectedColor = colorFondoProductos.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('Card');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.backgroundColor = nuevoColor;
+      }
+    }
+
+    function cambiarColorPrecio() {
+      const colorPrecio = document.getElementById('colorPrecio');
+      const hexCodeInput = document.getElementById('hexCodeColorPrecio');
+
+      const selectedColor = colorPrecio.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('precioColor');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarFondoPrecio() {
+      const colorFondoPrecio = document.getElementById('colorFondoPrecio');
+      const hexCodeInput = document.getElementById('hexCodeFondoPrecio');
+
+      const selectedColor = colorFondoPrecio.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('fondoPColor');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.backgroundColor = nuevoColor;
+      }
+    }
+
+    function cambiarColorLinks() {
+      const colorLinks = document.getElementById('colorLinks');
+      const hexCodeInput = document.getElementById('hexCodeColorLinks');
+
+      const selectedColor = colorLinks.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('colorLinks');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarFondoFooter() {
+      const colorLinks = document.getElementById('colorFondoFooter');
+      const hexCodeInput = document.getElementById('hexCodeFondoFooter');
+
+      const selectedColor = colorLinks.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementById('footer-area');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      elementosConClase.style.backgroundColor = nuevoColor;
+    }
+
+    function cambiarLetrasFooter() {
+      const colorLinks = document.getElementById('colorLetrasFooter');
+      const hexCodeInput = document.getElementById('hexCodeLetrasFooter');
+
+      const selectedColor = colorLinks.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementById('footer-area');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      elementosConClase.style.color = nuevoColor;
+    }
+
+    function cambiarLinksFooter() {
+      const colorLinks = document.getElementById('colorLinksFooter');
+      const hexCodeInput = document.getElementById('hexCodeLinksFooter');
+
+      const selectedColor = colorLinks.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('linksFooter');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    // Función para obtener los componentes RGB del color
+    function getRGB(color) {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, 1, 1);
+
+      const data = ctx.getImageData(0, 0, 1, 1).data;
+      return { r: data[0], g: data[1], b: data[2] };
+    }
+
+    // Función para convertir los componentes RGB a formato hexadecimal
+    function rgbToHex(rgb) {
+      return '#' + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
+    }
+
+    // Función para convertir un componente RGB a formato hexadecimal
+    function componentToHex(c) {
+      const hex = c.toString(16);
+      return hex.length == 1 ? '0' + hex : hex;
+    }
+
+
+
+  </script>
+  <!--================================
+              END SCRIPT BASE
+          =================================-->
+  <!--================================
+              START TRAER DATOS
+          =================================-->
+  <script type="module">
+    //CONECTAR FIREBASE
+    //FIREBASE 
+    // IMPORTS + CONFIGURATION
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
+      from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
+
+    import { getDatabase, onValue, ref, set, push, child, get, update, remove }
+      from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAeYmYuIobZrOhJ2UVg2K_bRNsIamNYa10",
+      authDomain: "myecom-415a4.firebaseapp.com",
+      databaseURL: "https://myecom-415a4-default-rtdb.firebaseio.com",
+      projectId: "myecom-415a4",
+      storageBucket: "myecom-415a4.appspot.com",
+      messagingSenderId: "219326371024",
+      appId: "1:219326371024:web:a13405d51310e091377ad5",
+      measurementId: "G-J7MJ3W5PZT"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const realdb = getDatabase();
+
+    //LOGIN
+    //REFERENCIAS
+    Logueado();
+
+    const username = document.getElementById('userInp');
+    const pass = document.getElementById('passInp');
+    const submit = document.getElementById('sub_btn');
+    const cerrarSesion = document.getElementById('btnCerrarSesion');
+
+    //AUTENTICATION PROCESS
+    function AuthenticateUser() {
+      const dbRef = ref(realdb);
+
+      get(child(dbRef, "Usuarios/CasanovesMayoristaSanitarios")).then((snapshot) => {
+        if (snapshot.exists()) {
+          let dbpass = decPass(snapshot.val().brandPassword);
+          let email = snapshot.val().brandEmail;
+
+          if (dbpass == pass.value && email == username.value) {
+            login(snapshot.val());
+
+          }
+          else {
+            swal({
+              title: "Usuario o Contraseña Incorrecta!",
+              icon: "warning",
+              button: "OK!",
+            });
+          }
+        }
+        else {
+          swal({
+            title: "Usuario o Contraseña Invalida!",
+            icon: "warning",
+            button: "OK!",
+          });
+        }
+      });
+
+    }
+
+    //DECRIPT 
+    function decPass(dbpass) {
+      var pass12 = CryptoJS.AES.decrypt(dbpass, pass.value);
+      return pass12.toString(CryptoJS.enc.Utf8);
+    }
+
+    //LOGIN 
+    function login(username) {
+
+      if (username) {
+        sessionStorage.setItem('user', JSON.stringify(username));
+
+        let log = 1;
+        set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/log"), {
+          log: log
+
+        });
+        const secLogin = document.getElementById('login');
+        const secLogueado = document.getElementById('panel-logueado');
+
+        secLogin.style.display = "none";
+        secLogueado.style.display = "block"
+      }
+
+    }
+
+    function Desloguear() {
+      let log = 0;
+      set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/log"), {
+        log: log
+
+      });
+
+      window.location = "CasanovesMayoristaSanitarios.html";
+    }
+
+    const log = [];
+
+    function Logueado() {
+      const dbRef = ref(realdb);
+
+      get(child(dbRef, "Usuarios/CasanovesMayoristaSanitarios/log")).then((snapshot) => {
+        snapshot.forEach(prod => {
+          log.push(prod.val());
+
+        });
+        const secLogin = document.getElementById('login');
+        const secLogueado = document.getElementById('panel-logueado');
+        if (log == 0) {
+          secLogin.style.display = "block";
+          secLogueado.style.display = "none"
+        } else {
+          secLogin.style.display = "none";
+          secLogueado.style.display = "block"
+        }
+      });
+
+    }
+
+    // Asignar eventos
+    submit.addEventListener('click', AuthenticateUser);
+    cerrarSesion.addEventListener('click', Desloguear)
+
+    //FIN LOGIN
+
+
+    var ArrayOfProducts = [];
+    window.addEventListener('load', getAllData);
+
+
+    function getAllData() {
+      const dbref = ref(realdb);
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios")).then((snapshot) => {
+
+        snapshot.forEach(prod => {
+          ArrayOfProducts.push(prod.val());
+          const favicon = document.getElementById('favicon');
+          const logoMobile = document.getElementById('logo-mobile');
+          const logoPC = document.getElementById('logo-pc');
+          const logoPCH = document.getElementById('logo-pc-header');
+
+          const logoDivPanel = document.getElementById('logoDivPanel');
+          const faviconDivPanel = document.getElementById('faviconDivPanel');
+
+          const logoLogin = document.getElementById('logo-login');
+          const titleWeb = document.getElementById('title-web');
+
+
+
+          const LinkFavicon = ArrayOfProducts[0];
+          const LinkLogo = ArrayOfProducts[1];
+          const LinkTitleWeb = ArrayOfProducts[4];
+
+
+          favicon.setAttribute("href", LinkFavicon);
+          logoMobile.setAttribute("src", LinkFavicon);
+          logoPC.setAttribute("src", LinkLogo);
+          logoPCH.setAttribute("src", LinkLogo);
+          logoDivPanel.setAttribute("src", LinkLogo);
+          faviconDivPanel.setAttribute("src", LinkFavicon);
+
+
+
+          logoLogin.setAttribute("src", LinkLogo);
+          titleWeb.textContent = LinkTitleWeb;
+
+
+
+
+        });
+      });
+      GetAllCategory();
+      GetAllBrand();
+      GetAllColors();
+      GetAllBanners();
+      GetFont();
+      GetContacto();
+      GetAllProducts();
+      GetAllPedidos();
+      GetAllInfoPedidos();
+    }
+
+
+
+    function AddAllData() {
+      let i = 0;
+      ArrayOfProducts.forEach(prod => {
+        AddAData(prod, i++);
+      });
+      AddAData();
+    }
+
+    function AddAData(product, index) {
+      const favicon = document.getElementById('favicon');
+
+      const LinkFavicon = product.LinkOfFavicon[0];
+      favicon.setAttribute("href", LinkFavicon);
+
+    }
+
+
+    //CAMBIAR LOGO Y FAVICON
+    //CARGA LOGO
+    var Files = [];
+    var FileReaders = [];
+    var ImageLinksArray = [];
+
+    const btnCambiarLogo = document.getElementById('btnCambiarLogo');
+
+
+    function IsAllImagesUploaded() {
+      return ImageLinksArray.length == Files.length;
+    }
+
+    function RestoreBack() {
+      selBtn.disabled = false;
+    }
+
+    btnCambiarLogo.addEventListener('click', OpenFileDialog);
+
+    function OpenFileDialog() {
+      Files = [];
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArray(e.target.files);
+        CreateImgTags();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArray(thefiles) {
+      let num = Files.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - Files.length);
+
+      for (let i = 0; i < looplim; i++) {
+        Files.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTags() {
+
+
+      for (let i = 0; i < Files.length; i++) {
+        FileReaders[i] = new FileReader();
+
+        FileReaders[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReaders[i].result;
+        }
+        FileReaders[i].readAsDataURL(Files[i]);
+
+        for (let i = 0; i < Files.length; i++) {
+          changeLogo(Files[i], i);
+
+        }
+      }
+
+    }
+
+    function changeLogo(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/imgLogo#" + (imgNo + 1);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando Logo...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio Logo Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArray.push(downloadURL);
+            if (IsAllImagesUploaded()) {
+              swal({
+                title: "Logo Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+                reloadLogoFavicon();
+
+              });
+            }
+          });
+        });
+
+    }
+
+    //FIN CAMBIO LOGO
+    //INICIO CAMBIO FAVICON
+    var FilesF = [];
+    var FileReadersF = [];
+    var ImageLinksArrayF = [];
+
+    const btnCambiarFavicon = document.getElementById('btnCambiarFavicon');
+
+
+    function IsAllImagesUploadedF() {
+      return ImageLinksArrayF.length == FilesF.length;
+    }
+
+
+
+    btnCambiarFavicon.addEventListener('click', OpenFileDialogF);
+
+    function OpenFileDialogF() {
+      FilesF = [];
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArrayF(e.target.files);
+        CreateImgTagsF();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArrayF(thefiles) {
+      let num = FilesF.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - FilesF.length);
+
+      for (let i = 0; i < looplim; i++) {
+        FilesF.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTagsF() {
+
+
+      for (let i = 0; i < FilesF.length; i++) {
+        FileReadersF[i] = new FileReader();
+
+        FileReadersF[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReadersF[i].result;
+        }
+        FileReadersF[i].readAsDataURL(FilesF[i]);
+
+        for (let i = 0; i < FilesF.length; i++) {
+          changeFavicon(FilesF[i], i);
+
+        }
+      }
+
+    }
+
+    function changeFavicon(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/imgFavicon#" + (imgNo + 1);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando Favicon...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio Favicon Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArrayF.push(downloadURL);
+            if (IsAllImagesUploadedF()) {
+              swal({
+                title: "Favicon Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+                reloadLogoFavicon();
+              });
+            }
+          });
+        });
+
+    }
+
+    var ArrayOfLF = [];
+
+    function reloadLogoFavicon() {
+      const dbref = ref(realdb);
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios")).then((snapshot) => {
+
+        snapshot.forEach(prod => {
+          ArrayOfLF.push(prod.val());
+          const favicon = document.getElementById('favicon');
+          const logoMobile = document.getElementById('logo-mobile');
+          const logoPC = document.getElementById('logo-pc');
+          const logoPCH = document.getElementById('logo-pc-header');
+
+          const logoDivPanel = document.getElementById('logoDivPanel');
+          const faviconDivPanel = document.getElementById('faviconDivPanel');
+
+          const LinkFavicon = ArrayOfLF[0] + new Date().getTime();
+          const LinkLogo = ArrayOfLF[1] + new Date().getTime();
+
+          favicon.setAttribute("href", LinkFavicon);
+          logoMobile.setAttribute("src", LinkFavicon);
+          logoPC.setAttribute("src", LinkLogo);
+          logoPCH.setAttribute("src", LinkLogo);
+          logoDivPanel.setAttribute("src", LinkLogo);
+          faviconDivPanel.setAttribute("src", LinkFavicon);
+
+          ImageLinksArray = [];
+          ImageLinksArrayF = [];
+        });
+      });
+    }
+
+    //FIN CAMBIO FAVICON
+    //INICIO AGREGAR CATEGORIAS
+    //GESTION DE CATEGORIAS
+    //REFERENCES 
+    const catInp = document.getElementById('catInp');
+    const btnAddCategory = document.getElementById('btnAddCategory');
+
+    //VALIDACIONES
+
+    function isEmptyOrSpacesCat(str) {
+      return str === null || str.match(/^ *$/) !== null;
+    }
+
+    function ValidationCat() {
+
+      if (isEmptyOrSpacesCat(catInp.value)) {
+        swal({
+          title: "No puedes agregar un campo vacio!",
+          icon: "warning",
+          button: "OK!",
+        });
+        return false;
+      }
+
+      return true;
+    }
+
+    function addCategory() {
+      if (!ValidationCat()) {
+        return;
+      };
+
+      const dbRef = ref(realdb);
+
+
+
+      get(child(dbRef, "Usuarios/CasanovesMayoristaSanitarios/zCategorias/" + catInp.value)).then((snapshot) => {
+        if (snapshot.exists()) {
+          swal({
+            title: "Categoria Existente!",
+            icon: "warning",
+            button: "OK!",
+          });
+
+        }
+        else {
+
+          set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zCategorias/" + catInp.value),
+            {
+
+              category: catInp.value
+
+            })
+            .then(() => {
+
+              swal({
+                title: "Excelente!",
+                text: "Categoria Agregada Exitosamente!",
+                icon: "success",
+                button: "Volver al Panel",
+              }).then(function () {
+
+                catInp.value = '';
+              });
+            })
+            .catch((error) => {
+              alert("error" + error);
+            })
+
+          recargarDivIndexCat();
+
+        }
+      });
+    }
+
+
+    // Asignar eventos
+    btnAddCategory.addEventListener('click', addCategory);
+
+    //MOSTRAR TABLA CATEGORIAS 
+    //fillin the table 
+    var tbodycat = document.getElementById('tbodycat');
+
+    let ixnx = 1;
+    let ixncx = 1;
+
+
+    function AddItemToTableCat(categoria) {
+
+      let trow = document.createElement("tr");
+      let td1 = document.createElement('td');
+      td1.innerHTML = categoria;
+
+      trow.appendChild(td1);
+
+
+      if (ixnx > 0) {
+        ixnx++;
+      }
+
+
+      var ControlDiv = document.createElement("div");
+
+
+      ControlDiv.innerHTML = '<button id="' + ixnx + '" type="button" class="btn btn-danger btn-sm my-2 ml-2" data-toggle="modal" >Eliminar</button>'
+
+
+      setTimeout(function () {
+
+        if (ixncx > 0) {
+          ixncx++;
+        }
+        //ELIMINAR 
+        var idxx = document.getElementById(ixncx);
+
+        idxx.onclick = function () {
+          swal({
+            title: "Estas Seguro?",
+            text: "BORRARAS " + categoria,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+            .then((willDelete) => {
+              if (willDelete) {
+                remove(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zCategorias/" + categoria), {
+                  category: null
+                });
+
+                swal("Categoria eliminada con Exito!", {
+                  icon: "success",
+                });
+                recargarDivIndexCat();
+
+              } else {
+                swal("Poof! Tu Categoria esta a salvo!");
+              }
+            });
+
+        }
+
+
+      }, 1000);
+
+      trow.appendChild(ControlDiv);
+
+      tbodycat.appendChild(trow);
+
+
+    }
+
+
+    function AddAllItemsToTableCat(Categorias) {
+      tbodycat.innerHTML = "";
+      Categorias.forEach(element => {
+        AddItemToTableCat(element.category);
+      });
+    }
+
+    //Getting all data
+
+    function GetAllDataRealTimeCat() {
+      const dbRef = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zCategorias");
+
+      onValue(dbRef, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+
+        });
+
+        AddAllItemsToTableCat(productos);
+      })
+    }
+
+
+
+    window.onload = GetAllDataRealTimeCat();
+    //FINAL CARGAR CATEGORIAS
+    //INICIO AGREGAR MARCAS
+    //INICIO AGREGAR CATEGORIAS
+    //GESTION DE CATEGORIAS
+    //REFERENCES 
+    const brandInp = document.getElementById('brandInp');
+    const btnAddBrand = document.getElementById('btnAddBrand');
+
+    //VALIDACIONES
+
+
+    function ValidationBrand() {
+
+      if (isEmptyOrSpacesCat(brandInp.value)) {
+        swal({
+          title: "No puedes agregar un campo vacio!",
+          icon: "warning",
+          button: "OK!",
+        });
+        return false;
+      }
+
+      return true;
+    }
+
+    function addBrand() {
+      if (!ValidationBrand()) {
+        return;
+      };
+
+      const dbRef = ref(realdb);
+
+
+
+      get(child(dbRef, "Usuarios/CasanovesMayoristaSanitarios/zMarcas/" + brandInp.value)).then((snapshot) => {
+        if (snapshot.exists()) {
+          swal({
+            title: "Marca Existente!",
+            icon: "warning",
+            button: "OK!",
+          });
+
+        }
+        else {
+
+          set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zMarcas/" + brandInp.value),
+            {
+
+              brand: brandInp.value
+
+            })
+            .then(() => {
+
+              swal({
+                title: "Excelente!",
+                text: "Marca Agregada Exitosamente!",
+                icon: "success",
+                button: "Volver al Panel",
+              }).then(function () {
+
+                brandInp.value = '';
+              });
+            })
+            .catch((error) => {
+              alert("error" + error);
+            })
+
+          recargarDivIndexBrand();
+
+        }
+      });
+    }
+
+
+    // Asignar eventos
+    btnAddBrand.addEventListener('click', addBrand);
+
+    //MOSTRAR TABLA CATEGORIAS 
+    //fillin the table 
+    var tbodybrand = document.getElementById('tbodybrand');
+
+    let ixnxx = 33;
+    let ixncxx = 33;
+
+
+    function AddItemToTableBrand(marca) {
+
+      let trow = document.createElement("tr");
+      let td1 = document.createElement('td');
+      td1.innerHTML = marca;
+
+      trow.appendChild(td1);
+
+
+      if (ixnxx > 0) {
+        ixnxx++;
+      }
+
+
+      var ControlDiv = document.createElement("div");
+
+
+      ControlDiv.innerHTML = '<button id="' + ixnxx + '" type="button" class="btn btn-danger btn-sm my-2 ml-2" data-toggle="modal" >Eliminar</button>'
+
+
+      setTimeout(function () {
+
+        if (ixncxx > 0) {
+          ixncxx++;
+        }
+        //ELIMINAR 
+        var idxxx = document.getElementById(ixncxx);
+
+        idxxx.onclick = function () {
+          swal({
+            title: "Estas Seguro?",
+            text: "BORRARAS " + marca,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+            .then((willDelete) => {
+              if (willDelete) {
+                remove(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zMarcas/" + marca), {
+                  brand: null
+                });
+
+                swal("Marca eliminada con Exito!", {
+                  icon: "success",
+                });
+                recargarDivIndexBrand();
+
+              } else {
+                swal("Poof! Tu Marca esta a salvo!");
+              }
+            });
+
+        }
+
+
+      }, 1000);
+
+      trow.appendChild(ControlDiv);
+
+      tbodybrand.appendChild(trow);
+
+
+    }
+
+
+    function AddAllItemsToTableBrand(Marcas) {
+      tbodybrand.innerHTML = "";
+      Marcas.forEach(element => {
+        AddItemToTableBrand(element.brand);
+      });
+    }
+
+    //Getting all data
+
+    function GetAllDataRealTimeBrand() {
+      const dbRef = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zMarcas");
+
+      onValue(dbRef, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+
+        });
+
+        AddAllItemsToTableBrand(productos);
+      })
+    }
+
+
+
+    window.onload = GetAllDataRealTimeBrand();
+    //FINAL AGREGAR MARCAS
+    //ESTE CODIGO TAMBIEN IRIA EN EL INDEX.HTML
+    //MOSTRAR LAS CATEGORIAS EN LA LISTA DESPLEGABLE Y MARCAS EN EL NAV
+    var ArrayOfCategory = [];
+    var ArrayOfBrand = [];
+
+    function GetAllCategory() {
+      const dbref = ref(realdb);
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zCategorias")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfCategory.push(cat.val());
+
+        });
+
+        for (let index = 0; index < ArrayOfCategory.length; index++) {
+          AddAPDC(ArrayOfCategory[index]);
+          AddCTPC(ArrayOfCategory[index]);
+          AddCTPCE(ArrayOfCategory[index]);
+          AddCatSlider(ArrayOfCategory[index], ArrayOfCategory.length);
+          AddBtnCatSlider(ArrayOfCategory[index]);
+        }
+      });
+
+    }
+
+    function GetAllBrand() {
+      const dbref = ref(realdb);
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zMarcas")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfBrand.push(cat.val());
+
+        });
+        for (let index = 0; index < ArrayOfBrand.length; index++) {
+          AddAPDCB(ArrayOfBrand[index]);
+        }
+      });
+
+    }
+
+    var OuterDivPDC = document.getElementById('cat-display');
+
+    var isx = 333;
+    function AddAPDC(cat, index) {
+      let html =
+        `<a id="` +isx+ `" href="#" onclick="goToCat()" class="Category--Web">`+cat.category+`</a>`
+      let newCat = document.createElement('li');
+      newCat.innerHTML = html;
+      OuterDivPDC.append(newCat);
+      isx++;
+
+    }
+
+    var OuterDivPDCX = document.getElementById('catProduct');
+
+function AddCTPC(cat, index) {
+  let html =
+    `<p>`+cat.category+`</p>`
+  let newCat = document.createElement('option');
+  newCat.value = cat.category;
+  newCat.innerHTML = html;
+  OuterDivPDCX.append(newCat);
+
+}
+
+var OuterDivPDCXE = document.getElementById('catProductEdit');
+
+function AddCTPCE(cat, index) {
+  let html =
+    `<p>`+cat.category+`</p>`
+  let newCat = document.createElement('option');
+  newCat.value = cat.category;
+  newCat.innerHTML = html;
+  OuterDivPDCXE.append(newCat);
+
+}
+
+    var OuterDivCatSlider = document.getElementById('carousel-inner-catslider');
+
+    var catSlider = 0;
+    function AddCatSlider(cat) {
+      if (catSlider == 0) {
+        let html =
+          `<div class="d-block w-100"><a href="#" style="text-decoration: none; font-weight: bold; font-size: 250% !important;" class="colorLinks">` + cat.category + `</a></div><div style="display:flex;flex-wrap: wrap; justify-content: center;" id="`+ cat.category + `"></div>`
+        let newCat = document.createElement('div');
+        newCat.classList.add('carousel-item');
+        newCat.classList.add('carousel-category');
+        newCat.classList.add('active');
+        newCat.innerHTML = html;
+        OuterDivCatSlider.append(newCat);
+      } else {
+
+      }
+
+      if (catSlider == 0) {
+        var carouselCategory = document.getElementsByClassName('carousel-category');
+        var xx = carouselCategory.length;
+        if (catSlider <= carouselCategory.length) {
+          GetAllProductsEpanel();
+        } else {
+
+        }
+      }
+      catSlider++;
+
+    }
+
+    var OuterDivBtnCatSlider = document.getElementById('carousel-indicators-slider');
+
+    var btnCatSliderVar = 0;
+    var btnCatSliderVarSlider = 1;
+
+    function AddBtnCatSlider(cat, index) {
+      let html =
+        `<button type="button" style="display: none;" data-bs-target="#carrousel-banner-categorias" data-bs-slide-to="` + btnCatSliderVar + `" class="active" aria-current="true" aria-label="Slide ` + btnCatSliderVarSlider + `"></button>`
+      let newCat = document.createElement('li');
+      newCat.style.display = "none";
+      newCat.innerHTML = html;
+      OuterDivBtnCatSlider.append(newCat);
+
+      btnCatSliderVar++;
+      btnCatSliderVarSlider++;
+    }
+
+    var OuterDivPDCB = document.getElementById('brand-display');
+
+    var isxs = 444;
+    function AddAPDCB(cat, index) {
+      let html =
+        `<a id="` +isxs+ `" class="nav-link link-header brands" href="#" onclick="goToBrand()">`+cat.brand+`</a>`
+      let newCat = document.createElement('li');
+      newCat.classList.add('nav-item');
+      newCat.innerHTML = html;
+      OuterDivPDCB.append(newCat);
+      isxs++;
+    }
+    //FIN MOSTRAR LAS CATEGORIAS EN LA LISTA DESPLEGABLE Y MARCAS EN EL NAV
+    //PONER Y ACTUALIZAR  COLORES EN EL HEADER 
+    var ArrayOfColorsHeader = [];
+    var ArrayOfColorsShopList = [];
+    var ArrayOfColorsProducto = [];
+    var ArrayOfColorsFooter = [];
+    var ArrayOfFont = [];
+
+
+
+    const fondoHeader = document.getElementById("hexCodeInputHeader");
+    const fondoNavegador = document.getElementById("hexCodeInputNav");
+    const colorLetrasNav = document.getElementById("hexCodeInputNavItem");
+    const fondoBotonesHeader = document.getElementById("hexCodeInputHeadBtns");
+    const letraBotonesHeader = document.getElementById("hexCodeInputHeadBtnsLetras");
+    const fondoShopList = document.getElementById("hexCodeFondoShopList");
+    const fondoProductos = document.getElementById("hexCodeFondoProductos");
+    const colorPrecio = document.getElementById("hexCodeColorPrecio");
+    const fondoPrecio = document.getElementById("hexCodeFondoPrecio");
+    const colorLinks = document.getElementById("hexCodeColorLinks");
+    const colorFondoFooter = document.getElementById("hexCodeFondoFooter");
+    const colorLetrasFooter = document.getElementById("hexCodeLetrasFooter");
+    const colorLinksFooter = document.getElementById("hexCodeLinksFooter");
+
+
+    function GetAllColors() {
+      const dbref = ref(realdb);
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zColores/Header")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfColorsHeader.push(cat.val());
+
+        });
+        fondoHeader.value = ArrayOfColorsHeader[0];
+        fondoNavegador.value = ArrayOfColorsHeader[1];
+        colorLetrasNav.value = ArrayOfColorsHeader[2];
+        fondoBotonesHeader.value = ArrayOfColorsHeader[3];
+        letraBotonesHeader.value = ArrayOfColorsHeader[4];
+
+
+        const colorHeaderLogo = document.getElementById("colorHeaderLogo");
+        const colorNav = document.getElementById("colorNav");
+        const colorNavItem = document.getElementById("colorNavItem");
+        const colorHeadBtns = document.getElementById("colorHeadBtns");
+        const colorHeadBtnsLetras = document.getElementById("colorHeadBtnsLetras");
+
+
+        colorHeaderLogo.value = ArrayOfColorsHeader[0];
+        colorNav.value = ArrayOfColorsHeader[1];
+        colorNavItem.value = ArrayOfColorsHeader[2];
+        colorHeadBtns.value = ArrayOfColorsHeader[3];
+        colorHeadBtnsLetras.value = ArrayOfColorsHeader[4];
+
+        const headerFondo = document.getElementById("header");
+        const navHeaderFondo = document.getElementById("nav-header");
+        const navLinkLetras = document.getElementsByClassName("link-header");
+        const btnHeaderFondo = document.getElementsByClassName("btn-header");
+        const btnHeaderLetras = document.getElementsByClassName("btn-header");
+
+        headerFondo.style.backgroundColor = ArrayOfColorsHeader[0];
+        navHeaderFondo.style.backgroundColor = ArrayOfColorsHeader[1];
+        // Iterar sobre los elementos y cambiar el color del texto
+        for (let i = 0; i < navLinkLetras.length; i++) {
+          navLinkLetras[i].style.color = ArrayOfColorsHeader[2];
+        }
+        for (let i = 0; i < btnHeaderFondo.length; i++) {
+          btnHeaderFondo[i].style.backgroundColor = ArrayOfColorsHeader[3];
+        }
+        for (let i = 0; i < btnHeaderLetras.length; i++) {
+          btnHeaderLetras[i].style.color = ArrayOfColorsHeader[4];
+        }
+      });
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zColores/ShopList")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfColorsShopList.push(cat.val());
+        });
+
+        fondoShopList.value = ArrayOfColorsShopList[0];
+
+        const colorFondoShopList = document.getElementById("colorFondoShopList");
+
+        colorFondoShopList.value = ArrayOfColorsShopList[0];
+        const fondoShopListx = document.getElementById("shopList");
+        const bannerCategorias = document.getElementById('banner-categorias');
+
+        fondoShopListx.style.backgroundColor = ArrayOfColorsShopList[0];
+        bannerCategorias.style.backgroundColor = ArrayOfColorsShopList[0];
+
+      });
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zColores/Producto")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfColorsProducto.push(cat.val());
+        });
+
+        colorLinks.value = ArrayOfColorsProducto[0];
+        fondoProductos.value = ArrayOfColorsProducto[1];
+        colorPrecio.value = ArrayOfColorsProducto[2];
+        fondoPrecio.value = ArrayOfColorsProducto[3];
+
+        const colorFondoProductos = document.getElementById("colorFondoProductos");
+        const colorPreciox = document.getElementById("colorPrecio");
+        const colorFondoPrecio = document.getElementById("colorFondoPrecio");
+        const colorLinksx = document.getElementById("colorLinks");
+
+        colorLinksx.value = ArrayOfColorsProducto[0];
+        colorFondoProductos.value = ArrayOfColorsProducto[1];
+        colorPreciox.value = ArrayOfColorsProducto[2];
+        colorFondoPrecio.value = ArrayOfColorsProducto[3];
+
+        const colorFondoProductosp = document.getElementsByClassName("Card");
+        const colorPreciop = document.getElementsByClassName("precioColor");
+        const colorFondoPreciop = document.getElementsByClassName("fondoPColor");
+        const colorLinksp = document.getElementsByClassName("colorLinks");
+
+        for (let i = 0; i < colorFondoProductosp.length; i++) {
+          colorFondoProductosp[i].style.backgroundColor = ArrayOfColorsProducto[1];
+        }
+        for (let i = 0; i < colorPreciop.length; i++) {
+          colorPreciop[i].style.color = ArrayOfColorsProducto[2];
+        }
+        for (let i = 0; i < colorFondoPreciop.length; i++) {
+          colorFondoPreciop[i].style.backgroundColor = ArrayOfColorsProducto[3];
+        }
+        for (let i = 0; i < colorLinksp.length; i++) {
+          colorLinksp[i].style.color = ArrayOfColorsProducto[0];
+        }
+
+      });
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zColores/Footer")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfColorsFooter.push(cat.val());
+        });
+
+        colorFondoFooter.value = ArrayOfColorsFooter[0];
+        colorLetrasFooter.value = ArrayOfColorsFooter[1];
+        colorLinksFooter.value = ArrayOfColorsFooter[2];
+
+        const colorFondoFooterx = document.getElementById("colorFondoFooter");
+        const colorLetrasFooterx = document.getElementById("colorLetrasFooter");
+        const colorLinksFooterx = document.getElementById("colorLinksFooter");
+
+        colorFondoFooterx.value = ArrayOfColorsFooter[0];
+        colorLetrasFooterx.value = ArrayOfColorsFooter[1];
+        colorLinksFooterx.value = ArrayOfColorsFooter[2];
+
+        const colorFondoFooterp = document.getElementById("footer-area");
+        const colorLetrasFooterp = document.getElementById("footer-area");
+        const colorLinksFooterp = document.getElementsByClassName("linksFooter");
+
+        colorFondoFooterp.style.backgroundColor = ArrayOfColorsFooter[0];
+        colorLetrasFooterp.style.color = ArrayOfColorsFooter[1];
+        for (let i = 0; i < colorLinksFooterp.length; i++) {
+          colorLinksFooterp[i].style.color = ArrayOfColorsFooter[2];
+        }
+
+      });
+
+    }
+
+    function GetFont() {
+      const dbref = ref(realdb);
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zFuente")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfFont.push(cat.val());
+        });
+
+
+        fontSelector.value = ArrayOfFont[0];
+
+        let fontTestx = document.getElementById('vista-index')
+        fontTestx.style.fontFamily = ArrayOfFont[0];
+
+        let fontTest = document.getElementsByClassName('fontTest')
+        for (let index = 0; index < fontTest.length; index++) {
+
+          fontTest[index].style.fontFamily = ArrayOfFont[0];
+        }
+
+      });
+    }
+
+    var ArrayOfContacto = [];
+    const inputUbicationModify = document.getElementById('inputUbication');
+    const inputPhoneModify = document.getElementById('inputPhone');
+    const inputEmailModify = document.getElementById('inputEmail');
+
+    function GetContacto() {
+      const dbref = ref(realdb);
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfContacto.push(cat.val());
+        });
+        inputUbicationModify.value = ArrayOfContacto[7];
+        inputPhoneModify.value = ArrayOfContacto[13];
+        inputEmailModify.value = ArrayOfContacto[6];
+
+      });
+    }
+
+    const modificarColoresHeader = document.getElementById("btnModifyColorsHeader");
+    modificarColoresHeader.addEventListener('click', function () {
+      set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zColores/Header"), {
+
+        color1: fondoHeader.value,
+        color2: fondoNavegador.value,
+        color3: colorLetrasNav.value,
+        color4: fondoBotonesHeader.value,
+        color5: letraBotonesHeader.value
+      });
+      swal({
+        title: "Colores Cambiados con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      }).then(() => {
+      });
+    })
+
+    const modificarColoresShopList = document.getElementById("btnModifyColorsShopList");
+    modificarColoresShopList.addEventListener('click', function () {
+      set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zColores/ShopList"), {
+
+        color6: fondoShopList.value
+
+      });
+      swal({
+        title: "Colores Cambiados con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      }).then(() => {
+      });
+    })
+
+    const modificarColoresProducto = document.getElementById("btnModifyColorsProducto");
+    modificarColoresProducto.addEventListener('click', function () {
+      set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zColores/Producto"), {
+
+        color7: fondoProductos.value,
+        color8: colorPrecio.value,
+        color9: fondoPrecio.value,
+        color10: colorLinks.value
+
+      });
+      swal({
+        title: "Colores Cambiados con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      }).then(() => {
+      });
+    })
+
+    const modificarColoresFooter = document.getElementById("btnModifyColorsFooter");
+    modificarColoresFooter.addEventListener('click', function () {
+      set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zColores/Footer"), {
+
+        color11: colorFondoFooter.value,
+        color12: colorLetrasFooter.value,
+        color13: colorLinksFooter.value,
+
+      });
+      swal({
+        title: "Colores Cambiados con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      }).then(() => {
+      });
+    })
+    const modificarContacto = document.getElementById("btnModifyContacto");
+    modificarContacto.addEventListener('click', function () {
+      update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios"), {
+
+        inputEmail: inputEmailModify.value,
+        whatsappNumber: inputPhoneModify.value,
+        inputGoogleMaps: inputUbicationModify.value,
+
+      });
+      swal({
+        title: "Datos Cambiados con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      }).then(() => {
+      });
+    })
+    //FIN PONER Y ACTUALIZAR COLORES EN EL HEADER
+    //PONER Y ACTUALIZAR TODOS LOS BANNERES EN EL HEADER
+    var ArrayOfBannersGet = [];
+    const bannerh1 = document.getElementById("bannerHead-1");
+    const bannerh2 = document.getElementById("bannerHead-2");
+    const bannerh3 = document.getElementById("bannerHead-3");
+    const bannerh4 = document.getElementById("bannerHead-4");
+    const bannerh5 = document.getElementById("bannerHead-5");
+    const bannersh = document.getElementById("subBannerHead");
+
+    const bannerhp1 = document.getElementById("bannerHeader-1");
+    const bannerhp2 = document.getElementById("bannerHeader-2");
+    const bannerhp3 = document.getElementById("bannerHeader-3");
+    const bannerhp4 = document.getElementById("bannerHeader-4");
+    const bannerhp5 = document.getElementById("bannerHeader-5");
+    const bannersph = document.getElementById("subBannerHeaders");
+
+    function GetAllBanners() {
+      const dbref = ref(realdb);
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfBannersGet.push(cat.val());
+
+        });
+
+        if (ArrayOfBannersGet[0] == 0) {
+          bannerh1.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerh1.setAttribute("src", ArrayOfBannersGet[0] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[1] == 0) {
+          bannerh2.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerh2.setAttribute("src", ArrayOfBannersGet[1] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[2] == 0) {
+          bannerh3.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerh3.setAttribute("src", ArrayOfBannersGet[2] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[3] == 0) {
+          bannerh4.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerh4.setAttribute("src", ArrayOfBannersGet[3] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[4] == 0) {
+          bannerh5.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerh5.setAttribute("src", ArrayOfBannersGet[4] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[5] == 0) {
+          bannersh.setAttribute("src", "../banner-head-chico-ejemplo.png");
+        } else {
+          bannersh.setAttribute("src", ArrayOfBannersGet[5] + new Date().getTime());
+        }
+
+        //EN WEB
+        if (ArrayOfBannersGet[0] == 0) {
+          bannerhp1.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerhp1.setAttribute("src", ArrayOfBannersGet[0] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[1] == 0) {
+          bannerhp2.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerhp2.setAttribute("src", ArrayOfBannersGet[1] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[2] == 0) {
+          bannerhp3.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerhp3.setAttribute("src", ArrayOfBannersGet[2] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[3] == 0) {
+          bannerhp4.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerhp4.setAttribute("src", ArrayOfBannersGet[3] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[4] == 0) {
+          bannerhp5.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerhp5.setAttribute("src", ArrayOfBannersGet[4] + new Date().getTime());
+        }
+
+        if (ArrayOfBannersGet[5] == 0) {
+          bannersph.setAttribute("src", "../banner-head-chico-ejemplo.png");
+        } else {
+          bannersph.setAttribute("src", ArrayOfBannersGet[5] + new Date().getTime());
+        }
+
+      })
+    }
+
+    //FIN PONER Y ACTUALIZAR TODOS LOS BANNERS EN EL HEADER
+    //FIN ESTE CODIGO TAMBIEN IRIA EN EL INDEX.HTML
+
+
+    function recargarDivIndexCat() {
+
+      // Realizar una solicitud fetch para obtener la nueva información
+      fetch('epanel-CasanovesMayoristaSanitarios.html') // Cambia 'tu_archivo.html' por la URL correcta
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('La solicitud no fue exitosa');
+          }
+          return response.text();
+        })
+        .then(data => {
+          // Crear un elemento temporal para extraer el contenido del div
+          var tempDiv = document.createElement('div');
+          tempDiv.innerHTML = data;
+
+          // Obtener el contenido del div específico
+          var nuevoContenido = tempDiv.querySelector('#cat-display').innerHTML;
+
+          // Actualizar el contenido del div con la nueva información
+          document.getElementById('cat-display').innerHTML = nuevoContenido;
+          actualizarDataCat();
+        })
+        .catch(error => {
+          console.error('Error al cargar la información: ', error);
+        });
+    }
+
+
+    function actualizarDataCat() {
+      ArrayOfCategory = [];
+      GetAllCategory();
+    }
+
+    function recargarDivIndexBrand() {
+
+      // Realizar una solicitud fetch para obtener la nueva información
+      fetch('epanel-CasanovesMayoristaSanitarios.html') // Cambia 'tu_archivo.html' por la URL correcta
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('La solicitud no fue exitosa');
+          }
+          return response.text();
+        })
+        .then(data => {
+          // Crear un elemento temporal para extraer el contenido del div
+          var tempDiv = document.createElement('div');
+          tempDiv.innerHTML = data;
+
+          // Obtener el contenido del div específico
+          var nuevoContenido = tempDiv.querySelector('#brand-display').innerHTML;
+
+          // Actualizar el contenido del div con la nueva información
+          document.getElementById('brand-display').innerHTML = nuevoContenido;
+          actualizarDataBrand();
+        })
+        .catch(error => {
+          console.error('Error al cargar la información: ', error);
+        });
+    }
+
+    function actualizarDataBrand() {
+      ArrayOfBrand = [];
+      GetAllBrand();
+      GetAllColors();
+
+    }
+
+    //INICIO CAMBIAR BANNERS
+    //INICIO BANNER 1
+    var FilesB = [];
+    var FileReadersB = [];
+    var ImageLinksArrayB = [];
+
+    const btnChangeBanner1 = document.getElementById('btnChangeBanner1');
+
+
+    function IsAllImagesUploadedB() {
+      return ImageLinksArrayB.length == FilesB.length;
+    }
+
+
+
+    btnChangeBanner1.addEventListener('click', OpenFileDialogB);
+
+    function OpenFileDialogB() {
+      FilesB = [];
+
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArrayB(e.target.files);
+        CreateImgTagsB();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArrayB(thefiles) {
+      let num = FilesB.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - FilesB.length);
+
+      for (let i = 0; i < looplim; i++) {
+        FilesB.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTagsB() {
+
+
+      for (let i = 0; i < FilesB.length; i++) {
+        FileReadersB[i] = new FileReader();
+
+        FileReadersB[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReadersB[i].result;
+        }
+        FileReadersB[i].readAsDataURL(FilesB[i]);
+
+        for (let i = 0; i < FilesB.length; i++) {
+          changeBanner1(FilesB[i], i);
+
+        }
+      }
+
+    }
+
+    function changeBanner1(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/banners-head/imgBanneHead#" + (imgNo + 1);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando Banner...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio Banner Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArrayB.push(downloadURL);
+            if (IsAllImagesUploadedB()) {
+              swal({
+                title: "Banner Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+
+                update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks"),
+                  {
+                    banner1: ImageLinksArrayB
+
+                  })
+                reloadBanners();
+
+              });
+            }
+          });
+        });
+
+
+    }
+    //FIN BANNER 1
+    //INICIO BANNER 2
+    var FilesB1 = [];
+    var FileReadersB1 = [];
+    var ImageLinksArrayB1 = [];
+
+    const btnChangeBanner2 = document.getElementById('btnChangeBanner2');
+
+
+    function IsAllImagesUploadedB1() {
+      return ImageLinksArrayB1.length == FilesB1.length;
+    }
+
+
+
+    btnChangeBanner2.addEventListener('click', OpenFileDialogB1);
+
+    function OpenFileDialogB1() {
+      FilesB1 = [];
+
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArrayB1(e.target.files);
+        CreateImgTagsB1();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArrayB1(thefiles) {
+      let num = FilesB1.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - FilesB1.length);
+
+      for (let i = 0; i < looplim; i++) {
+        FilesB1.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTagsB1() {
+
+
+      for (let i = 0; i < FilesB1.length; i++) {
+        FileReadersB1[i] = new FileReader();
+
+        FileReadersB1[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReadersB1[i].result;
+        }
+        FileReadersB1[i].readAsDataURL(FilesB1[i]);
+
+        for (let i = 0; i < FilesB1.length; i++) {
+          changeBanner2(FilesB1[i], i);
+
+        }
+      }
+
+    }
+
+    function changeBanner2(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/banners-head/imgBanneHead#" + (imgNo + 2);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando Banner...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio Banner Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArrayB1.push(downloadURL);
+            if (IsAllImagesUploadedB1()) {
+              swal({
+                title: "Banner Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+
+                update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks"),
+                  {
+                    banner2: ImageLinksArrayB1
+
+                  })
+                reloadBanners();
+
+              });
+            }
+          });
+        });
+
+
+    }
+    //FIN BANNER 2
+    //INICIO BANNER 3
+    var FilesB2 = [];
+    var FileReadersB2 = [];
+    var ImageLinksArrayB2 = [];
+
+    const btnChangeBanner3 = document.getElementById('btnChangeBanner3');
+
+
+    function IsAllImagesUploadedB2() {
+      return ImageLinksArrayB2.length == FilesB2.length;
+    }
+
+
+
+    btnChangeBanner3.addEventListener('click', OpenFileDialogB2);
+
+    function OpenFileDialogB2() {
+      FilesB2 = [];
+
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArrayB2(e.target.files);
+        CreateImgTagsB2();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArrayB2(thefiles) {
+      let num = FilesB2.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - FilesB2.length);
+
+      for (let i = 0; i < looplim; i++) {
+        FilesB2.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTagsB2() {
+
+
+      for (let i = 0; i < FilesB2.length; i++) {
+        FileReadersB2[i] = new FileReader();
+
+        FileReadersB2[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReadersB2[i].result;
+        }
+        FileReadersB2[i].readAsDataURL(FilesB2[i]);
+
+        for (let i = 0; i < FilesB2.length; i++) {
+          changeBanner3(FilesB2[i], i);
+
+        }
+      }
+
+    }
+
+    function changeBanner3(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/banners-head/imgBanneHead#" + (imgNo + 3);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando Banner...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio Banner Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArrayB2.push(downloadURL);
+            if (IsAllImagesUploadedB2()) {
+              swal({
+                title: "Banner Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+
+                update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks"),
+                  {
+                    banner3: ImageLinksArrayB2
+
+                  })
+                reloadBanners();
+
+              });
+            }
+          });
+        });
+
+
+    }
+    //FIN BANNER 3
+    //INICIO BANNER 4
+    var FilesB3 = [];
+    var FileReadersB3 = [];
+    var ImageLinksArrayB3 = [];
+
+    const btnChangeBanner4 = document.getElementById('btnChangeBanner4');
+
+
+    function IsAllImagesUploadedB3() {
+      return ImageLinksArrayB3.length == FilesB3.length;
+    }
+
+
+
+    btnChangeBanner4.addEventListener('click', OpenFileDialogB3);
+
+    function OpenFileDialogB3() {
+      FilesB3 = [];
+
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArrayB3(e.target.files);
+        CreateImgTagsB3();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArrayB3(thefiles) {
+      let num = FilesB3.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - FilesB3.length);
+
+      for (let i = 0; i < looplim; i++) {
+        FilesB3.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTagsB3() {
+
+
+      for (let i = 0; i < FilesB3.length; i++) {
+        FileReadersB3[i] = new FileReader();
+
+        FileReadersB3[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReadersB3[i].result;
+        }
+        FileReadersB3[i].readAsDataURL(FilesB3[i]);
+
+        for (let i = 0; i < FilesB3.length; i++) {
+          changeBanner4(FilesB3[i], i);
+
+        }
+      }
+
+    }
+
+    function changeBanner4(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/banners-head/imgBanneHead#" + (imgNo + 4);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando Banner...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio Banner Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArrayB3.push(downloadURL);
+            if (IsAllImagesUploadedB3()) {
+              swal({
+                title: "Banner Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+
+                update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks"),
+                  {
+                    banner4: ImageLinksArrayB3
+
+                  })
+                reloadBanners();
+
+              });
+            }
+          });
+        });
+
+
+    }
+    //FIN BANNER 4
+    //INICIO BANNER 5
+    var FilesB4 = [];
+    var FileReadersB4 = [];
+    var ImageLinksArrayB4 = [];
+
+    const btnChangeBanner5 = document.getElementById('btnChangeBanner5');
+
+
+    function IsAllImagesUploadedB4() {
+      return ImageLinksArrayB4.length == FilesB4.length;
+    }
+
+
+
+    btnChangeBanner5.addEventListener('click', OpenFileDialogB4);
+
+    function OpenFileDialogB4() {
+      FilesB4 = [];
+
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArrayB4(e.target.files);
+        CreateImgTagsB4();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArrayB4(thefiles) {
+      let num = FilesB4.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - FilesB4.length);
+
+      for (let i = 0; i < looplim; i++) {
+        FilesB4.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTagsB4() {
+
+
+      for (let i = 0; i < FilesB4.length; i++) {
+        FileReadersB4[i] = new FileReader();
+
+        FileReadersB4[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReadersB4[i].result;
+        }
+        FileReadersB4[i].readAsDataURL(FilesB4[i]);
+
+        for (let i = 0; i < FilesB4.length; i++) {
+          changeBanner5(FilesB4[i], i);
+
+        }
+      }
+
+    }
+
+    function changeBanner5(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/banners-head/imgBanneHead#" + (imgNo + 5);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando Banner...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio Banner Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArrayB4.push(downloadURL);
+            if (IsAllImagesUploadedB4()) {
+              swal({
+                title: "Banner Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+
+                update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks"),
+                  {
+                    banner5: ImageLinksArrayB4
+
+                  })
+                reloadBanners();
+
+              });
+            }
+          });
+        });
+
+
+    }
+    //FIN BANNER 5
+    //INICIO SUB BANNER 
+    var FilesB5 = [];
+    var FileReadersB5 = [];
+    var ImageLinksArrayB5 = [];
+
+    const btnChangeSubBanner = document.getElementById('btnChangeSubBanner');
+
+
+    function IsAllImagesUploadedB5() {
+      return ImageLinksArrayB5.length == FilesB5.length;
+    }
+
+
+
+    btnChangeSubBanner.addEventListener('click', OpenFileDialogB5);
+
+    function OpenFileDialogB5() {
+      FilesB5 = [];
+
+
+      let inp = document.createElement('input');
+      inp.type = 'file';
+      inp.multiple = 'multiple';
+
+
+      inp.onchange = (e) => {
+        AssignImgsToFilesArrayB5(e.target.files);
+        CreateImgTagsB5();
+      }
+
+      inp.click();
+
+    }
+
+    function AssignImgsToFilesArrayB5(thefiles) {
+      let num = FilesB5.length + thefiles.length;
+      let looplim = (num <= 1) ? thefiles.length : (1 - FilesB5.length);
+
+      for (let i = 0; i < looplim; i++) {
+        FilesB5.push(thefiles[i]);
+      }
+
+    }
+
+    function CreateImgTagsB5() {
+
+
+      for (let i = 0; i < FilesB5.length; i++) {
+        FileReadersB5[i] = new FileReader();
+
+        FileReadersB5[i].onload = function () {
+          var img = document.createElement('img');
+          img.id = 'imgNo' + i;
+          img.classList.add('imgs');
+          img.src = FileReadersB5[i].result;
+        }
+        FileReadersB5[i].readAsDataURL(FilesB5[i]);
+
+        for (let i = 0; i < FilesB5.length; i++) {
+          changeSubBanner(FilesB5[i], i);
+
+        }
+      }
+
+    }
+
+    function changeSubBanner(imgToUpload, imgNo) {
+
+      const metadata = {
+        contentType: imgToUpload.type
+      };
+      const storage = getStorage();
+      const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/banners-head/imgBanneHead#" + (imgNo + 6);
+      const storageRef = sRef(storage, ImageAdress);
+      const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+      UploadTask.on('state_changed', (snapshot) => {
+        swal({
+          title: "Cambiando SubBanner...",
+          icon: "success"
+        });
+      },
+        (error) => {
+          swal({
+            title: "Cambio SubBanner Fallida",
+            icon: "error",
+            button: "OK!",
+          });
+        },
+        () => {
+          getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+            ImageLinksArrayB5.push(downloadURL);
+            if (IsAllImagesUploadedB5()) {
+              swal({
+                title: "SubBanner Cambiado con Exito!",
+                icon: "success",
+                button: "Continuar!"
+              }).then(() => {
+
+                update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks"),
+                  {
+                    banner6: ImageLinksArrayB5
+
+                  })
+                reloadBanners();
+
+              });
+            }
+          });
+        });
+
+
+    }
+    //FIN SUB BANNER
+
+    function reloadBanners() {
+      var ArrayOfBanners = [];
+
+      const dbref = ref(realdb);
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/zBannersHeaderLinks")).then((snapshot) => {
+
+        snapshot.forEach(prod => {
+          ArrayOfBanners.push(prod.val());
+        });
+        const bannerHead1 = document.getElementById('bannerHead-1');
+        const bannerHead2 = document.getElementById('bannerHead-2');
+        const bannerHead3 = document.getElementById('bannerHead-3');
+        const bannerHead4 = document.getElementById('bannerHead-4');
+        const bannerHead5 = document.getElementById('bannerHead-5');
+        const subBannerHead = document.getElementById('subBannerHead');
+
+        const bannerp1 = document.getElementById("bannerHeader-1");
+        const bannerp2 = document.getElementById("bannerHeader-2");
+        const bannerp3 = document.getElementById("bannerHeader-3");
+        const bannerp4 = document.getElementById("bannerHeader-4");
+        const bannerp5 = document.getElementById("bannerHeader-5");
+        const bannersp = document.getElementById("subBannerHeaders");
+
+        if (ArrayOfBanners[0] == 0) {
+          bannerHead1.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerHead1.setAttribute("src", ArrayOfBanners[0] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[1] == 0) {
+          bannerHead2.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerHead2.setAttribute("src", ArrayOfBanners[1] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[2] == 0) {
+          bannerHead3.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerHead3.setAttribute("src", ArrayOfBanners[2] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[3] == 0) {
+          bannerHead4.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerHead4.setAttribute("src", ArrayOfBanners[3] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[4] == 0) {
+          bannerHead5.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerHead5.setAttribute("src", ArrayOfBanners[4] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[5] == 0) {
+          subBannerHead.setAttribute("src", "../banner-head-chico-ejemplo.png");
+        } else {
+          subBannerHead.setAttribute("src", ArrayOfBanners[5] + new Date().getTime());
+        }
+
+        //EN WEB
+        if (ArrayOfBanners[0] == 0) {
+          bannerp1.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerp1.setAttribute("src", ArrayOfBanners[0] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[1] == 0) {
+          bannerp2.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerp2.setAttribute("src", ArrayOfBanners[1] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[2] == 0) {
+          bannerp3.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerp3.setAttribute("src", ArrayOfBanners[2] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[3] == 0) {
+          bannerp4.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerp4.setAttribute("src", ArrayOfBanners[3] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[4] == 0) {
+          bannerp5.setAttribute("src", "../banner-header-ejemplo.png");
+        } else {
+          bannerp5.setAttribute("src", ArrayOfBanners[4] + new Date().getTime());
+        }
+
+        if (ArrayOfBanners[5] == 0) {
+          bannersp.setAttribute("src", "../banner-head-chico-ejemplo.png");
+        } else {
+          bannersp.setAttribute("src", ArrayOfBanners[5] + new Date().getTime());
+        }
+      });
+
+      ImageLinksArrayB = [];
+      ImageLinksArrayB1 = [];
+      ImageLinksArrayB2 = [];
+      ImageLinksArrayB3 = [];
+      ImageLinksArrayB4 = [];
+      ImageLinksArrayB5 = [];
+
+
+    }
+
+    //FIN CAMBIAR BANNERS
+    //INICIO CAMBIO DE FUENTE
+    // JavaScript para cambiar la fuente al seleccionar una opción en la lista desplegable
+    const fontSelector = document.getElementById('fontSelector');
+
+    fontSelector.addEventListener('change', function () {
+      const selectedFont = fontSelector.value;
+      let fontTest = document.getElementsByClassName('fontTest')
+      for (let index = 0; index < fontTest.length; index++) {
+
+        fontTest[index].style.fontFamily = selectedFont;
+      }
+
+    });
+
+    const btnModifyLetra = document.getElementById('btnModifyLetra');
+
+    btnModifyLetra.addEventListener('click', function () {
+      const selectedFont = fontSelector.value;
+      let fontTest = document.getElementById('vista-index')
+      fontTest.style.fontFamily = selectedFont;
+      set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zFuente"), {
+
+        fuente: selectedFont
+
+      });
+      swal({
+        title: "Fuente Cambiada con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      }).then(() => {
+      });
+    });
+
+    //FIN CAMBIO DE FUENTE 
+    //INICIO PANEL DE PRODUCTOS 
+    //INICIO CARGA DE PRODUCTO
+    const btnAddProduct = document.getElementById('btnAddProducto');
+
+
+
+
+    btnAddProduct.addEventListener('click', function () {
+      const dbRef = ref(realdb);
+
+      let nameProduct = document.getElementById('nameProduct').value;
+      let catProduct = document.getElementById('catProduct').value;
+      let skuProduct = document.getElementById('skuProduct').value;
+      let priceProduct = document.getElementById('priceProduct').value;
+      let marcaProduct = document.getElementById('marcaProduct').value;
+      let stockProduct = document.getElementById('stockProduct').value;
+      let descripProduct = document.getElementById('descripProduct').value;
+      const imgName = document.getElementById('fileInputPrincipal');
+      const imgSecundarias = document.getElementById('fileInputSecundarias');
+
+      if (nameProduct == "" || catProduct == "" || skuProduct == "" || priceProduct == "" ||
+        marcaProduct == "" || stockProduct == "" || descripProduct == "" || imgName.files[0] == null || imgSecundarias.files[0] == null) {
+        swal({
+          title: "No puedes dejar campos vacios!",
+          icon: "error",
+          button: "OK!",
+        });
+      } else {
+        get(child(dbRef, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct)).then((snapshot) => {
+          if (snapshot.exists()) {
+            swal({
+              title: "Este Codigo de Producto Ya Existe!",
+              icon: "warning",
+              button: "OK!",
+            });
+
+          }
+          else {
+            set(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct), {
+
+              name: nameProduct,
+              category: catProduct,
+              sku: skuProduct,
+              price: priceProduct,
+              brand: marcaProduct,
+              stock: stockProduct,
+              description: descripProduct
+
+            });
+
+
+
+            const imgToUploadx = imgName.files[0];
+            var imgProduct = [];
+
+            var imgNamePrincipal = "IMG"
+
+            const metadatax = {
+              contentType: imgToUploadx.type
+            };
+
+
+            const storage = getStorage();
+            const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/Productos/" + skuProduct + "/" + (imgNamePrincipal + "0");
+            const storageRef = sRef(storage, ImageAdress);
+            const UploadTask = uploadBytesResumable(storageRef, imgToUploadx, metadatax);
+
+
+            UploadTask.on('state_changed', (snapshot) => {
+
+            },
+              (error) => {
+
+              },
+              () => {
+                getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                  imgProduct.push(downloadURL);
+                  if (IsAllImagesUploadedB5()) {
+
+                    update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct),
+                      {
+                        zimgProduct: imgProduct,
+                        zimgSecundarias: null
+                      })
+
+
+                  }
+                });
+              });
+
+
+            for (let i = 0; i < Math.min(imgSecundarias.files.length, 4); i++) {
+
+              const imgToUpload = imgSecundarias.files[i];
+              var imgProductS = [];
+              var indName = i + 1;
+              var imgNamePrincipal = "IMG"
+
+              const metadata = {
+                contentType: imgToUpload.type
+              };
+
+
+              const storage = getStorage();
+              const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/Productos/" + skuProduct + "/" + (imgNamePrincipal + indName);
+              const storageRef = sRef(storage, ImageAdress);
+              const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+
+              UploadTask.on('state_changed', (snapshot) => {
+
+              },
+                (error) => {
+
+                },
+                () => {
+                  getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                    imgProductS.push(downloadURL);
+                    if (IsAllImagesUploadedB5()) {
+
+                      update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct),
+                        {
+                          zimgProduct: imgProduct,
+                          zimgSecundarias: imgProductS
+
+                        })
+
+                    }
+                  });
+
+                });
+
+            }
+
+            let nameProductX = document.getElementById('nameProduct');
+            let catProductX = document.getElementById('catProduct');
+            let skuProductX = document.getElementById('skuProduct');
+            let priceProductX = document.getElementById('priceProduct');
+            let marcaProductX = document.getElementById('marcaProduct');
+            let stockProductX = document.getElementById('stockProduct');
+            let descripProductX = document.getElementById('descripProduct');
+
+            nameProductX.value = '';
+            catProductX.value = '';
+            skuProductX.value = '';
+            priceProductX.value = '';
+            marcaProductX.value = '';
+            stockProductX.value = '';
+            descripProductX.value = '';
+
+            var imgPrincipalx = document.getElementById("imgPrincipal");
+            imgPrincipalx.src = "../imagenPrinciaplBase.png";
+
+            var imgSecundariax = document.getElementsByClassName("previewSecundaria");
+
+            for (let index = 0; index < imgSecundariax.length; index++) {
+              imgSecundariax[index].src = "../imagenPrinciaplBase.png";
+
+            }
+
+            document.getElementById("btnImgPrincipal").textContent = "CARGAR IMAGEN";
+            document.getElementById("btnImgSecundarias").textContent = "CARGAR IMAGENES";
+
+            imgProduct = [];
+            imgProductS = [];
+
+
+            toggleContent(20);
+
+            cargaExitosa();
+
+          }
+        });
+      }
+
+
+
+    });
+
+
+    //SETEO DE PRECIOS A MILES 
+    Number.prototype.format = function (n, x, s, c) {
+      let re = 'd(?=(d{' + (x || 3) + '})+' + (n > 0 ? 'D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+      return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+    };
+    // Restricts input for the given textbox to the given inputFilter.
+    function setInputFilter(textbox, inputFilter) {
+      ["input"].forEach(function (event) {
+        textbox.addEventListener(event, function () {
+          if (this.id === "priceProduct") {
+            if (this.value !== "") {
+              let str = this.value;
+              let oldstr = str.substring(0, str.length - 1);
+              let millares = ".";
+              let decimales = ",";
+              str = str.split(millares).join("");
+              if (isNaN(str)) {
+                this.value = oldstr;
+              } else {
+                let numero = parseInt(str);
+                this.value = numero.format(0, 3, millares, decimales);
+              }
+            }
+          }
+        });
+      });
+    }
+    setInputFilter(document.getElementById("priceProduct"), function (value) {
+      //declare an object RegExp
+      let regex = new RegExp(/^-?d*$/);
+      //test the regexp
+      return regex.test(value);
+    });
+
+    //FIN CARGA DE PRODUCTO
+    //INICIO EDITAR PRODUCTOS
+
+    const btnSearchEdit = document.getElementById("btnSearchEdit")
+    const panelEditar = document.getElementById("panelEditar");
+
+    let skuProductEdit = [];
+    btnSearchEdit.addEventListener('click', function () {
+      const skuEditar = document.getElementById("skuEditar").value;
+
+      let nameProductEditar = document.getElementById('nameProductEdit');
+      let catProductEditar = document.getElementById('catProductEdit');
+      let skuProductEditar = document.getElementById('skuProductEdit');
+      let priceProductEditar = document.getElementById('priceProductEdit');
+      let marcaProductEditar = document.getElementById('marcaProductEdit');
+      let stockProductEditar = document.getElementById('stockProductEdit');
+      let descripProductEditar = document.getElementById('descripProductEdit');
+
+      const dbRef = ref(realdb);
+      get(child(dbRef, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuEditar)).then((snapshot) => {
+        if (snapshot.exists() && skuEditar != "") {
+
+          snapshot.forEach(cat => {
+            skuProductEdit.push(cat.val());
+          });
+          swal({
+            title: "Producto cargado para editar!",
+            icon: "success",
+            button: "OK!",
+          });
+
+          nameProductEditar.value = skuProductEdit[3];
+          catProductEditar.value = skuProductEdit[1];
+          skuProductEditar.value = skuProductEdit[5];
+          priceProductEditar.value = skuProductEdit[4];
+          marcaProductEditar.value = skuProductEdit[0];
+          stockProductEditar.value = skuProductEdit[6];
+          descripProductEditar.value = skuProductEdit[2];
+
+          var imgPrincipalxi = document.getElementById("imgPrincipalEdit");
+
+          if (skuProductEdit[7][0] == undefined) {
+            imgPrincipalxi.src = "../imagenPrinciaplBase.png";
+
+
+          } else {
+            imgPrincipalxi.src = skuProductEdit[7][0];
+
+          }
+
+          var imgSecundariaxi = document.getElementsByClassName("previewSecundariaEdit");
+
+          if (skuProductEdit[8][0] == undefined) {
+            for (let index = 0; index < imgSecundariaxi.length; index++) {
+              imgSecundariaxi[index].src = "../imagenPrinciaplBase.png";
+
+            }
+          } else {
+            for (let index = 0; index < imgSecundariaxi.length; index++) {
+              imgSecundariaxi[index].src = skuProductEdit[8][index];
+
+            }
+          }
+
+
+          panelEditar.style.display = "block";
+          skuProductEdit = [];
+
+        }
+        else {
+          swal({
+            title: "Este Codigo No Existe!",
+            icon: "warning",
+            button: "OK!",
+          });
+          panelEditar.style.display = "none";
+        }
+      });
+    })
+
+
+
+    const btnEditProduct = document.getElementById("btnEditarProducto");
+
+    btnEditProduct.addEventListener('click', function () {
+      const dbRef = ref(realdb);
+
+      let nameProduct = document.getElementById('nameProductEdit').value;
+      let catProduct = document.getElementById('catProductEdit').value;
+      let skuProduct = document.getElementById('skuProductEdit').value;
+      let priceProduct = document.getElementById('priceProductEdit').value;
+      let marcaProduct = document.getElementById('marcaProductEdit').value;
+      let stockProduct = document.getElementById('stockProductEdit').value;
+      let descripProduct = document.getElementById('descripProductEdit').value;
+
+
+      if (nameProduct == "" || catProduct == "" || skuProduct == "" || priceProduct == "" ||
+        marcaProduct == "" || stockProduct == "" || descripProduct == "") {
+        swal({
+          title: "No puedes dejar campos vacios!",
+          icon: "error",
+          button: "OK!",
+        });
+      } else {
+        get(child(dbRef, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct)).then((snapshot) => {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct), {
+
+            name: nameProduct,
+            category: catProduct,
+            sku: skuProduct,
+            price: priceProduct,
+            brand: marcaProduct,
+            stock: stockProduct,
+            description: descripProduct
+
+          });
+
+          const imgName = document.getElementById('fileInputEditImgPrincipal');
+          const imgSecundarias = document.getElementById('fileInputEditImgSecundarias');
+
+          if (imgName.files[0] == null) {
+
+          } else {
+            const imgToUploadx = imgName.files[0];
+            var imgProduct = [];
+
+            var imgNamePrincipal = "IMG"
+
+            const metadatax = {
+              contentType: imgToUploadx.type
+            };
+
+
+            const storage = getStorage();
+            const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/Productos/" + skuProduct + "/" + (imgNamePrincipal + "0");
+            const storageRef = sRef(storage, ImageAdress);
+            const UploadTask = uploadBytesResumable(storageRef, imgToUploadx, metadatax);
+
+
+            UploadTask.on('state_changed', (snapshot) => {
+
+            },
+              (error) => {
+
+              },
+              () => {
+                getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                  imgProduct.push(downloadURL);
+                  if (IsAllImagesUploadedB5()) {
+
+                    update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct),
+                      {
+                        zimgProduct: imgProduct,
+                      })
+
+
+                  }
+                });
+              });
+          }
+
+          if (imgSecundarias.files[0] == null) {
+
+          } else {
+
+            for (let i = 0; i < Math.min(imgSecundarias.files.length, 4); i++) {
+
+              const imgToUpload = imgSecundarias.files[i];
+              var imgProductS = [];
+              var indName = i + 1;
+              var imgNamePrincipal = "IMG"
+
+              const metadata = {
+                contentType: imgToUpload.type
+              };
+
+
+              const storage = getStorage();
+              const ImageAdress = "TheImages/CasanovesMayoristaSanitarios/Productos/" + skuProduct + "/" + (imgNamePrincipal + indName);
+              const storageRef = sRef(storage, ImageAdress);
+              const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+
+              UploadTask.on('state_changed', (snapshot) => {
+
+              },
+                (error) => {
+
+                },
+                () => {
+                  getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                    imgProductS.push(downloadURL);
+                    if (IsAllImagesUploadedB5()) {
+
+                      update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuProduct),
+                        {
+                          zimgSecundarias: imgProductS
+
+                        })
+
+
+                    }
+                  });
+                });
+            }
+          }
+
+          let nameProductX = document.getElementById('nameProductEdit');
+          let catProductX = document.getElementById('catProductEdit');
+          let skuProductX = document.getElementById('skuProductEdit');
+          let priceProductX = document.getElementById('priceProductEdit');
+          let marcaProductX = document.getElementById('marcaProductEdit');
+          let stockProductX = document.getElementById('stockProductEdit');
+          let descripProductX = document.getElementById('descripProductEdit');
+
+          let skuEditar = document.getElementById("skuEditar");
+
+          nameProductX.value = '';
+          catProductX.value = '';
+          skuProductX.value = '';
+          priceProductX.value = '';
+          marcaProductX.value = '';
+          stockProductX.value = '';
+          descripProductX.value = '';
+          skuEditar.value = '';
+          imgName.value = '';
+          imgSecundarias.value = '';
+
+          var panelEditar = document.getElementById("panelEditar");
+
+          panelEditar.style.display = "none";
+          editVar = 0;
+          toggleContent(21);
+
+
+        });
+        edicionExitosa()
+      }
+
+
+
+    });
+
+    function edicionExitosa() {
+      swal({
+        title: "Producto Editado con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      })
+
+    }
+
+    function cargaExitosa() {
+
+      swal({
+        title: "Producto Cargado con Exito!",
+        icon: "success",
+        button: "Continuar!"
+      })
+    }
+
+    //SETEO DE PRECIOS A MILES 
+    Number.prototype.format = function (n, x, s, c) {
+      let re = 'd(?=(d{' + (x || 3) + '})+' + (n > 0 ? 'D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+      return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+    };
+    // Restricts input for the given textbox to the given inputFilter.
+    function setInputFilterEdit(textbox, inputFilter) {
+      ["input"].forEach(function (event) {
+        textbox.addEventListener(event, function () {
+          if (this.id === "priceProductEdit") {
+            if (this.value !== "") {
+              let str = this.value;
+              let oldstr = str.substring(0, str.length - 1);
+              let millares = ".";
+              let decimales = ",";
+              str = str.split(millares).join("");
+              if (isNaN(str)) {
+                this.value = oldstr;
+              } else {
+                let numero = parseInt(str);
+                this.value = numero.format(0, 3, millares, decimales);
+              }
+            }
+          }
+        });
+      });
+    }
+    setInputFilter(document.getElementById("priceProductEdit"), function (value) {
+      //declare an object RegExp
+      let regex = new RegExp(/^-?d*$/);
+      //test the regexp
+      return regex.test(value);
+    });
+    //FIN EDITAR PRODUCTOS
+    //INICIO LISTADO PRODUCTOS 
+
+
+
+    var ArrayOfProductsList = [];
+
+    function getAllProducts() {
+
+      const dbref = ref(realdb);
+
+      get(child(dbref, "Usuarios/CasanovesMayoristaSanitarios/Productos")).then((snapshot) => {
+        snapshot.forEach(cat => {
+          ArrayOfProductsList.push(cat.val());
+
+        });
+        for (let index = 0; index < ArrayOfProductsList.length; index++) {
+          AddProductToList(ArrayOfProductsList[index]);
+        }
+      });
+
+    }
+
+    var OuterDivProductList = document.getElementById('productList');
+
+    let skuID = 300;
+    function AddProductToList(brand, category, description, name, price, sku, stock, zimgProduct) {
+
+      if (zimgProduct == null) {
+        zimgProduct = "../imagenPrinciaplBase.png";
+      }
+      let html =
+
+        `<div class="imgProductBanner"><img id="imgProductBanner" width="auto" height="100%" src="`+ zimgProduct + `"alt="No Data Filter"></div><div class="descripProductBanner"><div class="titleProductCard"><span style="font-weight: bold;">`+ getShortTitleProduct(name) + `</span></div><div class="descripProductCard"><p>`+ getShortTitleDescription(description) + `</p></div><div class="foootProductCard"><span>Categoria: <span style="font-weight: bold;" id="catPC">`+ category + `</span></span><span>Marca: <span style="font-weight: bold;" id="brandPC">`+ brand + `</span></span></div><div class="foootProductCard1"><span>SKU: <span style="font-weight: bold;" id="skuPC">`+ sku + `</span></span><span>Precio: <span style="font-weight: bold;" id="pricePC">$`+ price + `</span></span></div></div><div class="modifyProductBanner"><button class="btn btn-primary" value="`+ sku + `" onclick="editProductList(this)">EDITAR</button><button class="btn btn-primary btn-danger" value="`+ sku + `" id="`+skuID+`">ELIMINAR</button></div>`
+
+      let newCat = document.createElement('div');
+      newCat.classList.add("ProductCardPanel");
+      newCat.classList.add("productoFiltro");
+      newCat.innerHTML = html;
+      OuterDivProductList.append(newCat);
+
+      //BOTON ELIMINAR DE LA PRODUCT LIST 
+
+      var idDelete = document.getElementById(skuID);
+
+      idDelete.onclick = function () {
+
+        swal({
+          title: "Estas Seguro?",
+          text: "BORRARAS ESTE ARTICULO",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              remove(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + sku), {
+                name: null,
+                category: null,
+                sku: null,
+                price: null,
+                brand: null,
+                stock: null,
+                description: null,
+                zimgProduct: null,
+                zimgSecundarias: null
+              });
+              swal("Tu Producto Se Elimino con Exito!", {
+                icon: "success",
+              });
+              const skuEdit = document.getElementById("skuEditar");
+              if (skuEdit.value == sku) {
+                let nameProductX = document.getElementById('nameProductEdit');
+                let catProductX = document.getElementById('catProductEdit');
+                let skuProductX = document.getElementById('skuProductEdit');
+                let priceProductX = document.getElementById('priceProductEdit');
+                let marcaProductX = document.getElementById('marcaProductEdit');
+                let stockProductX = document.getElementById('stockProductEdit');
+                let descripProductX = document.getElementById('descripProductEdit');
+
+                let skuEditar = document.getElementById("skuEditar");
+
+                nameProductX.value = '';
+                catProductX.value = '';
+                skuProductX.value = '';
+                priceProductX.value = '';
+                marcaProductX.value = '';
+                stockProductX.value = '';
+                descripProductX.value = '';
+                skuEditar.value = '';
+
+
+                var imgPrincipalxi = document.getElementById("imgPrincipalEdit");
+
+                imgPrincipalxi.src = "../imagenPrinciaplBase.png";
+
+                var imgSecundariaxi = document.getElementsByClassName("previewSecundariaEdit");
+
+                for (let index = 0; index < imgSecundariaxi.length; index++) {
+                  imgSecundariaxi[index].src = "../imagenPrinciaplBase.png";
+
+                }
+
+                var panelEditar = document.getElementById("panelEditar");
+
+                panelEditar.style.display = "none";
+                editVar = 0;
+                toggleContent(21);
+              } else {
+
+              }
+            } else {
+              swal("Poof! Tu producto esta a salvo!");
+            }
+          });
+
+
+      }
+      skuID++;
+
+
+    }
+
+    function AddAllProductsToList(Productos) {
+
+      OuterDivProductList.innerHTML = "";
+
+      Productos.forEach(element => {
+        AddProductToList(element.brand, element.category, element.description, element.name,
+          element.price, element.sku, element.stock, element.zimgProduct)
+      });
+    }
+
+    function GetAllProducts() {
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        AddAllProductsToList(productos);
+      })
+    }
+
+
+
+    //FIN LISTADO PRODUCTOS 
+
+    //FILTRAR PRODUCTOS EN BUSCADOR 
+    //FILTRAR PRODUCTOS EN BUSCADOR
+    document.addEventListener("DOMContentLoaded", function () {
+      // Obtén referencias al input y al contenedor de divs
+      var filtroInput = document.getElementById("searchInputProductList");
+      var contenedorDivs = document.getElementById("productList");
+
+      // Agrega un event listener al input para el evento 'input'
+      filtroInput.addEventListener("input", function () {
+        // Obtén el valor del input y conviértelo a minúsculas para una comparación sin distinción entre mayúsculas y minúsculas
+        var filtro = filtroInput.value.toLowerCase();
+
+        // Obtén todos los divs dentro del contenedor
+        var divs = contenedorDivs.getElementsByClassName("productoFiltro");
+
+        // Recorre cada div y muestra u oculta según el filtro
+        for (var i = 0; i < divs.length; i++) {
+          var textoDiv = divs[i].textContent.toLowerCase();
+          if (textoDiv.includes(filtro)) {
+            divs[i].style.display = "flex";
+          } else {
+            divs[i].style.display = "none";
+          }
+        }
+      });
+    });
+
+    const actListas = document.getElementById("actListas");
+
+    actListas.addEventListener('click', function () {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/obtener-contenido-excel', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          // Obtener el contenido del archivo Excel como JSON
+          var contenidoExcel = JSON.parse(xhr.responseText);
+
+          // Mostrar el contenido en el div
+          for (let index = 0; index < contenidoExcel.length; index++) {
+            cargarExcelAlServer(contenidoExcel[index]);
+          }
+        } else {
+          swal({
+            title: "Debes Cargar Una Lista Primero!",
+            icon: "warning",
+            button: "Continuar!"
+          })
+        }
+      };
+      xhr.send();
+    })
+
+    function cargarExcelAlServer(producto) {
+      var sku = producto['Sku'];
+      var skuE = sku.toString();
+
+      var name = producto['Nombre'];
+      var nameE = name.toString();
+
+      var category = producto['Categoria'];
+      var categoryE = category.toString();
+
+      var price = producto['Precio'];
+      var priceE = price.toString();
+
+      var brand = producto['Marca'];
+      var brandE = brand.toString();
+
+      var stock = producto['Stock'];
+      var stockE = stock.toString();
+      var description = producto['Descripcion Breve'];
+      var descriptionE = description.toString();
+
+      update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos/" + skuE), {
+        name: nameE,
+        category: categoryE,
+        sku: skuE,
+        price: priceE,
+        brand: brandE,
+        stock: stockE,
+        description: descriptionE
+
+      });
+      swal("Lista Cambiada con Exito!", {
+        icon: "success",
+      });
+      toggleContent(26);
+    }
+    //FIN PANEL DE PRODUCTOS 
+
+    //INICIO LISTADO PRODUCTOS 
+
+
+
+
+
+    var stockCartel = 0;
+    var prodPanel = 0;
+    function AddProductToListEpanel(brand, category, description, name, price, sku, stock, zimgProduct, zimgSecundarias) {
+      if (prodPanel <= 2) {
+
+        if (zimgProduct == null) {
+          zimgProduct = "../imagenPrinciaplBase.png";
+        }
+
+        let html =
+        `<div class="Card" ><a id="product-0" href="#" class="producto"><img id="product-`+ sku + `" class="producto img-principal-product" src="` + zimgProduct + `" alt=""><img id="productS-`+ sku + `"  class="producto img-principal-product-secundaria" src="` + zimgSecundarias[0] + `" alt=""><div id="stock-`+ stockCartel + `" class="cartelitoStock"></div><div class="info-product"><div class="productTitle"><p  id="product-0" value="IPhone" style="font-weight: bold;" class=" producto colorLinks">`+ getShortTitleProduct(name) + `</p></div><div  class="price fondoPColor"><span id="product-0" class="producto precioProduct precioColor">$`+ price + `</span></div></div></a></div>`
+
+
+        let newCat = document.createElement('div');
+        newCat.classList.add("shop--Card");
+        newCat.classList.add("productoFiltro");
+        newCat.innerHTML = html;
+        var OuterDivShopList = document.getElementById(category)
+
+        OuterDivShopList.append(newCat);
+
+        var stkCartel = "stock-" + stockCartel;
+        if (stock <= 0) {
+          document.getElementById(stkCartel).style.backgroundColor = "red";
+          document.getElementById(stkCartel).textContent = "SIN STOCK";
+        } else {
+          document.getElementById(stkCartel).style.backgroundColor = "green";
+          document.getElementById(stkCartel).textContent = "EN STOCK";
+        }
+      }
+      stockCartel++;
+      prodPanel++;
+
+
+    }
+
+    function AddAllProductsToListEpanel(Productos) {
+
+
+      Productos.forEach(element => {
+        AddProductToListEpanel(element.brand, element.category, element.description, element.name,
+          element.price, element.sku, element.stock, element.zimgProduct, element.zimgSecundarias)
+      });
+    }
+
+
+    function GetAllProductsEpanel() {
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/Productos");
+
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        AddAllProductsToListEpanel(productos);
+      })
+    }
+    //FIN CARGA PRODUCTOS 
+
+    //INICIO PANEL PEDIDOS
+    const btnSearchPedido = document.getElementById('btnSearchPedido');
+
+    btnSearchPedido.addEventListener('click', function () {
+      document.getElementById('ultimoPedido').style.display = "none"
+      document.getElementById('pedidosCompletados').style.display = "none"
+      document.getElementById('pedidosPendientes').style.display = "none"
+      document.getElementById('pedidosCancelados').style.display = "none"
+      document.getElementById('pedidosSolicitados').style.display = "block"
+
+    });
+
+    const btnPedidosCompletados = document.getElementById('btnPedidosCompletados');
+
+    btnPedidosCompletados.addEventListener('click', function () {
+      document.getElementById('ultimoPedido').style.display = "none"
+      document.getElementById('pedidosPendientes').style.display = "none"
+      document.getElementById('pedidosCancelados').style.display = "none"
+      document.getElementById('pedidosSolicitados').style.display = "none"
+      document.getElementById('pedidosCompletados').style.display = "block"
+
+    })
+
+    const btnPedidosPendientes = document.getElementById('btnPedidosPendientes');
+
+    btnPedidosPendientes.addEventListener('click', function () {
+      document.getElementById('ultimoPedido').style.display = "none"
+      document.getElementById('pedidosCompletados').style.display = "none"
+      document.getElementById('pedidosPendientes').style.display = "block"
+      document.getElementById('pedidosCancelados').style.display = "none"
+      document.getElementById('pedidosSolicitados').style.display = "none"
+    })
+    const btnPedidosCancelados = document.getElementById('btnPedidosCancelados');
+
+    btnPedidosCancelados.addEventListener('click', function () {
+      document.getElementById('ultimoPedido').style.display = "none"
+      document.getElementById('pedidosCompletados').style.display = "none"
+      document.getElementById('pedidosPendientes').style.display = "none"
+      document.getElementById('pedidosCancelados').style.display = "block"
+      document.getElementById('pedidosSolicitados').style.display = "none"
+    })
+
+    var nroLastPedido = 0;
+    function GetAllPedidosInfo(Productos) {
+      var lastPedido = Number(Productos.length - 1);
+
+      document.getElementById('numLastPedido').textContent = Productos[lastPedido]['nroPedido'];
+      document.getElementById('totalLastPedido').textContent = Productos[lastPedido]['totalPago'];
+      document.getElementById('imgLastPedido').src = Productos[lastPedido]['imgLinkPedido'];
+      nroLastPedido = Productos[lastPedido]['nroPedido'];
+
+      if (Productos[lastPedido]['Pagado'] == "No") {
+        document.getElementById('pagoLastPedido').checked = false;
+      } else {
+        document.getElementById('pagoLastPedido').checked = true;
+
+      }
+
+      if (Productos[lastPedido]['Enviado'] == "No") {
+        document.getElementById('envioLastPedido').checked = false;
+      } else {
+        document.getElementById('envioLastPedido').checked = true;
+
+      }
+
+      if (Productos[lastPedido]['Cancelado'] == "No") {
+        document.getElementById('btnCancelarLastPedido').checked = false;
+      } else {
+        document.getElementById('btnCancelarLastPedido').checked = true;
+      }
+
+      for (let index = 0; index < Productos.length; index++) {
+        if (Productos[index]['Pagado'] == "No") {
+          document.getElementById('pagoPedido-' + Productos[index]['nroPedido']).checked = false;
+        } else {
+          document.getElementById('pagoPedido-' + Productos[index]['nroPedido']).checked = true;
+
+        }
+
+        if (Productos[index]['Enviado'] == "No") {
+          document.getElementById('envioPedido-' + Productos[index]['nroPedido']).checked = false;
+        } else {
+          document.getElementById('envioPedido-' + Productos[index]['nroPedido']).checked = true;
+
+        }
+
+        if (Productos[index]['Cancelado'] == "No") {
+          document.getElementById('btnCancelarPedido-' + Productos[index]['nroPedido']).checked = false;
+        } else {
+          document.getElementById('btnCancelarPedido-' + Productos[index]['nroPedido']).checked = true;
+        }
+
+      }
+
+
+      // Productos.forEach(element => {
+      //   AddProductToList(element.brand, element.category, element.description, element.name,
+      //     element.price, element.sku, element.stock, element.zimgProduct)
+      // });
+    }
+
+    function GetAllInfoPedidos() {
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        GetAllPedidosInfo(productos);
+      })
+    }
+
+    document.getElementById('pagoLastPedido').addEventListener('change', function () {
+
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+        if (document.getElementById('pagoLastPedido').checked) {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+
+            Pagado: "Si"
+
+          });
+        } else {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+
+            Pagado: "No"
+
+          });
+        }
+
+      })
+    })
+
+    document.getElementById('envioLastPedido').addEventListener('change', function () {
+
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+        if (document.getElementById('envioLastPedido').checked) {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+
+            Enviado: "Si"
+
+          });
+        } else {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+
+            Enviado: "No"
+
+          });
+        }
+
+      })
+    })
+    //BOTON DESCARGAR ULTIMO PEDIDO
+    // Obtener el botón por su ID
+    var descargarBtnLastPedido = document.getElementById("descargarUltimoPedido");
+
+    // Agregar un evento de clic al botón
+    descargarBtnLastPedido.addEventListener("click", function () {
+      // URL de la imagen que deseas descargar
+      var imageUrl = document.getElementById("imgLastPedido").src;
+
+      // Realizar una solicitud fetch para obtener la imagen
+      fetch(imageUrl)
+        .then(response => response.blob()) // Convertir la respuesta a un objeto blob
+        .then(blob => {
+          // Crear un objeto de URL para la imagen blob
+          var url = URL.createObjectURL(blob);
+
+          // Crear un enlace (a) para iniciar la descarga
+          var enlace = document.createElement("a");
+          enlace.href = url;
+          enlace.download = "Pedido-Marakas-" + nroLastPedido + ".jpg";  // Nombre del archivo descargado
+
+          // Simular un clic en el enlace para iniciar la descarga
+          document.body.appendChild(enlace);
+          enlace.click();
+          document.body.removeChild(enlace);
+
+          // Liberar el objeto de URL después de la descarga
+          URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error("Error al descargar la imagen:", error));
+    });
+
+    //BOTON CANCELAR 
+    document.getElementById('btnCancelarLastPedido').addEventListener('click', function () {
+
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+        if (document.getElementById('btnCancelarLastPedido').checked) {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+
+            Cancelado: "Si"
+
+          });
+        } else {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+
+            Cancelado: "No"
+
+          });
+        }
+
+      })
+    })
+    //FIN BOTON CANCELAR PEDIDO 
+    //TRAER PEDIDOS A PEDIDOS PENDIENTES
+
+
+
+
+    var contentPedidosList = 300;
+    function AddPedidoToList(Cancelado, Enviado, Pagado, ciudad,
+      comprador, cp, email, imgLinkPedido, nroPedido, totalPago) {
+        if(Cancelado == "Si"){
+      let html =
+        `<button class="btnDespliegue" onclick="toggleContent(`+ contentPedidosList + `)"><span>Pedido NRO: `+ nroPedido + ` Pedido por: ` + comprador + `</span><span class="arrowDespliegue"></span></button><div class="contenidoDespliegue" id="content`+ contentPedidosList + `"><div style="margin-left: 2%; margin-right: 2%; width: 96% !important;" class="zonaPedido"><div class="zonaPedidoOptions" ><div class="subdivPedidoSolicitado"><span>NUMERO: <span id="numPedido-`+ nroPedido + `" >` + nroPedido + `</span></span></div><div class="subdivPedidoSolicitado"><span>TOTAL: <span>`+ totalPago + `</span></span></div><div class="subdivPedidoSolicitado"><span style="margin-right: 10%;">PAGO</span><input id="pagoPedido-`+ nroPedido + `" onclick=pagoPedido(this)  type="checkbox" disabled/></div><div class="subdivPedidoSolicitado"><span style="margin-right: 10%;">ENVIO</span><input id="envioPedido-`+ nroPedido + `" onclick=envioPedido(this) type="checkbox" disabled/></div><div class="subdivPedidoSolicitado descargarPedidoSolicitado"><a id="descargarUltimoPedido-`+ nroPedido + `" href="#" style="text-decoration: none; color: black;" >DESCARGAR</a></div><div class="eliminarPedidoSolicitado"><span style="margin-right: 10%;">CANCELAR</span><input id="btnCancelarPedido-`+ nroPedido + `" onclick=cancelarPedido(this) type="checkbox" /></div></div><div id="imgPedido"><img width="100%" height="100%" src="`+ imgLinkPedido + `" alt="No Data Filter"></div></div></div>`
+
+
+      let newCat = document.createElement('div');
+      newCat.innerHTML = html;
+      var OuterDivShopList = document.getElementById("pedidosCanceladosList")
+      OuterDivShopList.append(newCat);
+
+      } else if(Pagado == "Si" && Enviado == "Si") {
+        let html =
+        `<button class="btnDespliegue" onclick="toggleContent(`+ contentPedidosList + `)"><span>Pedido NRO: `+ nroPedido + ` Pedido por: ` + comprador + `</span><span class="arrowDespliegue"></span></button><div class="contenidoDespliegue" id="content`+ contentPedidosList + `"><div style="margin-left: 2%; margin-right: 2%; width: 96% !important;" class="zonaPedido"><div class="zonaPedidoOptions" ><div class="subdivPedidoSolicitado"><span>NUMERO: <span id="numPedido-`+ nroPedido + `" >` + nroPedido + `</span></span></div><div class="subdivPedidoSolicitado"><span>TOTAL: <span>`+ totalPago + `</span></span></div><div class="subdivPedidoSolicitado"><span style="margin-right: 10%;">PAGO</span><input id="pagoPedido-`+ nroPedido + `" onclick=pagoPedido(this)  type="checkbox" /></div><div class="subdivPedidoSolicitado"><span style="margin-right: 10%;">ENVIO</span><input id="envioPedido-`+ nroPedido + `" onclick=envioPedido(this) type="checkbox" /></div><div class="subdivPedidoSolicitado descargarPedidoSolicitado"><a id="descargarUltimoPedido-`+ nroPedido + `" href="#" style="text-decoration: none; color: black;" >DESCARGAR</a></div><div class="eliminarPedidoSolicitado"><span style="margin-right: 10%;">CANCELAR</span><input id="btnCancelarPedido-`+ nroPedido + `" onclick=cancelarPedido(this) type="checkbox" /></div></div><div id="imgPedido"><img width="100%" height="100%" src="`+ imgLinkPedido + `" alt="No Data Filter"></div></div></div>`
+
+
+      let newCat = document.createElement('div');
+      newCat.innerHTML = html;
+      var OuterDivShopList = document.getElementById("pedidosCompletadosList")
+      OuterDivShopList.append(newCat);
+
+      } else {
+        let html =
+        `<button class="btnDespliegue" onclick="toggleContent(`+ contentPedidosList + `)"><span>Pedido NRO: `+ nroPedido + ` Pedido por: ` + comprador + `</span><span class="arrowDespliegue"></span></button><div class="contenidoDespliegue" id="content`+ contentPedidosList + `"><div style="margin-left: 2%; margin-right: 2%; width: 96% !important;" class="zonaPedido"><div class="zonaPedidoOptions" ><div class="subdivPedidoSolicitado"><span>NUMERO: <span id="numPedido-`+ nroPedido + `" >` + nroPedido + `</span></span></div><div class="subdivPedidoSolicitado"><span>TOTAL: <span>`+ totalPago + `</span></span></div><div class="subdivPedidoSolicitado"><span style="margin-right: 10%;">PAGO</span><input id="pagoPedido-`+ nroPedido + `" onclick=pagoPedido(this)  type="checkbox" /></div><div class="subdivPedidoSolicitado"><span style="margin-right: 10%;">ENVIO</span><input id="envioPedido-`+ nroPedido + `" onclick=envioPedido(this) type="checkbox" /></div><div class="subdivPedidoSolicitado descargarPedidoSolicitado"><a id="descargarUltimoPedido-`+ nroPedido + `" href="#" style="text-decoration: none; color: black;" >DESCARGAR</a></div><div class="eliminarPedidoSolicitado"><span style="margin-right: 10%;">CANCELAR</span><input id="btnCancelarPedido-`+ nroPedido + `" onclick=cancelarPedido(this) type="checkbox" /></div></div><div id="imgPedido"><img width="100%" height="100%" src="`+ imgLinkPedido + `" alt="No Data Filter"></div></div></div>`
+
+
+      let newCat = document.createElement('div');
+      newCat.innerHTML = html;
+      var OuterDivShopList = document.getElementById("pedidosPendientesList")
+      OuterDivShopList.append(newCat);
+
+      }
+      contentPedidosList++;
+    }
+
+    function AddAllPedidosToList(Pedidos) {
+      var OuterDivShopList = document.getElementById("pedidosPendientesList");
+      var OuterDivShopListx = document.getElementById("pedidosCanceladosList");
+      var OuterDivShopListxx = document.getElementById("pedidosCompletadosList");
+
+      OuterDivShopList.innerHTML = "";
+      OuterDivShopListx.innerHTML = "";
+      OuterDivShopListxx.innerHTML = "";
+
+      Pedidos.forEach(element => {
+        AddPedidoToList(element.Cancelado, element.Enviado, element.Pagado, element.ciudad,
+          element.comprador, element.cp, element.email, element.imgLinkPedido, element.nroPedido, element.totalPago)
+      });
+    }
+
+    function GetAllPedidos() {
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        AddAllPedidosToList(productos);
+      })
+    }
+    //FIN TRAER PEDIDOS A PEDIDOS PENDIENTES 
+    //TRAER PEDIDO SOLICITADO 
+    const btnTraerPedido = document.getElementById('btnSearchPedido');
+
+    btnTraerPedido.addEventListener('click', function () {
+      const buscarPedidoInput = document.getElementById('skuBuscarPedido');
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+        var noExiste = 0;
+        for (let index = 0; index < productos.length; index++) {
+          if (productos[index]['nroPedido'] == buscarPedidoInput.value) {
+            showPedidoSolicitado(buscarPedidoInput.value, index);
+            noExiste = 1;
+          }
+        }
+        if (noExiste == 0) {
+          swal({
+            title: "Pedido no encontrado!",
+            icon: "warning",
+            button: "OK!",
+          });
+        }
+      })
+
+    })
+
+    var descargaPedidoSolicitado = 0;
+    function showPedidoSolicitado(pedido, index) {
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+        for (let index = 0; index < productos.length; index++) {
+          if (productos[index]['nroPedido'] == pedido) {
+            document.getElementById('nroPedidoSolicitado').textContent = productos[index]['nroPedido'];
+            document.getElementById('nroTotalPedidoSolicitado').textContent = productos[index]['totalPago'];
+            document.getElementById('imgPedidoSolicitado').src = productos[index]['imgLinkPedido'];
+            descargaPedidoSolicitado = productos[index]['nroPedido'];
+            document.getElementById('btnCancelarPedidoSolicitado').value = productos[index]['nroPedido'];
+            document.getElementById('pagoPedidoSolicitado').value = productos[index]['nroPedido'];
+            document.getElementById('envioPedidoSolicitado').value = productos[index]['nroPedido'];
+
+            if (productos[index]['Pagado'] == "No") {
+              document.getElementById('pagoPedidoSolicitado').checked = false;
+            } else {
+              document.getElementById('pagoPedidoSolicitado').checked = true;
+
+            }
+
+            if (productos[index]['Enviado'] == "No") {
+              document.getElementById('envioPedidoSolicitado').checked = false;
+            } else {
+              document.getElementById('envioPedidoSolicitado').checked = true;
+
+            }
+
+            if (productos[index]['Cancelado'] == "No") {
+              document.getElementById('btnCancelarPedidoSolicitado').checked = false;
+            } else {
+              document.getElementById('btnCancelarPedidoSolicitado').checked = true;
+            }
+
+          }
+        }
+      })
+    }
+
+    // Obtener el botón por su ID
+    var descargarBtnLastPedido = document.getElementById("descargarPedidoSolicitado");
+
+    // Agregar un evento de clic al botón
+    descargarBtnLastPedido.addEventListener("click", function () {
+      // URL de la imagen que deseas descargar
+      var imageUrl = document.getElementById('imgPedidoSolicitado').src;
+
+      // Realizar una solicitud fetch para obtener la imagen
+      fetch(imageUrl)
+        .then(response => response.blob()) // Convertir la respuesta a un objeto blob
+        .then(blob => {
+          // Crear un objeto de URL para la imagen blob
+          var url = URL.createObjectURL(blob);
+
+          // Crear un enlace (a) para iniciar la descarga
+          var enlace = document.createElement("a");
+          enlace.href = url;
+          enlace.download = "Pedido-Marakas-" + descargaPedidoSolicitado + ".jpg";  // Nombre del archivo descargado
+
+          // Simular un clic en el enlace para iniciar la descarga
+          document.body.appendChild(enlace);
+          enlace.click();
+          document.body.removeChild(enlace);
+
+          // Liberar el objeto de URL después de la descarga
+          URL.revokeObjectURL(url);
+
+          swal({
+            title: "Descargando Pedido!",
+            text: " Tu Archivo se esta Cargando!",
+            icon: "success",
+            button: "OK!",
+          });
+
+        })
+        .catch(error => console.error("Error al descargar la imagen:", error));
+    });
+
+    //BOTON CANCELAR 
+    document.getElementById('btnCancelarPedidoSolicitado').addEventListener('click', function () {
+
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        var idPedido = document.getElementById('btnCancelarPedidoSolicitado').value;
+        var idPedidoNumber = Number(idPedido);
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+
+        for (let index = 0; index < productos.length; index++) {
+          if (productos[index]['nroPedido'] == idPedidoNumber) {
+            if (document.getElementById('btnCancelarPedidoSolicitado').checked) {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Cancelado: "Si"
+
+              });
+            } else {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Cancelado: "No"
+
+              });
+            }
+          } else {
+
+          }
+
+        }
+
+      })
+    })
+
+    document.getElementById('pagoPedidoSolicitado').addEventListener('click', function () {
+
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        var idPedido = document.getElementById('pagoPedidoSolicitado').value;
+        var idPedidoNumber = Number(idPedido);
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+        if (document.getElementById('pagoPedidoSolicitado').checked) {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+            Pagado: "Si"
+
+          });
+        } else {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+            Pagado: "No"
+
+          });
+        }
+
+      })
+    })
+
+    document.getElementById('envioPedidoSolicitado').addEventListener('click', function () {
+
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        var idPedido = document.getElementById('envioPedidoSolicitado').value;
+        var idPedidoNumber = Number(idPedido);
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+        if (document.getElementById('envioPedidoSolicitado').checked) {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+            Enviado: "Si"
+
+          });
+        } else {
+
+          update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+            Enviado: "No"
+
+          });
+        }
+
+      })
+    })
+
+    const btnCancelarPedido = document.getElementById('btnCancelarPedido');
+
+    btnCancelarPedido.addEventListener('click', function () {
+
+      const inputCancelarPedido = document.getElementById('inputCancelarPedido').value;
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        var idPedidoNumber = Number(inputCancelarPedido);
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+
+        for (let index = 0; index < productos.length; index++) {
+          if (productos[index]['nroPedido'] == idPedidoNumber) {
+            if (document.getElementById('btnCancelarPedido-' + idPedidoNumber).checked) {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Cancelado: "Si"
+
+              });
+              swal({
+                title: "Pedido Cancelado..!",
+                text: " Pedido movido a la pestaña de Pedidos Cancelados!",
+                icon: "success",
+                button: "OK!",
+              });
+            } else {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Cancelado: "No"
+
+              });
+            }
+          } else {
+
+          }
+
+        }
+      })
+    })
+
+    const btnEnvioPedido = document.getElementById('btnEnvioPedido');
+
+    btnEnvioPedido.addEventListener('click', function () {
+
+      const inputCancelarPedido = document.getElementById('inputEnvioPedido').value;
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        var idPedidoNumber = Number(inputCancelarPedido);
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+
+        for (let index = 0; index < productos.length; index++) {
+          if (productos[index]['nroPedido'] == idPedidoNumber) {
+            if (document.getElementById('envioPedido-' + idPedidoNumber).checked) {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Enviado: "Si"
+
+              });
+            } else {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Enviado: "No"
+
+              });
+            }
+
+            if (document.getElementById('envioPedido-' + idPedidoNumber).checked && document.getElementById('pagoPedido-' + idPedidoNumber).checked) {
+              swal({
+                title: "Pedido Completado..!",
+                text: "Pedido enviado a Pedidos Completados.",
+                icon: "success",
+                button: "OK!",
+              });
+            }
+          } else {
+
+          }
+
+        }
+      })
+    })
+
+    const btnPagoPedido = document.getElementById('btnPagoPedido');
+
+    btnPagoPedido.addEventListener('click', function () {
+
+      const inputCancelarPedido = document.getElementById('inputPagoPedido').value;
+
+      const dbref = ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos");
+      onValue(dbref, (snapshot) => {
+        var productos = [];
+
+        var idPedidoNumber = Number(inputCancelarPedido);
+
+        snapshot.forEach(childSnapshot => {
+          productos.push(childSnapshot.val());
+        });
+
+        var lastPedidoID = productos.length - 1;
+
+        for (let index = 0; index < productos.length; index++) {
+          if (productos[index]['nroPedido'] == idPedidoNumber) {
+            if (document.getElementById('pagoPedido-' + idPedidoNumber).checked) {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Pagado: "Si"
+
+              });
+            } else {
+
+              update(ref(realdb, "Usuarios/CasanovesMayoristaSanitarios/zPedidos/" + idPedidoNumber), {
+
+                Pagado: "No"
+
+              });
+            }
+
+            if (document.getElementById('envioPedido-' + idPedidoNumber).checked && document.getElementById('pagoPedido-' + idPedidoNumber).checked) {
+              swal({
+                title: "Pedido Completado..!",
+                text: "Pedido enviado a Pedidos Completados.",
+                icon: "success",
+                button: "OK!",
+              });
+            }
+          } else {
+
+          }
+
+        }
+      })
+    })
+    //FIN TRAER PEDIDO SOLICITADO
+    //FIN PANEL PEDIDOS
+  </script>
+  <!--================================
+              END TRAER DATOS
+     =================================-->
+
+</body>
+
+</html>
+  
