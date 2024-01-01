@@ -1,0 +1,1361 @@
+@font-face {
+    font-family: '../css/fonts/GOTHAM-ULTRA.woff'; /* El nombre que asignarás a la fuente */
+    src: url('../css/fonts/GOTHAM-ULTRA.woff') format('woff'), /* Ruta a la versión WOFF2 de la fuente */
+    /* Puedes incluir otros formatos de fuente según sea necesario, como TrueType (.ttf) o Embedded OpenType (.eot) */
+  }
+
+@media (max-width: 600px) {
+    body{
+        width: 100%;
+        background-color: whitesmoke;
+
+    }
+
+    header {
+        width: 100%;
+    }
+    .logo-header{
+        text-align: center;
+    }
+
+    .input-group {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+        height: 20%;
+    }
+
+
+    .miTienda {
+        display: none;
+    }
+    .navbar {
+       width: 100%;
+    }
+
+    #subHeaderSearcher {
+        padding: 3%;
+        color: white;
+        text-align: center;
+        background-color: #022545;
+        height: 40vh;
+    }
+    #subCategorias {
+        padding: 3%;
+        color: white;
+        text-align: center;
+        background-color: #4CAF50;
+        height: auto;
+    }
+
+    .gothamFonts {
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+
+    }
+    #carouselHeader {
+        width: 100%;
+    } 
+
+    #carouselHeader .carousel-indicators,.carousel-control-prev , .carousel-control-next {
+        display: none;
+    } 
+
+    .shopList {
+        margin-bottom: 2%;
+        text-align: center;
+        padding: 10%;
+        width: 100%;
+        background-color: #f5f5f5;
+    }
+    .shop--Card {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .Card  {
+        position: relative;
+        display: inline-block;
+        margin: 1%;
+        width: 70%;
+
+    } 
+
+    .Card a{
+        text-decoration: none !important;
+  
+    }
+
+    .Card img {
+        padding-top:5% !important; 
+        padding-bottom:0% !important;
+        max-height: 100%;
+        max-width: 100%;
+
+    } 
+
+
+
+    .elegant-bk img{
+        max-width: 100%;
+        height: 100%;
+    }
+
+    .step1 {
+        text-align: center;
+        float: left;
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+    }
+
+    .row {
+        margin-left: 10%;
+        margin-right: 10%;
+        align-items: center;
+        width: 80%;
+    }
+
+    footer {
+        padding: 1%;
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: #022545;
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+
+    }
+
+    footer a{
+        color: white;
+
+    }
+
+    footer:hover {
+        background-color: #022545;
+        cursor: pointer; /* Cambia el cursor a una mano al hacer hover */
+
+    }
+
+
+    .banners {
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+        background-color: #4CAF50;
+        color: white;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .banners h1{
+        margin: 1%;
+        text-align: center;
+    }
+
+    /* SLIDER INFINITE */ 
+    .slider {
+        padding-top: 3%;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        overflow: hidden;
+    }
+            
+    .slider .slide-track {
+        display: flex;
+        animation: scroll 40s linear infinite;
+        -webkit-animation: scroll 40s linear infinite;
+        width: calc(200px * 14);
+    }
+            
+    .slider .slide {
+        width: 100%;
+    }
+            
+    .slider .slide figure {
+        width: 100%;
+    }
+
+    @keyframes scroll {
+        0% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        100% {
+            -webkit-transform: translateX(calc(-200px * 7));
+            transform: translateX(calc(-200px * 7));
+        }
+    }
+
+    .fr-header{
+        text-align: center;
+    }
+
+    .title-fr3{
+        margin-bottom: 2%;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 3%;
+        text-align: center;
+        background-color: #fcb280;
+        border: solid 1px #f74c18;
+        color: white;
+    }
+ 
+    .title--fr3{
+        margin-bottom: 5%;
+        border-bottom: solid 1px black;
+    }
+
+    .logos-fr{
+        margin-top: 2%;
+        text-align: center;
+    }
+
+    .logos-fr span{
+        display: none;
+    }
+
+    .address-fr{
+        margin-top: 2%;
+        text-align: center;
+    }
+
+    .btn-volver-form-4 {
+        text-align: center;
+    }
+
+    .overlay-card {
+        width: 100%;
+        
+    }
+    .boton-card {
+        width: 50%;
+        z-index: 1000;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .imagesDivStyle img {
+        width: 100%;
+        height: auto;
+    }
+
+        /* Estilos para el botón de WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+    
+        .whatsapp-button img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+    
+        .whatsapp-button img:hover {
+            transform: scale(1.1);
+        }
+    
+        #btnComenzar {
+            width: 100%;
+            cursor: pointer;
+            font-size: 300%;
+        }
+    
+        .btnClass {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btnClass:hover {
+            transform: scale(1.1);
+            background-color: #4CAF50;
+    
+        }
+
+                /* BUSCADOR */ 
+
+                #resultsList {
+                    list-style: none;
+                    padding: 0;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    max-height: 400px;
+                    overflow-y: auto;
+                    border: 1px solid #ccc;
+                    background-color: #fff;
+                    color: #022545;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    border-radius: 4px;
+                    z-index: 9999; /* Establecemos un valor de z-index mayor para la lista de resultados */
+          
+                }
+          
+                #resultsList.hidden {
+                    display: none;
+                }
+          
+                #resultsList li {
+                    text-align: center;
+                    margin: 0;
+                    padding: 10px;
+                    cursor: pointer;
+                }
+          
+                #resultsList li:hover {
+                    background-color: #4CAF50;
+                    color: #fff;
+          
+                }
+          
+                .selected {
+                    background-color: #4CAF50;
+                    color: #fff;
+                }
+        
+                .search--product{
+                    text-align: center;
+                  }
+
+                  #searchInput {
+                    text-align: center;
+                    border-radius: 10px 10px 10px 10px !important;
+                }
+
+                .titleTAB h3 {
+                    font-size: 200% !important;
+                }
+
+
+                .bannersContact{
+                    font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+                    height: 80vh;
+                    background-color: #4CAF50;
+                    color: white;
+                    display: block;
+                    text-align: center;
+                }
+                #contactTitle {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #022545;
+                    width: 100%;
+                    height: 15vh;
+                }
+        
+                #contactInfo{
+                    padding-left: 5%;
+                    padding-right: 5%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+        
+                #contactFormularios {
+                    background-color: #4CAF50;
+                    padding: 3%;
+                    width: 100%;
+                    height: 50vh;
+                }
+        
+    /*FIN MOBILE */
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+    body{
+        width: 100%;
+        background-color: whitesmoke;
+
+    }
+
+    header {
+        width: 100%;
+    }
+    .logo-header{
+        text-align: center;
+    }
+
+    .input-group {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+        height: 20%;
+    }
+
+    .miTienda {
+        display: none;
+    }
+    .navbar {
+       width: 100%;
+    }
+
+    #subHeaderSearcher {
+        padding: 3%;
+        color: white;
+        text-align: center;
+        background-color: #022545;
+        height: 80vh;
+    }
+    #subCategorias {
+        padding: 3%;
+        color: white;
+        text-align: center;
+        background-color: #4CAF50;
+        height: auto;
+    }
+
+    .gothamFonts {
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+
+    }
+    #carouselHeader {
+        width: 100%;
+    } 
+
+    #carouselHeader .carousel-indicators,.carousel-control-prev , .carousel-control-next {
+        display: none;
+    } 
+
+    .shopList {
+        text-align: center;
+        padding: 10%;
+        width: 100%;
+        background-color: #f5f5f5;
+    }
+    .shop--Card {
+        text-align: center;
+        width: 100%;
+    }
+
+    .Card  {
+        position: relative;
+
+        display: inline-block;
+
+        margin: 1%;
+        height: 40%;
+        width: 40%;
+
+    } 
+
+    .Card a{
+        text-decoration: none !important;
+  
+    }
+
+    .Card img {
+        max-height: 100%;
+        max-width: 100%;
+
+    } 
+
+    .pieShop {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #022545;
+        color: white;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .pieShop span{
+        color: white;
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+    }
+
+    .elegant-bk{
+        text-align: center;
+    }
+
+    .elegant-bk img{
+        max-width: 100%;
+        height: 100%;
+    }
+
+    .step1 {
+        text-align: center;
+        float: left;
+        width: 100%;
+        height: 100%;
+        background-color: whitesmoke;
+    }
+
+    .row {
+        margin-left: 10%;
+        margin-right: 10%;
+        align-items: center;
+        width: 80%;
+    }
+
+    footer {
+        padding: 1%;
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: #022545;
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+
+    }
+
+    footer a{
+        color: white;
+
+    }
+
+    footer:hover {
+        background-color: #022545;
+        cursor: pointer; /* Cambia el cursor a una mano al hacer hover */
+
+    }
+
+    .banners {
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+        background-color: #4CAF50;
+        color: white;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .banners img {
+        width: 100%;
+    }
+
+    .fr-header{
+        text-align: center;
+    }
+
+    #form-revolucion-3 {
+        text-align: center;
+    }
+
+    .logos-fr{
+        text-align: center;
+    }
+
+    .address-fr{
+        text-align: center;
+    }
+
+        /* SLIDER INFINITE */ 
+        .slider {
+            padding-top: 3%;
+            width: 100%;
+            height: auto;
+            margin: auto;
+            overflow: hidden;
+        }
+                
+        .slider .slide-track {
+            display: flex;
+            animation: scroll 40s linear infinite;
+            -webkit-animation: scroll 40s linear infinite;
+            width: calc(200px * 14);
+        }
+                
+        .slider .slide {
+            width: 100%;
+        }
+                
+        .slider .slide figure {
+            width: 100%;
+        }
+    
+        @keyframes scroll {
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+            100% {
+                -webkit-transform: translateX(calc(-200px * 7));
+                transform: translateX(calc(-200px * 7));
+            }
+        }
+        
+        .btn-volver-form-4{
+            text-align: center;
+        }
+
+        .Card img{
+            margin-bottom: 5%;
+        } 
+        
+    .overlay-card {
+        width: 100%;     
+    }
+    .boton-card {
+        width: 50%;
+        z-index: 1000;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .imagesDivStyle img {
+        width: 100%;
+        height: auto;
+    }
+    /* Estilos para el botón de WhatsApp */
+    .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    .whatsapp-button img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .whatsapp-button img:hover {
+        transform: scale(1.1);
+    }
+
+    #btnComenzar {
+        position: absolute;
+        top: 58%; /* Ajusta la posición vertical del botón */
+        right: 5%; /* Ajusta la posición horizontal del botón */
+        padding: 10px 20px; /* Ajusta el padding según sea necesario */
+
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 300%;
+    }
+
+    .btnClass {
+        background-color: #4CAF50;
+        color: white;
+    }
+    
+    .btnClass:hover {
+        transform: scale(1.1);
+        background-color: #4CAF50;
+
+    }
+            /* BUSCADOR */ 
+
+            #resultsList {
+                list-style: none;
+                padding: 0;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                max-height: 400px;
+                overflow-y: auto;
+                border: 1px solid #ccc;
+                background-color: #fff;
+                color: #022545;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                z-index: 9999; /* Establecemos un valor de z-index mayor para la lista de resultados */
+      
+            }
+      
+            #resultsList.hidden {
+                display: none;
+            }
+      
+            #resultsList li {
+                text-align: center;
+                margin: 0;
+                padding: 10px;
+                cursor: pointer;
+            }
+      
+            #resultsList li:hover {
+                background-color: #4CAF50;
+                color: #fff;
+      
+            }
+      
+            .selected {
+                background-color: #4CAF50;
+                color: #fff;
+            }
+    
+            .search--product{
+                text-align: left;
+              }
+              #searchInput {
+                text-align: center;
+                border-radius: 10px 10px 10px 10px !important;
+            }
+
+            .bannersContact{
+                font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+                height: 80vh;
+                background-color: #4CAF50;
+                color: white;
+                display: block;
+                text-align: center;
+            }
+            #contactTitle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #022545;
+                width: 100%;
+                height: 20vh;
+            }
+    
+            #contactInfo{
+                padding-left: 20%;
+                padding-right: 20%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            #contactFormularios {
+                background-color: #4CAF50;
+                padding: 3%;
+                width: 100%;
+                height: 60vh;
+            }
+    
+    /*FIN TABLET*/
+}
+@media (min-width: 1024px) {
+    /* Estilos para tamaños de pantalla medianos */
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: whitesmoke;
+
+    }
+
+    .body {
+        height: 100%; /* 100% de la altura de la ventana */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: whitesmoke;
+
+    }
+    
+    header {
+        display: flex;
+        width: 100%;
+        height: 20vh;
+
+    }
+
+    #nav-header{
+        width: 70%;
+    }
+    #cabecera {
+        display: flex;
+        background-color: white;
+        overflow: hidden;
+        width: 100%;
+        height: 20vh;
+    }
+
+    .navbar{
+        width: 100%;
+       top: 5%;
+       right: 0%;
+    }
+
+    #subHeaderSearcher {
+        padding: 3%;
+        color: white;
+        text-align: center;
+        background-color: #022545;
+        height: 80vh;
+    }
+
+    #subCategorias {
+        padding: 3%;
+        color: white;
+        text-align: center;
+        background-color: #4CAF50;
+        height: auto;
+    }
+
+    .gothamFonts {
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+
+    }
+    #divSearcherHeader{
+        width: 80%;
+    }
+
+    .navbar a{
+        color: black;
+    }
+
+    .logo-header{
+        padding-left: 1%;
+        padding-right: 1%;
+
+        width: 30%;
+    }
+
+    .input-group {
+        padding-top: 1.5%;
+        width: 100%;
+        height: 20%;
+    }
+
+
+    .step1 {
+        text-align: center;
+        float: left;
+        width: 30%;
+        height: auto;
+        background-color: whitesmoke;
+    }
+
+    .elegant-bk{
+        float: right;
+        width: 70%;
+        height: 100%;
+        background-color: whitesmoke;
+
+    }
+    
+    .elegant-bk img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .row {
+        margin-left: 10%;
+        margin-right: 10%;
+        align-items: center;
+        width: 80%;
+    }
+
+    .shopList {
+        text-align: center;
+        width: 100%;
+        background-color: #f5f5f5;
+    }
+    .shop--Card {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .Card  {
+        position: relative;
+
+        display: inline-block;
+
+        margin: 1%;
+        height: 20%;
+        width: 20%;
+
+    } 
+
+    .Card a{
+        text-decoration: none !important;
+  
+    }
+    
+    .shop--Cardt1 {
+        cursor: pointer;
+        text-align: center;
+        width: 100%;
+    }
+    
+
+    .Cardt1  {
+        position: relative;
+
+        display: inline-block;
+        border: solid grey 1px;
+        margin: 1%;
+        height: 20%;
+        width: 15%;
+
+    } 
+    .Cardt1 a {
+        text-decoration: none;
+
+    } 
+
+
+
+    .Cardt1 img {
+        max-height: 100%;
+        max-width: 100%;
+
+    } 
+
+    .Cardt1:hover img {
+        transform: scale(1.1); /* Escala al hacer hover */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra al hacer hover */
+    }
+
+    .Card img {
+        max-height: 100%;
+        max-width: 100%;
+
+    } 
+
+    .Card:hover img {
+        transform: scale(1.1); /* Escala al hacer hover */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra al hacer hover */
+    }
+
+    .overlay-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para la imagen */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0; /* Inicialmente invisible */
+        transition: opacity 0.3s ease;
+    }
+
+    .Card:hover .overlay-card {
+        opacity: 1; /* Hace visible el overlay al hacer hover */
+    }
+
+    .boton-card {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .overlay-card:hover .boton-card {
+        background-color: #2980b9; /* Cambia el color del botón al hacer hover */
+    }
+
+    .pieShop {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #022545;
+        color: white;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .pieShop span{
+        color: white;
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+    }
+
+
+
+
+    .title-area {
+        text-align: center;
+    }
+
+    footer {
+        padding: 1%;
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: #022545;
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+
+    }
+
+    footer a{
+        color: white;
+
+    }
+
+    footer:hover {
+        background-color: #022545;
+        cursor: pointer; /* Cambia el cursor a una mano al hacer hover */
+
+    }
+
+    .banners {
+        font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+        background-color: #4CAF50;
+        color: white;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .login-create-area{
+        display: flex;
+        text-align: center;
+        width: 100%;
+
+    }
+    
+    .login-create-area #login-area{
+        position: relative;
+        width: 100%;
+        cursor: pointer;
+    }
+
+
+    
+    .footer-login-create-area {
+
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-login-create-area-fr {
+        height: auto;
+
+        text-align: center;
+        width: 100%;
+    }
+    /* SLIDER INFINITE */ 
+    .slider {
+        padding-top: 3%;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        overflow: hidden;
+    }
+
+            
+    .slider .slide-track {
+        display: flex;
+        animation: scroll 40s linear infinite;
+        -webkit-animation: scroll 40s linear infinite;
+        width: calc(150px * 14);
+    }
+            
+    .slider .slide {
+        width: 100%;
+    }
+            
+    .slider .slide figure {
+        width: 100%;
+    }
+
+    @keyframes scroll {
+        0% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        100% {
+            -webkit-transform: translateX(calc(-150px * 7));
+            transform: translateX(calc(-150x * 7));
+        }
+    }
+
+
+
+    .title-fr3{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 3%;
+        text-align: center;
+        background-color: #fcb280;
+        border: solid 1px #f74c18;
+        color: white;
+    }
+ 
+    .title--fr3{
+        border-bottom: solid 1px black;
+    }
+
+    #logo-image{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 3%;
+
+    }
+
+    .form-revolucion {
+        text-align: center;
+        width: 100%;
+    }
+
+    .logos-fr {
+        float: left;
+        width: 50%;
+    }
+
+    .address-fr {
+        float: right;
+
+        width: 50%;
+    }
+
+    .fr-header{
+        width: 100%;
+    }
+
+    .single-product-area {
+        margin-top: 2%;
+        margin-bottom: 2%;
+        display: flex;
+        text-align: center;
+        width: 100%;
+    }
+    .single-product-img {
+        display: flex;
+        text-align: center;
+        width: 60%;
+    }
+    
+    .item__preview-thumb {
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 10%;
+    }
+    .item__preview-thumb img {
+        margin: 2%;
+        width: 100px;
+        height: 100px;
+        border: solid 1px rgb(221, 220, 220) 
+    }
+    .item__preview-slider{
+        margin-top: 2%;
+        margin-bottom: 2%;
+
+        border: solid 1px rgb(221, 220, 220) ;
+        background-color: white;
+        width: 80%;
+        margin-right: 10%;
+        margin-bottom: 10%;
+    }
+    .single-product-details {
+        width: 40%;
+    }
+
+    #pricet1 {
+        width: 100%;
+        background-color: #01eea3;
+    }
+
+    #pricet1 span{
+        font-size: 200%;
+        font-weight: bold;
+        color: #192223;
+    }
+
+    .imagesDivStyle img {
+        width: auto;
+        height: 100px;
+    }
+
+    .imagesDivStyleFavicon img {
+        width: auto;
+        height: 100px;
+    }
+
+    
+    /* Estilos para el botón de WhatsApp */
+    .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    .whatsapp-button img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .whatsapp-button img:hover {
+        transform: scale(1.1);
+    }
+
+    #btnComenzar {
+        position: absolute;
+        top: 58%; /* Ajusta la posición vertical del botón */
+        right: 5%; /* Ajusta la posición horizontal del botón */
+        padding: 10px 20px; /* Ajusta el padding según sea necesario */
+
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 300%;
+    }
+
+    .btnClass {
+        background-color: #4CAF50;
+        color: white;
+    }
+    
+    .btnClass:hover {
+        transform: scale(1.1);
+        background-color: #4CAF50;
+
+    }
+
+        /* Estilos para el botón de WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+    
+        .whatsapp-button img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+    
+        .whatsapp-button img:hover {
+            transform: scale(1.1);
+        }
+    
+        #btnComenzar {
+            position: absolute;
+            top: 45%; /* Ajusta la posición vertical del botón */
+            right: 5%; /* Ajusta la posición horizontal del botón */
+            padding: 10px 20px; /* Ajusta el padding según sea necesario */
+    
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 300%;
+        }
+    
+        .btnClass {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btnClass:hover {
+            transform: scale(1.1);
+            background-color: #4CAF50;
+    
+        }
+
+        /* BUSCADOR */ 
+
+        #resultsList {
+            list-style: none;
+            padding: 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: #022545;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            z-index: 9999; /* Establecemos un valor de z-index mayor para la lista de resultados */
+  
+        }
+  
+        #resultsList.hidden {
+            display: none;
+        }
+  
+        #resultsList li {
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            cursor: pointer;
+        }
+  
+        #resultsList li:hover {
+            background-color: #4CAF50;
+            color: #fff;
+  
+        }
+  
+        .selected {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .search--product{
+            text-align: left;
+          }
+
+        #searchInput {
+            text-align: center;
+            border-radius: 10px 10px 10px 10px !important;
+        }
+
+        .bannersContact{
+            font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;
+            height: 80vh;
+            background-color: #4CAF50;
+            color: white;
+            display: block;
+            text-align: center;
+        }
+
+        #contactTitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #022545;
+            width: 100%;
+            height: 20vh;
+        }
+
+        #contactInfo{
+            padding-left: 20%;
+            padding-right: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #contactFormularios {
+            background-color: #4CAF50;
+            padding: 3%;
+            width: 100%;
+            height: 60vh;
+        }
+
+    /*FIN PC */
+}
+

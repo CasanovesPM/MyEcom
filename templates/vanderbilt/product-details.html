@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vanderbilt</title>
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-tema1.png">
+
+</head>
+
+<body>
+    <div class="whatsapp-button">
+        <a id="btnWhatsApp" href="#" target="_blank">
+            <img src="images/whatsapp-logo.png" alt="WhatsApp">
+        </a>
+    </div>
+    <!--================================
+        START HEADER AREA
+    =================================-->
+    <header style="background-color: #192223;" id="header">
+        <div class="logo-header" >
+            <a href="vanderbilt.html">
+                    <img id="logo-pc" src="images/logo-tema1.png" alt="">
+                    <img id="logo-mobile" src="images/logo-mobile.png" alt="">
+
+             </a>
+        </div>
+        <div class="searcher">
+          <div class="input-group mb-3">
+            <input  id="searchInput" type="text" class="form-control" placeholder="Buscar Producto" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button style="background-color: #01eea3;" class="btn" type="button" id="button-addon2">Buscar</button>
+        </div>
+        </div>
+
+
+    </header>
+    <!--================================
+        END HEADER AREA
+    =================================-->
+    <!--================================
+        START NAV-SLIDER AREA
+    =================================-->
+    <section style="background-color: #4decba;" id="nav-slider-area">
+      <div id="nav-header" >
+          <nav  class="navbar navbar-expand-lg" >
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Inicio</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Apple</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Samsung</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Motorola</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="tienda.html">Tienda</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">CONTACTO</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div id="div-carrito" >
+          <!-- Botón de carrito con lista desplegable -->
+          <div id="carrito" onmouseover="mostrarListaCarrito()" onmouseout="ocultarListaCarrito()">
+            <span id="cantidad-carrito">(0)</span> <span id="carrito-logo">🛒</span> 
+            
+            <div id="lista-carrito">
+                <div id="titulo-de-lista">
+                    <h3>Carrito de Compras</h3>
+                </div>
+                <div id="lista-productos">
+
+                </div>
+                <!-- Lista de productos en el carrito -->
+                <div id="mensaje-carrito-vacio">
+                  <p>Tu carrito está vacío.</p>
+                  <a href="tienda.html">IR A TIENDA</a>
+                </div>
+                <div id="btnIniciarCompra">
+                    <div class="mb-3">
+                      <span>TOTAL:</span>
+                      <span style="float: right;" id="total"></span>
+                    </div>
+                    <div>
+                        <a href="checkout.html" style="float: right;"  class="btn btn-primary btnCheckout">Iniciar Compra</a>
+                        <button style="float: left;background-color: red;"  onclick="limpiarCarrito()" class="btn btn-primary btn--lg">Limpiar</button>    
+                    </div>
+                </div>
+            </div>
+        </div>
+          </div>
+
+        </div>
+
+
+    </section>
+    <!--================================
+        END NAV-SLIDER AREA
+    =================================-->
+
+
+    <!--============================================
+      START SINGLE PRODUCT DESCRIPTION AREA
+  ==============================================-->
+    <div class="single-product-area">
+        <div class="single-product-img">
+            <div class="item__preview-thumb">
+                <img id="prev-0" class="prevImg" src="" alt="">
+                <img id="prev-1" class="prevImg"  src="" alt="">
+                <img id="prev-2" class="prevImg"  src="" alt="">
+                <img id="prev-3" class="prevImg"  src="" alt="">
+                <img id="prev-4" class="prevImg"  src="" alt="">
+            </div>
+            <div class="item__preview-slider">
+                <div class="prev-slide">
+                    <img id="bigimg" src=""
+                    
+                        alt="Keep calm this isn't the end of the world, the preview is just missing.">                        
+                </div>
+
+            </div>
+            <!-- end /.item--preview-slider -->
+
+        </div>
+        <!-- end /.item__preview-thumb-->
+        <div class="single-product-details">
+            <div class="product-title-area mb-3">
+                <div class="product__title">
+                    <h4 id="titleli">Productos Cargados Recientemente</h4>
+                </div>
+            </div>
+            <div class="price">
+                <span id="stockSpan"></span>
+
+                <h1 id="price">
+                    <sup>$</sup>999 -
+                </h1><br>
+
+            </div>
+            <div class="product-title-areat1 mb-3">
+                <div class="input-sumando">
+                    <div class="input-group">
+                        <button class="btn btn-outline-secondary" type="button" onclick="restar()"
+                            aria-expanded="false">-</button>
+                        <input type="text" style="text-align: center;" class="form-control" id="sumando" value="0"
+                            readonly>
+                        <button class="btn btn-outline-secondary" type="button" onclick="sumar()"
+                            aria-expanded="false">+</button>
+                    </div>
+                </div>
+
+
+                <div id="btnAddToCart" class="addtocart-button">
+                    <button onclick="addToCart()" id="btnPurchase" class="btnAddToCart">Agregar Al Carrito</button>
+                </div>
+                <!-- end /.purchase-button -->
+            </div>
+
+            <div class="fade show tab-pane product-tab active" id="product-details">
+                <div class="tab-content-wrapper">
+                    <p id="description">Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut
+                        scelerisque the
+                        mattis, leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra,
+                        justo ut scel erisque the mattis, leo quam aliquet congue justo ut scelerisque. Praesent
+                        pharetra, justo ut scelerisque the mattis, leo quam aliquet congue justo ut scelerisque.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end /.col-md-4 -->
+    <!--===========================================
+      END SINGLE PRODUCT DESCRIPTION AREA
+  ===============================================-->
+    <!--===========================================
+      START PRODUCTOS RELACIONADOS
+    ===============================================-->
+    <div class="productos-relacionados">
+
+        <div style="margin-top: 0;" class="shopList">
+            <h3>PRODUCTOS RELACIONADOS</h3>
+
+            <div class="shop--Cardt1">
+                <div class="Cardt1">
+                    <a id="product-0" href="#" class="productoT1">
+                        <img id="product-0" class="productoT1" src="images/prods/0/0.png" alt="">
+                        <div id="pricet1">
+                            <span id="product-0" class="productoT1">$75.999</span>
+                        </div>
+                        <p id="product-0" value="IPhone" style="font-weight: bold;" class=" productoT1">IPhone 15 Pro
+                            Max 256GB 5G TITANIUM</p>
+                        <input style="display: none;" type="text" id="titulo-p0" value="IPhone 15 Pro Max 256GB">
+                        <input style="display: none;" type="text" id="p0" value="0">
+                        <input style="display: none;" type="text" id="pr0" value="$75.999">
+
+                    </a>
+                </div>
+                <div class="Cardt1">
+                    <a href="#" id="product-1" class="productoT1">
+                        <img id="product-1" class="productoT1" src="images/prods/1/0.png" alt="">
+                        <div id="pricet1">
+                            <span id="product-1" class="productoT1">$94.999</span>
+                        </div>
+                        <p id="product-1" value="IPhone" style="font-weight: bold;" class=" productoT1">Samsung Galaxy
+                            S23 Ultra 12gb 256gb Color Green</p>
+                        <input style="display: none;" type="text" id="titulo-p1"
+                            value="Samsung Galaxy S23 Ultra 12gb 256gb Color Green">
+                        <input style="display: none;" type="text" id="p1" value="1">
+                        <input style="display: none;" type="text" id="pr1" value="$94.999">
+
+                    </a>
+                </div>
+                <div class="Cardt1">
+                    <a id="product-2" href="#" class="productoT1">
+                        <img id="product-2" class="productoT1" src="images/prods/2/0.png" alt="">
+                        <div id="pricet1">
+                            <span id="product-2" class="productoT1">$84.999</span>
+                        </div>
+                        <p id="product-2" value="IPhone" style="font-weight: bold;" class=" productoT1">Samsung Galaxy Z
+                            Grafito Flip4 De 256GB</p>
+                        <input style="display: none;" type="text" id="titulo-p2"
+                            value="Samsung Galaxy Z Grafito Flip4 De 256GB">
+                        <input style="display: none;" type="text" id="p2" value="2">
+                        <input style="display: none;" type="text" id="pr2" value="$84.999">
+
+                    </a>
+                </div>
+                <div class="Cardt1">
+                    <a id="product-3" href="#" class="productoT1">
+                        <img id="product-3" class="productoT1" src="images/prods/3/0.png" alt="">
+                        <div id="pricet1">
+                            <span id="product-3" class="productoT1">$104.999</span>
+                        </div>
+                        <p id="product-3" value="IPhone" style="font-weight: bold;" class=" productoT1">Samsung Galaxy Z
+                            Fold4 5G Dual SIM 512GB</p>
+                        <input style="display: none;" type="text" id="titulo-p3"
+                            value="Samsung Galaxy Z Fold4 5G Dual SIM 512GB">
+                        <input style="display: none;" type="text" id="p3" value="3">
+                        <input style="display: none;" type="text" id="pr3" value="$104.999">
+
+                    </a>
+                </div>
+
+                <div class="Cardt1">
+                    <a id="product-4" href="#" class="productoT1">
+                        <img id="product-4" class="productoT1" src="images/prods/4/0.png" alt="">
+                        <div id="pricet1">
+                            <span id="product-4" class="productoT1">$154.999</span>
+                        </div>
+                        <p id="product-4" value="IPhone" style="font-weight: bold;" class=" productoT1">Samsung Galaxy Z
+                            Fold4 5G Dual SIM 512GB</p>
+                        <input style="display: none;" type="text" id="titulo-p4"
+                            value="Samsung Galaxy Z Fold4 5G Dual SIM 512GB">
+                        <input style="display: none;" type="text" id="p4" value="4">
+                        <input style="display: none;" type="text" id="pr4" value="$154.999">
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--===========================================
+      END PRODUCTOS RELACIONADOS
+    ===============================================-->
+    <!--================================ 
+        START FOOTER AREA
+    =================================-->
+    <footer id="footer-area">
+        <div style="margin: 1%;" class="subfoot-t1">
+          <p>© 2023 <a href="">Vanderbilt Theme</a>. All rights reserved. Created by <a href="#">Eureka.ar</a>.</p>
+        </div>
+
+    </footer>
+    <!--================================
+        END FOOTER AREA
+    =================================-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="../../js/js.js"></script>
+    <script src="js.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script>
+        var stock = localStorage.Stock;
+        var stk = "";
+        if(stock <= 0){
+            stk = "SIN STOCK"
+            document.getElementById('stockSpan').textContent = stk;
+            document.getElementById('stockSpan').style.backgroundColor = "red";
+            const btnAddCarrito = document.getElementById('btnPurchase'); 
+            btnAddCarrito.textContent = "SIN STOCK";
+            btnAddCarrito.disabled = !btnAddCarrito.disabled;
+            
+        } else {
+            stk = "EN STOCK"
+            document.getElementById('stockSpan').textContent = stk; 
+            document.getElementById('stockSpan').style.backgroundColor = "#192223";
+
+        }
+        var price = localStorage.price;
+        var prod = localStorage.prod;
+        var titulo = localStorage.Titulo;
+        var imagen = localStorage.Imagen;
+        window.onload = function () {
+            obtenerProductosDesdeLocalStorage();
+
+          agregarAlCarrito();
+
+            document.getElementById('titleli').textContent = titulo;
+            document.getElementById('price').textContent = price;
+
+
+            CargarImgs();
+            EventosCambio();
+
+        }
+
+        function addToCart() {
+            const inputCant = document.getElementById('sumando').value;
+            agregarAlCarrito(titulo, inputCant, price);
+            document.getElementById('sumando').value = 0;
+        }
+        const bigimg = document.getElementById('bigimg');
+
+        function CargarImgs() {
+
+
+            bigimg.src = "images/prods/" + prod + "/0.png";
+            for (let index = 0; index < 5; index++) {
+                const prev = document.getElementById('prev-' + index);
+                prev.src = "images/prods/" + prod + "/" + index + ".png";
+
+            }
+        }
+
+
+        // INICIO CREAR FUNCION PARA CAMBIAR LA IMAGEN GRANDE SEGUN CUAL IMAGEN PREVIA SE TOQUE
+
+        function tomarID(id) {
+                var indstart = id.indexOf('-') + 1  ;
+                var indend = id.length;
+                return Number(id.substring(indstart, indend));
+            }
+
+            function cambiarBigImage(event) {
+                var index = tomarID(event.target.id);
+
+                if (index == 0){
+                    prev = document.getElementById('prev-0').getAttribute('src');
+                    bigimg.src = prev;
+                }
+                if (index == 1){
+                    prev = document.getElementById('prev-1').getAttribute('src');
+                    bigimg.src = prev;
+                }
+
+                if (index == 2){
+                    prev = document.getElementById('prev-2').getAttribute('src');
+                    bigimg.src = prev;
+                }
+
+                if (index == 3){
+                    prev = document.getElementById('prev-3').getAttribute('src');
+                    bigimg.src = prev;
+                }
+
+                if (index == 4){
+                    prev = document.getElementById('prev-4').getAttribute('src');
+                    bigimg.src = prev;
+                }
+
+
+            }
+
+            function EventosCambio() {
+                var btns = document.getElementsByClassName('prevImg');
+                
+                for (let i = 0; i < btns.length; i++) {
+
+                    btns[i].addEventListener('click', cambiarBigImage);
+
+                }
+            }
+
+        // FIN CREAR FUNCION PARA CAMBIAR LA IMAGEN GRANDE SEGUN CUAL IMAGEN PREVIA SE TOQUE
+
+        // Funciones para sumar y restar
+        function sumar() {
+            var sumandoInput = document.getElementById("sumando");
+            var valorActual = parseInt(sumandoInput.value);
+            sumandoInput.value = valorActual + 1;
+        }
+
+        function restar() {
+            var sumandoInput = document.getElementById("sumando");
+            var valorActual = parseInt(sumandoInput.value);
+            // Asegúrate de que el valor no sea negativo
+            if (valorActual > 0) {
+                sumandoInput.value = valorActual - 1;
+            }
+        }
+    </script>
+</body>
+
+</html>

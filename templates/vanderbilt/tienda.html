@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vanderbilt</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-tema1.png">
+
+  </head>
+<body>
+
+    <div class="whatsapp-button">
+      <a id="btnWhatsApp" href="#" target="_blank">
+          <img src="images/whatsapp-logo.png" alt="WhatsApp">
+      </a>
+    </div>
+    <!--================================
+        START HEADER AREA
+    =================================-->
+    <header style="background-color: #192223;" id="header">
+      <div class="logo-header" >
+          <a href="vanderbilt.html">
+                  <img id="logo-pc" src="images/logo-tema1.png" alt="">
+                  <img id="logo-mobile" src="images/logo-mobile.png" alt="">
+
+           </a>
+      </div>
+      <div class="searcher">
+        <div class="input-group mb-3">
+          <input  id="searchInput" type="text" class="form-control" placeholder="Buscar Producto" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <button style="background-color: #01eea3;" class="btn" type="button" id="button-addon2">Buscar</button>
+      </div>
+      </div>
+
+
+  </header>
+  <!--================================
+      END HEADER AREA
+  =================================-->
+  <!--================================
+      START NAV-SLIDER AREA
+  =================================-->
+  <section style="background-color: #4decba;" id="nav-slider-area">
+    <div id="nav-header" >
+        <nav  class="navbar navbar-expand-lg" >
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Apple</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Samsung</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Motorola</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="tienda.html">Tienda</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">CONTACTO</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div id="div-carrito" >
+        <!-- Botón de carrito con lista desplegable -->
+        <div id="carrito" onmouseover="mostrarListaCarrito()" onmouseout="ocultarListaCarrito()">
+          <span id="cantidad-carrito">(0)</span> <span id="carrito-logo">🛒</span> 
+          
+          <div id="lista-carrito">
+              <div id="titulo-de-lista">
+                  <h3>Carrito de Compras</h3>
+              </div>
+              <div id="lista-productos">
+
+              </div>
+              <!-- Lista de productos en el carrito -->
+              <div id="mensaje-carrito-vacio">
+                <p>Tu carrito está vacío.</p>
+                <a href="tienda.html">IR A TIENDA</a>
+              </div>
+              <div id="btnIniciarCompra">
+                  <div class="mb-3">
+                    <span>TOTAL:</span>
+                    <span style="float: right;" id="total"></span>
+                  </div>
+                  <div>
+                      <a href="checkout.html" style="float: right;"  class="btn btn-primary btnCheckout">Iniciar Compra</a>
+                      <button style="float: left;background-color: red;"  onclick="limpiarCarrito()" class="btn btn-primary btn--lg">Limpiar</button>    
+                  </div>
+              </div>
+          </div>
+      </div>
+        </div>
+
+      </div>
+
+  </section>
+  <!--================================
+      END NAV-SLIDER AREA
+  =================================-->
+    <!--================================
+        START SHOPS LIST AREA
+    =================================-->
+    <section id="shops-list-area">
+        <div class="banners">
+          <img src="images/banner-head-chico-ejemplo-tema1.png" class="d-block w-100" alt="...">
+        </div>
+
+        <div style="margin-top: 0;" class="shopList" >
+          <div class="shop--Cardt1">
+            <div class="Cardt1" >
+              <a id="product-0" href="#" class="productoT1">
+                <img id="product-0" class="productoT1" src="images/prods/0/0.png" alt="">
+                <div id="cartelitoStock" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-0" class="productoT1">$75.999</span>
+                </div>
+                <p  id="product-0" value="IPhone" style="font-weight: bold;" class=" productoT1">IPhone 15 Pro Max 256GB 5G TITANIUM</p>                
+                <input style="display: none;" type="text" id="titulo-p0" value="IPhone 15 Pro Max 256GB">
+                <input style="display: none;" type="text" id="p0" value="0">
+                <input style="display: none;" type="text" id="pr0" value="$75.999">
+                <input style="display: none;" type="text" id="stk0" value="1">
+
+
+              </a>
+            </div>
+            <div class="Cardt1" >
+              <a  href="#" id="product-1" class="productoT1">
+                <img id="product-1" class="productoT1" src="images/prods/1/0.png" alt="">
+                <div id="cartelitoStock1" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-1" class="productoT1">$94.999</span>
+                </div>
+                <p id="product-1" value="IPhone" style="font-weight: bold;" class=" productoT1">Samsung Galaxy S23 Ultra 12gb 256gb Color Green</p>
+                <input style="display: none;" type="text" id="titulo-p1" value="Samsung Galaxy S23 Ultra 12gb 256gb Color Green">
+                <input style="display: none;" type="text" id="p1" value="1">
+                <input style="display: none;" type="text" id="pr1" value="$94.999">
+                <input style="display: none;" type="text" id="stk1" value="1">
+              </a>
+            </div>
+            <div class="Cardt1" >
+              <a id="product-2" href="#" class="productoT1">
+                <img id="product-2" class="productoT1" src="images/prods/2/0.png" alt="">
+                <div id="cartelitoStock2" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-2" class="productoT1">$84.999</span>
+                </div>
+                <p id="product-2"value="IPhone" style="font-weight: bold;" class=" productoT1">Samsung Galaxy Z Grafito Flip4 De 256GB</p>
+                <input style="display: none;" type="text" id="titulo-p2" value="Samsung Galaxy Z Grafito Flip4 De 256GB">
+                <input style="display: none;" type="text" id="p2" value="2">
+                <input style="display: none;" type="text" id="pr2" value="$84.999">
+                <input style="display: none;" type="text" id="stk2" value="0">
+              </a>
+            </div>
+            <div class="Cardt1" >
+              <a id="product-3" href="#" class="productoT1">
+                <img id="product-3" class="productoT1" src="images/prods/3/0.png" alt="">
+                <div id="cartelitoStock3" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-3" class="productoT1">$104.999</span>
+                </div>
+                <p id="product-3"value="IPhone" style="font-weight: bold;" class=" productoT1">Samsung Galaxy Z Fold4 5G Dual SIM 512GB</p>
+                <input style="display: none;" type="text" id="titulo-p3" value="Samsung Galaxy Z Fold4 5G Dual SIM 512GB">
+                <input style="display: none;" type="text" id="p3" value="3">
+                <input style="display: none;" type="text" id="pr3" value="$104.999">
+                <input style="display: none;" type="text" id="stk3" value="0">
+              </a>
+            </div>
+
+            <div class="Cardt1" >
+              <a id="product-4" href="#" class="productoT1">
+                <img id="product-4" class="productoT1" src="images/prods/4/0.png" alt="">
+                <div id="cartelitoStock4" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-4" class="productoT1">$154.999</span>
+                </div>
+                <p id="product-4"value="IPhone" style="font-weight: bold;" class=" productoT1">Apple iPhone 14 Pro Max (128 GB) - Color plata</p>
+                <input style="display: none;" type="text" id="titulo-p4" value="Apple iPhone 14 Pro Max (128 GB) - Color plata">
+                <input style="display: none;" type="text" id="p4" value="4">
+                <input style="display: none;" type="text" id="pr4" value="$154.999">
+                <input style="display: none;" type="text" id="stk4" value="0">
+              </a>
+            </div>
+
+            <div class="Cardt1" >
+              <a  href="#" id="product-5" class="productoT1">
+                <img id="product-5" class="productoT1" src="images/prods/5/0.png" alt="">
+                <div id="cartelitoStock5" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-5" class="productoT1">$55.999</span>
+                </div>
+                <p id="product-5" value="IPhone" style="font-weight: bold;" class=" productoT1">Motorola Edge 30 Ultra 256gb</p>
+                <input style="display: none;" type="text" id="titulo-p5" value="Motorola Edge 30 Ultra 256gb + Cargador Inalámbrico Blanco Starlight">
+                <input style="display: none;" type="text" id="p5" value="5">
+                <input style="display: none;" type="text" id="pr5" value="$55.999">
+                <input style="display: none;" type="text" id="stk5" value="0">
+              </a>
+            </div>
+            <div class="Cardt1" >
+              <a id="product-" href="#" class="productoT1">
+                <img id="product-6" class="productoT1" src="images/prods/6/0.png" alt="">
+                <div id="cartelitoStock6" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-6" class="productoT1">$96.999</span>
+                </div>
+                <p id="product-6"value="IPhone" style="font-weight: bold;" class=" productoT1">Motorola Edge Edge 40 Pro 256 GB</p>
+                <input style="display: none;" type="text" id="titulo-p6" value="Motorola Edge Edge 40 Pro 256 GB lunar blue 12 GB RAM">
+                <input style="display: none;" type="text" id="p6" value="6">
+                <input style="display: none;" type="text" id="pr6" value="$96.999">
+                <input style="display: none;" type="text" id="stk6" value="0">
+              </a>
+            </div>
+            <div class="Cardt1" >
+              <a id="product-7" href="#" class="productoT1">
+                <img id="product-7" class="productoT1" src="images/prods/7/0.png" alt="">
+                <div id="cartelitoStock7" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-7" class="productoT1">$75.999</span>
+                </div>
+                <p id="product-7"value="IPhone" style="font-weight: bold;" class=" productoT1">Motorola RAZR 40 Ultra 512 GB azul 12 GB RAM</p>
+                <input style="display: none;" type="text" id="titulo-p7" value="Motorola RAZR 40 Ultra 512 GB azul 12 GB RAM">
+                <input style="display: none;" type="text" id="p7" value="7">
+                <input style="display: none;" type="text" id="pr7" value="$75.999">
+                <input style="display: none;" type="text" id="stk7" value="0">
+              </a>
+            </div>
+
+            <div class="Cardt1" >
+              <a id="product-8" href="#" class="productoT1">
+                <img id="product-8" class="productoT1" src="images/prods/8/0.png" alt="">
+                <div id="cartelitoStock8" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                    <span id="product-8" class="productoT1">$54.999</span>
+                </div>
+                <p id="product-8"value="IPhone" style="font-weight: bold;" class=" productoT1">Xiaomi Redmi Note 11S Dual SIM 128 GB</p>
+
+                <input style="display: none;" type="text" id="titulo-p8" value="Xiaomi Redmi Note 11S Dual SIM 128 GB blanco perla 8 GB RAM">
+                <input style="display: none;" type="text" id="p8" value="8">
+                <input style="display: none;" type="text" id="pr8" value="$54.999">
+                <input style="display: none;" type="text" id="stk8" value="0">
+              </a>
+            </div>
+            <div class="Cardt1" >
+              <a id="product-9" href="#" class="productoT1">
+                <img id="product-9" class="productoT1" src="images/prods/9/0.png" alt="">
+                <div id="cartelitoStock9" class="cartelitoStock"></div>
+                <div  id="pricet1">
+                  <span id="product-9" class="productoT1">$45.999</span>
+                </div>
+                <p  id="product-9" value="IPhone" style="font-weight: bold;" class=" productoT1">Celular Motorola Moto E13 2/64gb</p>
+                <input style="display: none;" type="text" id="titulo-p9" value="Celular Motorola Moto E13 2/64gb Blanco Accesorio De Regalo">
+                <input style="display: none;" type="text" id="p9" value="9">
+                <input style="display: none;" type="text" id="pr9" value="$45.999">
+                <input style="display: none;" type="text" id="stk9" value="0">
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+    </section>
+    <!--================================
+        END SHOPS LIST AREA
+    =================================-->
+
+    <!--================================ 
+        START FOOTER AREA
+    =================================-->
+    <footer id="footer-area">
+      <div style="margin: 1%;" class="subfoot-t1">
+        <p>© 2023 <a href="">Vanderbilt Theme</a>. All rights reserved. Created by <a href="#">Eureka.ar</a>.</p>
+      </div>
+
+  </footer>
+  <!--================================
+      END FOOTER AREA
+  =================================-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../../js/js.js" ></script>
+    <script src="js.js" ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+      <script>
+        var price = localStorage.price;
+        var prod = localStorage.prod;
+        var titulo = localStorage.Titulo;
+        window.onload = function(){
+          stk0 = document.getElementById('stk0').value;
+          stk1 = document.getElementById('stk1').value;
+          stk2 = document.getElementById('stk2').value;
+          stk3 = document.getElementById('stk3').value;
+          stk4 = document.getElementById('stk4').value;
+          stk5 = document.getElementById('stk5').value;
+          stk6 = document.getElementById('stk6').value;
+          stk7 = document.getElementById('stk7').value;
+          stk8 = document.getElementById('stk8').value;
+          stk9 = document.getElementById('stk9').value;
+
+
+          if(stk0 <= 0)
+          {
+            document.getElementById('cartelitoStock').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock').textContent = "EN STOCK";
+          }
+
+          if(stk1 <= 0)
+          {
+            document.getElementById('cartelitoStock1').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock1').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock1').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock1').textContent = "EN STOCK";
+          }
+
+          if(stk2 <= 0)
+          {
+            document.getElementById('cartelitoStock2').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock2').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock2').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock2').textContent = "EN STOCK";
+          }
+
+          if(stk3 <= 0)
+          {
+            document.getElementById('cartelitoStock3').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock3').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock3').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock3').textContent = "EN STOCK";
+          }
+
+          if(stk4 <= 0)
+          {
+            document.getElementById('cartelitoStock4').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock4').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock4').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock4').textContent = "EN STOCK";
+          }
+
+          if(stk5 <= 0)
+          {
+            document.getElementById('cartelitoStock5').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock5').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock5').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock5').textContent = "EN STOCK";
+          }
+
+          if(stk6 <= 0)
+          {
+            document.getElementById('cartelitoStock6').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock6').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock6').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock6').textContent = "EN STOCK";
+          }
+
+          if(stk7 <= 0)
+          {
+            document.getElementById('cartelitoStock7').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock7').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock7').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock7').textContent = "EN STOCK";
+          }
+
+          if(stk8 <= 0)
+          {
+            document.getElementById('cartelitoStock8').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock8').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock8').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock8').textContent = "EN STOCK";
+          }
+
+          if(stk9 <= 0)
+          {
+            document.getElementById('cartelitoStock9').style.backgroundColor = "red";
+            document.getElementById('cartelitoStock9').textContent = "SIN STOCK";
+          } else {
+            document.getElementById('cartelitoStock9').style.backgroundColor = "#192223";
+            document.getElementById('cartelitoStock9').textContent = "EN STOCK";
+          }
+          obtenerProductosDesdeLocalStorage();
+
+          agregarAlCarrito();
+          AssignAllEvents();
+        }
+
+            //CLICKEAR PRODUCTO E IR A PRODUCT DETAIL CON SUS STATS
+            function GetProductIndex(id) {
+                var indstart = id.indexOf('-') + 1  ;
+                var indend = id.length;
+                return Number(id.substring(indstart, indend));
+            }
+
+            function GotoProductDetails(event) {
+                var index = GetProductIndex(event.target.id);
+                
+                if (index == 0){
+                  const titulo = document.getElementById('titulo-p0').value ;
+                  const bigimg = document.getElementById('p0').value ;
+                  const price = document.getElementById('pr0').value ;
+                  const stock = document.getElementById('stk0').value;
+                  localStorage.price = price;
+                  localStorage.prod = 0;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+                if (index == 1){
+                  const titulo = document.getElementById('titulo-p1').value ;
+                  const bigimg = document.getElementById('p1').value ;
+                  const price = document.getElementById('pr1').value ;
+                  const stock = document.getElementById('stk1').value;
+                  localStorage.price = price;
+                  localStorage.prod = 1;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+
+                if (index == 2){
+                  const titulo = document.getElementById('titulo-p2').value ;
+                  const bigimg = document.getElementById('p2').value ;
+                  const price = document.getElementById('pr2').value ;
+                  const stock = document.getElementById('stk2').value;
+                  localStorage.price = price;
+                  localStorage.prod = 2;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+
+                if (index == 3){
+                  const titulo = document.getElementById('titulo-p3').value ;
+                  const bigimg = document.getElementById('p3').value ;
+                  const price = document.getElementById('pr3').value ;
+                  const stock = document.getElementById('stk3').value;
+                  localStorage.price = price;
+                  localStorage.prod = 3;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+
+                if (index == 4){
+                  const titulo = document.getElementById('titulo-p4').value ;
+                  const bigimg = document.getElementById('p4').value ;
+                  const price = document.getElementById('pr4').value ;
+                  const stock = document.getElementById('stk4').value;
+                  localStorage.price = price;
+                  localStorage.prod = 4;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+                if (index == 5){
+                  const titulo = document.getElementById('titulo-p5').value ;
+                  const bigimg = document.getElementById('p5').value ;
+                  const price = document.getElementById('pr5').value ;
+                  const stock = document.getElementById('stk5').value;
+                  localStorage.price = price;
+                  localStorage.prod = 5;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+                if (index == 6){
+                  const titulo = document.getElementById('titulo-p6').value ;
+                  const bigimg = document.getElementById('p6').value ;
+                  const price = document.getElementById('pr6').value ;
+                  const stock = document.getElementById('stk6').value;
+                  localStorage.price = price;
+                  localStorage.prod = 6;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+
+                if (index == 7){
+                  const titulo = document.getElementById('titulo-p7').value ;
+                  const bigimg = document.getElementById('p7').value ;
+                  const price = document.getElementById('pr7').value ;
+                  const stock = document.getElementById('stk7').value;
+                  localStorage.price = price;
+                  localStorage.prod = 7;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+
+                if (index == 8){
+                  const titulo = document.getElementById('titulo-p8').value ;
+                  const bigimg = document.getElementById('p8').value ;
+                  const price = document.getElementById('pr8').value ;
+                  const stock = document.getElementById('stk8').value;
+                  localStorage.price = price;
+                  localStorage.prod = 8;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+
+                if (index == 9){
+                  const titulo = document.getElementById('titulo-p9').value ;
+                  const bigimg = document.getElementById('p9').value ;
+                  const price = document.getElementById('pr9').value ;
+                  const stock = document.getElementById('stk9').value;
+                  localStorage.price = price;
+                  localStorage.prod = 9;
+                  localStorage.Titulo = titulo;
+                  localStorage.Imagen = bigimg;
+                  localStorage.Stock = stock;
+                  window.location = "product-details.html";
+
+                }
+
+
+            }
+
+            function getShortTitle(title) {
+                    if (title.length > 15) title = title.substring(0, 20);
+                    else return title;
+                    return title + "...";
+                }
+
+            function AssignAllEvents() {
+                var btns = document.getElementsByClassName('productoT1');
+                
+                for (let i = 0; i < btns.length; i++) {
+                    btns[i].addEventListener('click', GotoProductDetails);
+
+                }
+            }
+      </script>
+</body>
+</html>

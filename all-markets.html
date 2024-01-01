@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link id="favicon" rel="icon" href="images/favicon.png" type="image/png" sizes="16x16" href="#">
+
+    <title>MyEcom - Tiendas Gratis</title>
+
+</head>
+<body>
+  <div class="whatsapp-button">
+    <a id="btnWhatsApp" href="#" target="_blank">
+        <img src="images/whatsapp-logo.png" alt="WhatsApp">
+    </a>
+  </div>
+
+    <!--================================
+        START HEADER AREA
+    =================================-->
+    <header id="header">
+      <div id="cabecera">
+      <div class="logo-header" >
+          <a href="index.html">
+                  <img width="100%" height="100%" src="images/logo-350-128.png" alt="">
+           </a>
+      </div>
+      <div id="nav-header"  >
+        <button style="display: none;" id="btnAllMarkets" ></button>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle Navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link link-header" id="navCategorias"  href="#">Categorias</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link link-header" id="navMarkets" href="#">Todas las Tiendas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link link-header" id="navContact" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link link-header" id="navDonate" href="#">Donaciones</a>
+                </li>
+              </ul>
+            </div>
+            <button id="btnMiTienda" style="font-size: 120%;" class="btnClass btn btn-primary" >Crear Tienda</button>
+
+          </div>
+        </nav>
+      </div>
+      </div>
+    </header>
+    <!--================================
+        END HEADER AREA
+    =================================-->
+    <div style="display: none;" id="subHeaderSearcher">
+    </div>
+
+    <div style="display: none;" id="subCategorias">
+    </div>
+    <!--================================
+        START SHOPS LIST AREA
+    =================================-->
+    <section id="shops-list-area" >
+      <div  id="categoriaSeleccionada">
+        <div   class="banners" style="background-color: #022545;">
+          <h1>Todas las Tiendas en Orden Alfabetico <span id="catDeTurno"></span></h1>
+        </div>
+
+        <div style="padding: 1%;" class="shopList" >
+
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "A"</h3>
+            </div>
+            <div id="shopsListA" class="shop--Card">
+            </div>
+
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "B"</h3>
+            </div>
+            <div id="shopsListB" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "C"</h3>
+            </div>
+            <div id="shopsListC" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "D"</h3>
+            </div>
+            <div id="shopsListD" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "E"</h3>
+            </div>
+            <div id="shopsListE" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "F"</h3>
+            </div>
+            <div id="shopsListF" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "G"</h3>
+            </div>
+            <div id="shopsListG" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "H"</h3>
+            </div>
+            <div id="shopsListH" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "I"</h3>
+            </div>
+            <div id="shopsListI" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "J"</h3>
+            </div>
+            <div id="shopsListJ" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "K"</h3>
+            </div>
+            <div id="shopsListK" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "L"</h3>
+            </div>
+            <div id="shopsListL" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "M"</h3>
+            </div>
+            <div id="shopsListM" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "N"</h3>
+            </div>
+            <div id="shopsListN" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "Ñ"</h3>
+            </div>
+            <div id="shopsListÑ" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "O"</h3>
+            </div>
+            <div id="shopsListO" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "P"</h3>
+            </div>
+            <div id="shopsListP" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "Q"</h3>
+            </div>
+            <div id="shopsListQ" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "R"</h3>
+            </div>
+            <div id="shopsListR" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "S"</h3>
+            </div>
+            <div id="shopsListS" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "T"</h3>
+            </div>
+            <div id="shopsListT" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "U"</h3>
+            </div>
+            <div id="shopsListU" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "V"</h3>
+            </div>
+            <div id="shopsListV" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "W"</h3>
+            </div>
+            <div id="shopsListW" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "X"</h3>
+            </div>
+            <div id="shopsListX" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "Y"</h3>
+            </div>
+            <div id="shopsListY" class="shop--Card">
+            </div>
+            <div class="titleTAB" style=" width: 100%; text-align: center; padding: 1%; ">
+              <h3 style=" font-size: 300%; font-family: '../css/fonts/GOTHAM-ULTRA.woff', sans-serif;">Comienzan con "Z"</h3>
+            </div>
+            <div id="shopsListZ" class="shop--Card">
+            </div>
+
+        </div>
+      </div>
+
+    </section>
+    <!--================================
+        END SHOPS LIST AREA
+    =================================-->
+    <!--================================
+        START LOGIN-CREATE
+    =================================-->
+    <section style="display: none;" id="login-create-area">
+        <div class="login-create-area">
+          <img width="100%" height="100%" src="images/banner-crear-tienda.png" alt="">
+
+          <button id="btnComenzar" class=" btnClass btn btn-primary sm--lg"> <span style="font-weight: bold;">¡COMENZAR!</span></button>
+        </div>
+
+        <div class="footer-login-create-area">
+              <div class="slider">
+                <div class="slide-track">
+                    <div class="slide">
+                     <figure style="float: left;">
+                        <blockquote class="blockquote">
+                          <p>Si puedes soñarlo, puedes lograrlo.</p>
+                          <figcaption class="blockquote-footer">
+                            <cite title="Source Title">Walt Disney.</cite>
+                          </figcaption>
+                        </blockquote>
+                      </figure>
+                    </div>
+                    <div class="slide">
+                      <figure class="slide" style="float: left;">
+                        <blockquote class="blockquote">
+                          <p>La innovacion distingue a un lider de un seguidor.</p>
+                          <figcaption class="blockquote-footer">
+                            <cite title="Source Title">Steve Jobs.</cite>
+                          </figcaption>
+                        </blockquote>
+                      </figure>
+                    </div>
+                    <div class="slide">
+                      <figure class="slide" style="float: left;">
+                        <blockquote class="blockquote">
+                          <p>El precio es lo que pagas, el valor es lo que recibes.</p>
+                          <figcaption class="blockquote-footer">
+                            <cite title="Source Title">Warren Buffet.</cite>
+                          </figcaption>
+                        </blockquote>
+                      </figure>
+                    </div>
+                    <div class="slide">
+                        <figure class="slide" style="float: left;">
+                          <blockquote class="blockquote">
+                            <p>Tu actitud, no tu aptitud, determinará tu altitud.</p>
+                            <figcaption class="blockquote-footer">
+                              <cite title="Source Title">Zig Ziglar.</cite>
+                            </figcaption>
+                          </blockquote>
+                        </figure>
+                    </div>
+                    <div class="slide">
+                        <figure class="slide" style="float: left;">
+                          <blockquote class="blockquote">
+                            <p>El fracaso, es no intentarlo.</p>
+                            <figcaption class="blockquote-footer">
+                              <cite title="Source Title">Silvina Casanoves.</cite>
+                            </figcaption>
+                          </blockquote>
+                        </figure>
+                    </div>
+                    <div class="slide">
+                        <figure class="slide" style="float: left;">
+                          <blockquote class="blockquote">
+                            <p>Ser sencillo es lo que te hace grande.</p>
+                            <figcaption class="blockquote-footer">
+                              <cite title="Source Title">Anonimo.</cite>
+                            </figcaption>
+                          </blockquote>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================================
+        END LOGIN-CREATE
+    =================================-->
+      <!--================================ 
+            START FOOTER AREA
+        =================================-->
+        <footer id="footer-area">
+          <div style="margin: 1%;" class="subfoot-t1">
+              <p>© 2023 <a href="" class="linksFooter">MyEcom</a>. All rights reserved. Created by <a href="www.myecom.com.ar"
+                      class="linksFooter">Edumar Soft</a>.</p>
+          </div>
+  
+      </footer>
+      <!--================================
+          END FOOTER AREA
+      =================================-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="js/js.js" ></script>
+    <script type="module" src="js/database.js"></script>
+
+</body>
+</html>
