@@ -9,7 +9,11 @@ const PORT = 3000;
 
 let xx = "nombre";
 // Middleware para servir archivos estáticos
+<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, '../Testeando')));
+=======
+app.use(express.static(path.join(__dirname, '../MyEcom')));
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
 app.use(express.json());
 
 app.post('/crearArchivo/:nombreArchivo', (req, res) => {
@@ -7490,7 +7494,11 @@ const realdb = getDatabase();
 var ArrayOfContacto = [];
 var ArrayOfProducts = [];
 
+<<<<<<< HEAD
 window.addEventListener('load', Habilitado);
+=======
+window.addEventListener('load', GetData);
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
 
 function GetData(){
  GetContacto();
@@ -7503,6 +7511,7 @@ function GetData(){
  addVista();
 }
 
+<<<<<<< HEAD
 function Habilitado(){
   const dbref = ref(realdb);
   let ArrayOfHabilitado = [];
@@ -7521,6 +7530,8 @@ function Habilitado(){
 })
 }
 
+=======
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
 function addVista(){
   const dbref = ref(realdb);
   let ArrayOfVistas = [];
@@ -7528,7 +7539,11 @@ function addVista(){
     snapshot.forEach(cat => {
       ArrayOfVistas.push(cat.val());
     });
+<<<<<<< HEAD
     var ultima = ArrayOfVistas.length - 2;
+=======
+    var ultima = ArrayOfVistas.length - 1;
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
     var vistas = ArrayOfVistas[ultima];
     
     var actVista = vistas + 1 ;
@@ -9234,7 +9249,11 @@ if (indiceGuion !== -1) {
   <section style="display: none;" id="login">
     <div class="login--header">
       <div class="logo mb-3">
+<<<<<<< HEAD
         <a href="${nombreArchivo}.html">
+=======
+        <a href="index.html">
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
           <img id="logo-login" src="#" alt="logo image" class="img-fluid">
         </a>
       </div>
@@ -9656,6 +9675,7 @@ if (indiceGuion !== -1) {
           <span class="arrowDespliegue"></span>
         </button>
         <div class="contenidoDespliegue" id="content6">En Desarrollo</div>
+<<<<<<< HEAD
         <button id="estadoTienda" style="background-color: lightgreen;" class="btnDespliegue" onclick="toggleContent(55)">
         ESTADO DE TIENDA
         <span class="arrowDespliegue"></span>
@@ -9676,6 +9696,9 @@ if (indiceGuion !== -1) {
       </div>
      </div>
 
+=======
+      </div>
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
       <div id="vista-index">
         <!--================================
               START HEADER AREA
@@ -10956,6 +10979,7 @@ if (indiceGuion !== -1) {
           const logoLogin = document.getElementById('logo-login');
           const titleWeb = document.getElementById('title-web');
 
+<<<<<<< HEAD
           //CHEQUEAR SI ESTA HABILITADO
           for (let index = 0; index < ArrayOfProducts.length; index++) {
             if(ArrayOfProducts[index] == 0){
@@ -10971,6 +10995,8 @@ if (indiceGuion !== -1) {
           }
 
           //FIN CHEQUEAR SI ESTA HABILITADO
+=======
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
 
 
           const LinkFavicon = ArrayOfProducts[0];
@@ -14559,6 +14585,7 @@ function AddCTPCE(cat, index) {
     })
     //FIN TRAER PEDIDO SOLICITADO
     //FIN PANEL PEDIDOS
+<<<<<<< HEAD
     
     //HABILITAR Y DESHABILITAR TIENDA 
     const btnDeshabilitar = document.getElementById('btnDeshabilitarTienda');
@@ -14599,6 +14626,8 @@ function AddCTPCE(cat, index) {
       });    
     })
     //FIN HABILITAR Y DESHABILITAR TIENDA
+=======
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
   </script>
   <!--================================
               END TRAER DATOS

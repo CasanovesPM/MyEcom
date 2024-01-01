@@ -468,7 +468,10 @@
         left: 0;
         width: 100%;
         background-color: #022545;
+<<<<<<< HEAD
         color: white;
+=======
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
         padding: 10px;
         margin: 0;
     }
@@ -967,7 +970,10 @@
         left: 0;
         width: 100%;
         background-color: #022545;
+<<<<<<< HEAD
         color: white;
+=======
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
         padding: 10px;
         margin: 0;
     }
@@ -978,8 +984,11 @@
     }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
     .title-area {
         text-align: center;
     }

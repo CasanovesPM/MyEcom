@@ -236,7 +236,13 @@ function ValidationB(){
     let userregex = /^[a-zA-Z0-9]{5,}$/;
 
     if(isEmptyOrSpaces(titularName.value) || isEmptyOrSpaces(titularLastname.value) ||
+<<<<<<< HEAD
      isEmptyOrSpaces(brandName.value) ||  isEmptyOrSpaces(whatsappNumber.value)){
+=======
+     isEmptyOrSpaces(brandName.value) ||  isEmptyOrSpaces(whatsappNumber.value) || 
+     isEmptyOrSpaces(redInstagram.value)
+        || isEmptyOrSpaces(redFacebook.value)){
+>>>>>>> 162e48a824e645cf22f0348330d1dbbb32c068a8
             swal({
             title: "No puedes dejar ningun campo vacio",
             icon: "warning",
