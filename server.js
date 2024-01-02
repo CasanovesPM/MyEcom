@@ -72,6 +72,8 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
           display: none; /* Oculta el contenido inicialmente */
       }
       </style>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
     </head>
   <body>
   
@@ -4443,6 +4445,8 @@ height: auto;
          display: none; /* Oculta el contenido inicialmente */
         }
     </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
     </head>
   <body>
   
@@ -4849,6 +4853,8 @@ total = parseInt(total) + parseInt(precio);
            display: none; /* Oculta el contenido inicialmente */
              }
      </style>
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
   </head>
   
   <body id="shopList">
@@ -5666,6 +5672,8 @@ function agregarAlCarrito(titulo, inputCant, price) {
            window.location = "product-brand.html";
          }
       </script>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
   </head>
   
   <body>
@@ -6299,6 +6307,8 @@ function agregarAlCarrito(titulo, inputCant, price) {
         display: none; /* Oculta el contenido inicialmente */
        }
    </style>
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
    </head>
  <body>
  
@@ -6684,6 +6694,8 @@ total = parseInt(total) + parseInt(precio);
         display: none; /* Oculta el contenido inicialmente */
        }
    </style>
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
    </head>
  <body>
  
@@ -7061,6 +7073,8 @@ total = parseInt(total) + parseInt(precio);
             display: none; /* Oculta el contenido inicialmente */
               }
       </style>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
    </head>
  <body id="shopList">
  
@@ -14859,6 +14873,8 @@ function AddCTPCE(cat, index) {
            window.location = "product-brand.html";
          }
       </script>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
   </head>
   
   <body class="preload home3">
