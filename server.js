@@ -9483,14 +9483,14 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorHeaderLogo" class="colorInput" onchange="cambiarHeader()">
               <label for="hexCodeInputHeader">Cód.:</label>
-              <input type="text" id="hexCodeInputHeader" readonly>
+              <input type="text" id="hexCodeInputHeader" onchange="cambiarHeaderHex()">
             </div>
             <h5>Fondo Navegador</h5>
 
             <div class="colorDiv mb-3">
               <input type="color" id="colorNav" class="colorInput" onchange="cambiarNav()">
               <label for="hexCodeInputNav">Cód.:</label>
-              <input type="text" id="hexCodeInputNav" readonly>
+              <input type="text" id="hexCodeInputNav" onchange="cambiarNavHex()">
             </div>
 
             <h5>Color de Letra Nav</h5>
@@ -9498,7 +9498,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorNavItem" class="colorInput" onchange="cambiarNavItem()">
               <label for="hexCodeInputNavItem">Cód.:</label>
-              <input type="text" id="hexCodeInputNavItem" readonly>
+              <input type="text" id="hexCodeInputNavItem" onchange="cambiarNavItemHex()">
             </div>
 
             <h5>Fondo Botones</h5>
@@ -9506,7 +9506,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorHeadBtns" class="colorInput" onchange="cambiarHeadBtns()">
               <label for="hexCodeInputHeadBtns">Cód.:</label>
-              <input type="text" id="hexCodeInputHeadBtns" readonly>
+              <input type="text" id="hexCodeInputHeadBtns" onchange="cambiarHeadBtnsHex()">
             </div>
 
             <h5>Letras Botones</h5>
@@ -9514,7 +9514,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorHeadBtnsLetras" class="colorInput" onchange="cambiarHeadBtnsLetras()">
               <label for="hexCodeInputHeadBtnsLetras">Cód.:</label>
-              <input type="text" id="hexCodeInputHeadBtnsLetras" readonly>
+              <input type="text" id="hexCodeInputHeadBtnsLetras" onchange="cambiarHeadBtnsLetrasHex()">
             </div>
             <button class="btn btn-primary mb-3" id="btnModifyColorsHeader" type="button">Aplicar Cambios</button>
           </div>
@@ -9528,7 +9528,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorFondoShopList" class="colorInput" onchange="cambiarFondoShopList()">
               <label for="hexCodeFondoShopList">Cód.:</label>
-              <input type="text" id="hexCodeFondoShopList" readonly>
+              <input type="text" id="hexCodeFondoShopList" onchange="cambiarFondoShopListHex()">
             </div>
 
             <button class="btn btn-primary mb-3" id="btnModifyColorsShopList" type="button">Aplicar Cambios</button>
@@ -9543,14 +9543,14 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorFondoProductos" class="colorInput" onchange="cambiarFondoProductos()">
               <label for="hexCodeFondoProductos">Cód.:</label>
-              <input type="text" id="hexCodeFondoProductos" readonly>
+              <input type="text" id="hexCodeFondoProductos" onchange="cambiarFondoProductosHex()">
             </div>
             <h5>Color Precio</h5>
 
             <div class="colorDiv mb-3">
               <input type="color" id="colorPrecio" class="colorInput" onchange="cambiarColorPrecio()">
               <label for="hexCodeColorPrecio">Cód.:</label>
-              <input type="text" id="hexCodeColorPrecio" readonly>
+              <input type="text" id="hexCodeColorPrecio" onchange="cambiarColorPrecioHex()">
             </div>
 
             <h5>Fondo Precio</h5>
@@ -9558,7 +9558,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorFondoPrecio" class="colorInput" onchange="cambiarFondoPrecio()">
               <label for="hexCodeFondoPrecio">Cód.:</label>
-              <input type="text" id="hexCodeFondoPrecio" readonly>
+              <input type="text" id="hexCodeFondoPrecio" onchange="cambiarFondoPrecioHex()">
             </div>
 
             <h5>Color Links</h5>
@@ -9566,7 +9566,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorLinks" class="colorInput" onchange="cambiarColorLinks()">
               <label for="hexCodeColorLinks">Cód.:</label>
-              <input type="text" id="hexCodeColorLinks" readonly>
+              <input type="text" id="hexCodeColorLinks" onchange="cambiarColorLinksHex()">
             </div>
 
             <button class="btn btn-primary mb-3" id="btnModifyColorsProducto" type="button">Aplicar Cambios</button>
@@ -9581,14 +9581,14 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorFondoFooter" class="colorInput" onchange="cambiarFondoFooter()">
               <label for="hexCodeFondoFooter">Cód.:</label>
-              <input type="text" id="hexCodeFondoFooter" readonly>
+              <input type="text" id="hexCodeFondoFooter" onchange="cambiarFondoFooterHex()">
             </div>
             <h5>Color Letras</h5>
 
             <div class="colorDiv mb-3">
               <input type="color" id="colorLetrasFooter" class="colorInput" onchange="cambiarLetrasFooter()">
               <label for="hexCodeLetrasFooter">Cód.:</label>
-              <input type="text" id="hexCodeLetrasFooter" readonly>
+              <input type="text" id="hexCodeLetrasFooter" onchange="cambiarLetrasFooterHex()">
             </div>
 
             <h5>Color Links</h5>
@@ -9596,7 +9596,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorLinksFooter" class="colorInput" onchange="cambiarLinksFooter()">
               <label for="hexCodeLinksFooter">Cód.:</label>
-              <input type="text" id="hexCodeLinksFooter" readonly>
+              <input type="text" id="hexCodeLinksFooter" onchange="cambiarLinksFooterHex()">
             </div>
 
             <button class="btn btn-primary mb-3" id="btnModifyColorsFooter" type="button">Aplicar Cambios</button>
@@ -10554,6 +10554,22 @@ if (indiceGuion !== -1) {
       miDiv.style.backgroundColor = nuevoColor;
     }
 
+    function cambiarHeaderHex() {
+      const colorHeaderLogo = document.getElementById('colorHeaderLogo');
+      const hexCodeInput = document.getElementById('hexCodeInputHeader');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorHeaderLogo.value = hexCode;
+
+      const miDiv = document.getElementById('header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      miDiv.style.backgroundColor = nuevoColor;
+    }
+
     function cambiarNav() {
       const colorHeaderLogo = document.getElementById('colorNav');
       const hexCodeInput = document.getElementById('hexCodeInputNav');
@@ -10570,6 +10586,22 @@ if (indiceGuion !== -1) {
       miDiv.style.backgroundColor = nuevoColor;
     }
 
+    function cambiarNavHex() {
+      const colorHeaderLogo = document.getElementById('colorNav');
+      const hexCodeInput = document.getElementById('hexCodeInputNav');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorHeaderLogo.value = hexCode;
+
+      const miDiv = document.getElementById('nav-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      miDiv.style.backgroundColor = nuevoColor;
+    }
+
     function cambiarNavItem() {
       const colorHeaderLogo = document.getElementById('colorNavItem');
       const hexCodeInput = document.getElementById('hexCodeInputNavItem');
@@ -10579,6 +10611,25 @@ if (indiceGuion !== -1) {
       // Convertir el color RGB a formato hexadecimal
       const hexCode = rgbToHex(getRGB(selectedColor));
       hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('link-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarNavItemHex() {
+      const colorHeaderLogo = document.getElementById('colorNavItem');
+      const hexCodeInput = document.getElementById('hexCodeInputNavItem');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorHeaderLogo.value = hexCode;
 
       const elementosConClase = document.getElementsByClassName('link-header');
       const nuevoColor = hexCode; // Cambia esto por el color que desees
@@ -10608,6 +10659,25 @@ if (indiceGuion !== -1) {
       }
     }
 
+    function cambiarHeadBtnsHex() {
+      const colorHeaderLogo = document.getElementById('colorHeadBtns');
+      const hexCodeInput = document.getElementById('hexCodeInputHeadBtns');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorHeaderLogo.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('btn-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.backgroundColor = nuevoColor;
+      }
+    }
+
     function cambiarHeadBtnsLetras() {
       const colorHeaderLogo = document.getElementById('colorHeadBtnsLetras');
       const hexCodeInput = document.getElementById('hexCodeInputHeadBtnsLetras');
@@ -10627,15 +10697,34 @@ if (indiceGuion !== -1) {
       }
     }
 
-    function cambiarFondoShopList() {
-      const colorFondoShopList = document.getElementById('colorFondoShopList');
-      const hexCodeInput = document.getElementById('hexCodeFondoShopList');
+    function cambiarHeadBtnsLetrasHex() {
+      const colorHeaderLogo = document.getElementById('colorHeadBtnsLetras');
+      const hexCodeInput = document.getElementById('hexCodeInputHeadBtnsLetras');
 
-      const selectedColor = colorFondoShopList.value;
+      const selectedColor = hexCodeInput.value;
 
       // Convertir el color RGB a formato hexadecimal
       const hexCode = rgbToHex(getRGB(selectedColor));
-      hexCodeInput.value = hexCode;
+      colorHeaderLogo.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('btn-header');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarFondoShopListHex() {
+      const colorFondoShopList = document.getElementById('colorFondoShopList');
+      const hexCodeInput = document.getElementById('hexCodeFondoShopList');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorFondoShopList.value = hexCode;
 
       const miDiv = document.getElementById('shopList');
       const bannerCategorias = document.getElementById('banner-categorias');
@@ -10667,6 +10756,25 @@ if (indiceGuion !== -1) {
       }
     }
 
+    function cambiarFondoProductosHex() {
+      const colorFondoProductos = document.getElementById('colorFondoProductos');
+      const hexCodeInput = document.getElementById('hexCodeFondoProductos');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorFondoProductos.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('Card');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.backgroundColor = nuevoColor;
+      }
+    }
+
     function cambiarColorPrecio() {
       const colorPrecio = document.getElementById('colorPrecio');
       const hexCodeInput = document.getElementById('hexCodeColorPrecio');
@@ -10676,6 +10784,25 @@ if (indiceGuion !== -1) {
       // Convertir el color RGB a formato hexadecimal
       const hexCode = rgbToHex(getRGB(selectedColor));
       hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('precioColor');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarColorPrecioHex() {
+      const colorPrecio = document.getElementById('colorPrecio');
+      const hexCodeInput = document.getElementById('hexCodeColorPrecio');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorPrecio.value = hexCode;
 
       const elementosConClase = document.getElementsByClassName('precioColor');
       const nuevoColor = hexCode; // Cambia esto por el color que desees
@@ -10705,6 +10832,25 @@ if (indiceGuion !== -1) {
       }
     }
 
+    function cambiarFondoPrecioHex() {
+      const colorFondoPrecio = document.getElementById('colorFondoPrecio');
+      const hexCodeInput = document.getElementById('hexCodeFondoPrecio');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorFondoPrecio.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('fondoPColor');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.backgroundColor = nuevoColor;
+      }
+    }
+
     function cambiarColorLinks() {
       const colorLinks = document.getElementById('colorLinks');
       const hexCodeInput = document.getElementById('hexCodeColorLinks');
@@ -10714,6 +10860,25 @@ if (indiceGuion !== -1) {
       // Convertir el color RGB a formato hexadecimal
       const hexCode = rgbToHex(getRGB(selectedColor));
       hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('colorLinks');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarColorLinksHex() {
+      const colorLinks = document.getElementById('colorLinks');
+      const hexCodeInput = document.getElementById('hexCodeColorLinks');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorLinks.value = hexCode;
 
       const elementosConClase = document.getElementsByClassName('colorLinks');
       const nuevoColor = hexCode; // Cambia esto por el color que desees
@@ -10741,6 +10906,23 @@ if (indiceGuion !== -1) {
       elementosConClase.style.backgroundColor = nuevoColor;
     }
 
+    function cambiarFondoFooterHex() {
+      const colorLinks = document.getElementById('colorFondoFooter');
+      const hexCodeInput = document.getElementById('hexCodeFondoFooter');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorLinks.value = hexCode;
+
+      const elementosConClase = document.getElementById('footer-area');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      elementosConClase.style.backgroundColor = nuevoColor;
+    }
+
     function cambiarLetrasFooter() {
       const colorLinks = document.getElementById('colorLetrasFooter');
       const hexCodeInput = document.getElementById('hexCodeLetrasFooter');
@@ -10758,6 +10940,23 @@ if (indiceGuion !== -1) {
       elementosConClase.style.color = nuevoColor;
     }
 
+    function cambiarLetrasFooterHex() {
+      const colorLinks = document.getElementById('colorLetrasFooter');
+      const hexCodeInput = document.getElementById('hexCodeLetrasFooter');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorLinks.value = hexCode;
+
+      const elementosConClase = document.getElementById('footer-area');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      elementosConClase.style.color = nuevoColor;
+    }
+
     function cambiarLinksFooter() {
       const colorLinks = document.getElementById('colorLinksFooter');
       const hexCodeInput = document.getElementById('hexCodeLinksFooter');
@@ -10767,6 +10966,25 @@ if (indiceGuion !== -1) {
       // Convertir el color RGB a formato hexadecimal
       const hexCode = rgbToHex(getRGB(selectedColor));
       hexCodeInput.value = hexCode;
+
+      const elementosConClase = document.getElementsByClassName('linksFooter');
+      const nuevoColor = hexCode; // Cambia esto por el color que desees
+
+      // Iterar sobre los elementos y cambiar el color del texto
+      for (let i = 0; i < elementosConClase.length; i++) {
+        elementosConClase[i].style.color = nuevoColor;
+      }
+    }
+
+    function cambiarLinksFooterHex() {
+      const colorLinks = document.getElementById('colorLinksFooter');
+      const hexCodeInput = document.getElementById('hexCodeLinksFooter');
+
+      const selectedColor = hexCodeInput.value;
+
+      // Convertir el color RGB a formato hexadecimal
+      const hexCode = rgbToHex(getRGB(selectedColor));
+      colorLinks.value = hexCode;
 
       const elementosConClase = document.getElementsByClassName('linksFooter');
       const nuevoColor = hexCode; // Cambia esto por el color que desees
