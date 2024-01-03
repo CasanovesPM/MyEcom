@@ -476,7 +476,8 @@
       get(child(dbRef, "Usuarios/" + antesDelArroba)).then((snapshot) => {
             if (snapshot.exists()) {
               swal({
-                title: "El Email de esta tienda ya existe!",
+                title: "Usuario Existente!",
+                text: "Por favor ingresa uno diferente.",
                 icon: "warning",
                 button: "OK!",
               });
