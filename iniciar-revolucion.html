@@ -30,7 +30,7 @@
         <h6>Carga > Gesitona > ¡VENDE! </h6>
         <h5 class="mb-3">¡Crea tu tienda online sin costo!</h5>
         <div class="mb-3 row">
-          <h6>Ingresa el Email de tu negocio.</h6>
+          <h6>Ingresa tu Usuario.</h6>
           <div class="mb-3 col-md-12">
             <input id="brandEmail" type="text" class="form-control" placeholder="Escribe tu Email" aria-label="Email"
               aria-describedby="basic-addon1">
@@ -449,7 +449,7 @@
 
 
       btn.addEventListener('click', function () {
-        const name = brandName.value;
+        const name = brandEmail.value;
         const arrayDePalabras = name.replace(/\s+/g, '');
         const nombreArchivo = arrayDePalabras;
 
@@ -514,7 +514,7 @@
 
     function RegisterUser() {
       const dbRef = ref(realdb);
-      const name = brandName.value;
+      const name = brandEmail.value;
         const arrayDePalabras = name.replace(/\s+/g, '');
           get(child(dbRef, "Usuarios/" + arrayDePalabras)).then((snapshot) => {
             if (snapshot.exists()) {
@@ -869,7 +869,7 @@
             }
 
             function UploadAnImage(imgToUpload, imgNo){
-              const name = brandName.value;
+              const name = brandEmail.value;
         const arrayDePalabras = name.replace(/\s+/g, '');
                 const metadata = {
                     contentType: imgToUpload.type
@@ -932,7 +932,7 @@
             }
 
             function UploadAnImageF(imgToUpload, imgNo){
-              const name = brandName.value;
+              const name = brandEmail.value;
               const arrayDePalabras = name.replace(/\s+/g, '');
                 const metadata = {
                     contentType: imgToUpload.type
