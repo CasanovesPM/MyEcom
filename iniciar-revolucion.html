@@ -469,7 +469,7 @@
     //REFERENCIAS
     function EmailValidation() {
       const dbRef = ref(realdb);
-      const patron = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      const patron = /^[a-zA-Z0-9_.+-]/;
       if (patron.test(brandEmail.value)) {
         const email = brandEmail.value;
       let antesDelArroba = email.split('@')[0];
