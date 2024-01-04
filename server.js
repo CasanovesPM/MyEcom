@@ -61,7 +61,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-      <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="/tiendas/${nombreArchivo}/styles.css">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
       <title id="title-web"></title>
@@ -79,7 +79,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
   
       <div class="whatsapp-button">
         <a id="btnWhatsApp" href="#" target="_blank">
-            <img src="../whatsapp-logo.png" alt="WhatsApp">
+            <img src="/tiendas/whatsapp-logo.png" alt="WhatsApp">
         </a>
       </div>
         <!--================================
@@ -129,10 +129,10 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
 
                     </div>
                     <li class="nav-item">
-                      <a class="nav-link link-header" href="tienda.html">Tienda</a>
+                      <a class="nav-link link-header" href="/tiendas/${nombreArchivo}/tienda.html">Tienda</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link link-header" href="contact.html">CONTACTO</a>
+                      <a class="nav-link link-header" href="/tiendas/${nombreArchivo}/contact.html">CONTACTO</a>
                     </li>
                   </ul>
                 </div>
@@ -154,7 +154,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
                   <!-- Lista de productos en el carrito -->
                   <div id="mensaje-carrito-vacio">
                     <p>Tu carrito está vacío.</p>
-                    <a href="tienda.html">IR A TIENDA</a>
+                    <a href="/tiendas/${nombreArchivo}/tienda.html">IR A TIENDA</a>
                   </div>
                   <div id="btnIniciarCompra">
                       <div class="mb-3">
@@ -162,7 +162,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
                         <span style="float: right;" id="total"></span>
                       </div>
                       <div>
-                          <a href="checkout.html" style="float: right;"  class="btn btn-primary btnCheckout">Iniciar Compra</a>
+                          <a href="/tiendas/${nombreArchivo}/checkout.html" style="float: right;"  class="btn btn-primary btnCheckout">Iniciar Compra</a>
                           <button style="float: left;background-color: red;"  onclick="limpiarCarrito()" class="btn btn-primary btn--lg">Limpiar</button>    
                       </div>
                   </div>
@@ -261,7 +261,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
           END FOOTER AREA
       =================================-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-      <script type="module" src="js.js" ></script>
+      <script type="module" src="/tiendas/${nombreArchivo}/js.js" ></script>
   
       <!--================================
           START SCRIPT BASE
@@ -477,7 +477,7 @@ function agregarAlCarrito(titulo, inputCant, price) {
           var Categoria = event.target.innerHTML;
 
           localStorage.titleCat = Categoria; 
-          window.location = "product-category.html";
+          window.location = "/tiendas/${nombreArchivo}/product-category.html";
         }
 
                 // Función que asigna el evento de clic a todos los enlaces con la clase "miClase"
@@ -485,7 +485,7 @@ function agregarAlCarrito(titulo, inputCant, price) {
           var brand = event.target.innerHTML;
 
           localStorage.titleBrand = brand; 
-          window.location = "product-brand.html";
+          window.location = "/tiendas/${nombreArchivo}/product-brand.html";
         }
 
       </script>
@@ -7921,31 +7921,31 @@ function GetAllBanners() {
 
        //EN WEB
        if(ArrayOfBannersGet[0] == 0){
-         bannerhp1.setAttribute("src", "../banner-header-ejemplo.png");
+         bannerhp1.setAttribute("src", "/tiendas/banner-header-ejemplo.png");
        }else{
          bannerhp1.setAttribute("src", ArrayOfBannersGet[0] + new Date().getTime());
        }
 
        if(ArrayOfBannersGet[1] == 0){
-         bannerhp2.setAttribute("src", "../banner-header-ejemplo.png");
+         bannerhp2.setAttribute("src", "/tiendas/banner-header-ejemplo.png");
        }else{
          bannerhp2.setAttribute("src", ArrayOfBannersGet[1] + new Date().getTime());
        }
 
        if(ArrayOfBannersGet[2] == 0){
-         bannerhp3.setAttribute("src", "../banner-header-ejemplo.png");
+         bannerhp3.setAttribute("src", "/tiendas/banner-header-ejemplo.png");
        }else{
          bannerhp3.setAttribute("src", ArrayOfBannersGet[2] + new Date().getTime());
        }
 
        if(ArrayOfBannersGet[3] == 0){
-         bannerhp4.setAttribute("src", "../banner-header-ejemplo.png");
+         bannerhp4.setAttribute("src", "/tiendas/banner-header-ejemplo.png");
        }else{
          bannerhp4.setAttribute("src", ArrayOfBannersGet[3] + new Date().getTime());
        }
 
        if(ArrayOfBannersGet[4] == 0){
-         bannerhp5.setAttribute("src", "../banner-header-ejemplo.png");
+         bannerhp5.setAttribute("src", "/tiendas/banner-header-ejemplo.png");
        }else{
          bannerhp5.setAttribute("src", ArrayOfBannersGet[4] + new Date().getTime());
        }
@@ -7959,7 +7959,7 @@ function GetAllBanners() {
          const bannersph = document.getElementById("subBannerHeaders");
 
          if(ArrayOfBannersGet[5] == 0){
-           bannersph.setAttribute("src", "../banner-head-chico-ejemplo.png");
+           bannersph.setAttribute("src", "/tiendas/banner-head-chico-ejemplo.png");
          }else{
            bannersph.setAttribute("src", ArrayOfBannersGet[5] + new Date().getTime());
          }
@@ -15378,7 +15378,21 @@ app.get('/obtener-contenido-excel', (req, res) => {
   res.json(contenidoExcel);
 });
 
+// Configurar las rutas estáticas para los archivos HTML en las carpetas específicas
+app.use('/tiendas', express.static(path.join(__dirname, 'tiendas')));
 
+// Configurar la ruta para el acceso directo a los archivos HTML
+app.get('/:nombreArchivo', (req, res) => {
+  let nombreArchivo = req.params.nombreArchivo;
+
+  // Si nombreArchivo contiene la extensión ".html", quítala
+  if (nombreArchivo.endsWith('.html')) {
+    nombreArchivo = nombreArchivo.slice(0, -5);
+  }
+
+  const rutaCompleta = path.join(__dirname, 'tiendas', nombreArchivo, `${nombreArchivo}.html`);
+  res.sendFile(rutaCompleta);
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
