@@ -5899,7 +5899,7 @@ function agregarAlCarrito(titulo, inputCant, price) {
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
-      import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
+      import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, , deleteObject, listAll  }
       from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
   
       import { getDatabase, onValue, ref, set,push, child, get, update, remove }
@@ -11034,7 +11034,7 @@ if (indiceGuion !== -1) {
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
-    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject, listAll   }
       from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
 
     import { getDatabase, onValue, ref, set, push, child, get, update, remove }
@@ -13862,6 +13862,33 @@ function AddCTPCE(cat, index) {
                 zimgProduct: null,
                 zimgSecundarias: null
               });
+
+              const storage = getStorage();
+              const directorioRef = sRef(storage, 'TheImages/${nombreArchivo}/Productos/'+ sku);
+
+              // Listar todos los archivos en el directorio
+              listAll(directorioRef)
+                .then((result) => {
+                  // Eliminar cada archivo en el directorio
+                  const promesasEliminacion = result.items.map((archivoRef) => {
+                    return deleteObject(archivoRef);
+                  });
+
+                  // Ejecutar las promesas de eliminación
+                  return Promise.all(promesasEliminacion);
+                })
+                .then(() => {
+                  // Si lo deseas, también puedes eliminar el directorio vacío después de eliminar los archivos
+                  return deleteObject(directorioRef);
+                })
+                .then(() => {
+                  console.log('Directorio y archivos eliminados correctamente.');
+                })
+                .catch((error) => {
+                  console.error('Error al intentar eliminar archivos o directorio:', error);
+                });
+
+
               swal("Tu Producto Se Elimino con Exito!", {
                 icon: "success",
               });
@@ -15350,6 +15377,7 @@ app.get('/obtener-contenido-excel', (req, res) => {
   // Enviar el contenido como respuesta JSON
   res.json(contenidoExcel);
 });
+
 
 
 app.listen(PORT, () => {

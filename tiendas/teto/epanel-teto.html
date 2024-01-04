@@ -193,7 +193,7 @@ if (indiceGuion !== -1) {
   <section style="display: none;" id="login">
     <div class="login--header">
       <div class="logo mb-3">
-        <a href="Marakas.html">
+        <a href="teto.html">
           <img id="logo-login" src="#" alt="logo image" class="img-fluid">
         </a>
       </div>
@@ -226,7 +226,7 @@ if (indiceGuion !== -1) {
               =================================-->
     <header>
       <div style="width: 70%;" class="logo-header">
-        <a href="Marakas.html">
+        <a href="teto.html">
           <img id="logo-pc" src="#" alt="">
           <img id="logo-mobile" src="#" alt="">
         </a>
@@ -443,7 +443,7 @@ if (indiceGuion !== -1) {
             <div class="colorDiv mb-3">
               <input type="color" id="colorNavItem" class="colorInput" onchange="cambiarNavItem()">
               <label for="hexCodeInputNavItem">Cód.:</label>
-              <input type="text" id="hexCodeInputNavItem" onchange="cambiarNavItemHex()" > 
+              <input type="text" id="hexCodeInputNavItem" onchange="cambiarNavItemHex()">
             </div>
 
             <h5>Fondo Botones</h5>
@@ -641,7 +641,7 @@ if (indiceGuion !== -1) {
           =================================-->
         <header id="header">
           <div class="logo-header">
-            <a href="Marakas.html">
+            <a href="teto.html">
               <img id="logo-pc-header" src="#" alt="">
               <img id="logo-mobile" src="#" alt="">
             </a>
@@ -815,7 +815,7 @@ if (indiceGuion !== -1) {
         =================================-->
         <footer id="footer-area">
           <div style="margin: 1%;" class="subfoot-t1">
-            <p>© 2023 <a href="" class="linksFooter">Marakas</a>. All rights reserved. Created by <a href="#"
+            <p>© 2023 <a href="" class="linksFooter">teto</a>. All rights reserved. Created by <a href="#"
                 class="linksFooter">MyEcom</a>.</p>
           </div>
 
@@ -1098,7 +1098,7 @@ if (indiceGuion !== -1) {
           <div class="contenidoDespliegue" id="content24">
             <div style="border: solid 1px grey; padding: 2%;" class="mb-3">
               Descargar <span style="font-weight: bold;">Mi Lista</span>:
-              <a href="excel/Marakas.xlsx" download="Marakas.xlsx">DESCARGAR</a>
+              <a href="excel/teto.xlsx" download="teto.xlsx">DESCARGAR</a>
             </div>
           </div>
           <button class="btnDespliegue" onclick="toggleContent(25)">
@@ -1979,7 +1979,7 @@ if (indiceGuion !== -1) {
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
-    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject, listAll }
+    import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
       from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
 
     import { getDatabase, onValue, ref, set, push, child, get, update, remove }
@@ -2018,7 +2018,7 @@ if (indiceGuion !== -1) {
     function AuthenticateUser() {
       const dbRef = ref(realdb);
 
-      get(child(dbRef, "Usuarios/Marakas")).then((snapshot) => {
+      get(child(dbRef, "Usuarios/teto")).then((snapshot) => {
         if (snapshot.exists()) {
           let dbpass = decPass(snapshot.val().brandPassword);
           let email = snapshot.val().brandEmail;
@@ -2059,7 +2059,7 @@ if (indiceGuion !== -1) {
         sessionStorage.setItem('user', JSON.stringify(username));
 
         let log = 1;
-        set(ref(realdb, "Usuarios/Marakas/log"), {
+        set(ref(realdb, "Usuarios/teto/log"), {
           log: log
 
         });
@@ -2074,12 +2074,12 @@ if (indiceGuion !== -1) {
 
     function Desloguear() {
       let log = 0;
-      set(ref(realdb, "Usuarios/Marakas/log"), {
+      set(ref(realdb, "Usuarios/teto/log"), {
         log: log
 
       });
 
-      window.location = "Marakas.html";
+      window.location = "teto.html";
     }
 
     const log = [];
@@ -2087,7 +2087,7 @@ if (indiceGuion !== -1) {
     function Logueado() {
       const dbRef = ref(realdb);
 
-      get(child(dbRef, "Usuarios/Marakas/log")).then((snapshot) => {
+      get(child(dbRef, "Usuarios/teto/log")).then((snapshot) => {
         snapshot.forEach(prod => {
           log.push(prod.val());
 
@@ -2118,7 +2118,7 @@ if (indiceGuion !== -1) {
 
     function getAllData() {
       const dbref = ref(realdb);
-      get(child(dbref, "Usuarios/Marakas")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto")).then((snapshot) => {
 
         snapshot.forEach(prod => {
           ArrayOfProducts.push(prod.val());
@@ -2276,7 +2276,7 @@ if (indiceGuion !== -1) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/imgLogo#" + (imgNo + 1);
+      const ImageAdress = "TheImages/teto/imgLogo#" + (imgNo + 1);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -2383,7 +2383,7 @@ if (indiceGuion !== -1) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/imgFavicon#" + (imgNo + 1);
+      const ImageAdress = "TheImages/teto/imgFavicon#" + (imgNo + 1);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -2422,7 +2422,7 @@ if (indiceGuion !== -1) {
     function reloadLogoFavicon() {
       const dbref = ref(realdb);
 
-      get(child(dbref, "Usuarios/Marakas")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto")).then((snapshot) => {
 
         snapshot.forEach(prod => {
           ArrayOfLF.push(prod.val());
@@ -2486,7 +2486,7 @@ if (indiceGuion !== -1) {
 
 
 
-      get(child(dbRef, "Usuarios/Marakas/zCategorias/" + catInp.value)).then((snapshot) => {
+      get(child(dbRef, "Usuarios/teto/zCategorias/" + catInp.value)).then((snapshot) => {
         if (snapshot.exists()) {
           swal({
             title: "Categoria Existente!",
@@ -2497,7 +2497,7 @@ if (indiceGuion !== -1) {
         }
         else {
 
-          set(ref(realdb, "Usuarios/Marakas/zCategorias/" + catInp.value),
+          set(ref(realdb, "Usuarios/teto/zCategorias/" + catInp.value),
             {
 
               category: catInp.value
@@ -2575,7 +2575,7 @@ if (indiceGuion !== -1) {
           })
             .then((willDelete) => {
               if (willDelete) {
-                remove(ref(realdb, "Usuarios/Marakas/zCategorias/" + categoria), {
+                remove(ref(realdb, "Usuarios/teto/zCategorias/" + categoria), {
                   category: null
                 });
 
@@ -2612,7 +2612,7 @@ if (indiceGuion !== -1) {
     //Getting all data
 
     function GetAllDataRealTimeCat() {
-      const dbRef = ref(realdb, "Usuarios/Marakas/zCategorias");
+      const dbRef = ref(realdb, "Usuarios/teto/zCategorias");
 
       onValue(dbRef, (snapshot) => {
         var productos = [];
@@ -2663,7 +2663,7 @@ if (indiceGuion !== -1) {
 
 
 
-      get(child(dbRef, "Usuarios/Marakas/zMarcas/" + brandInp.value)).then((snapshot) => {
+      get(child(dbRef, "Usuarios/teto/zMarcas/" + brandInp.value)).then((snapshot) => {
         if (snapshot.exists()) {
           swal({
             title: "Marca Existente!",
@@ -2674,7 +2674,7 @@ if (indiceGuion !== -1) {
         }
         else {
 
-          set(ref(realdb, "Usuarios/Marakas/zMarcas/" + brandInp.value),
+          set(ref(realdb, "Usuarios/teto/zMarcas/" + brandInp.value),
             {
 
               brand: brandInp.value
@@ -2752,7 +2752,7 @@ if (indiceGuion !== -1) {
           })
             .then((willDelete) => {
               if (willDelete) {
-                remove(ref(realdb, "Usuarios/Marakas/zMarcas/" + marca), {
+                remove(ref(realdb, "Usuarios/teto/zMarcas/" + marca), {
                   brand: null
                 });
 
@@ -2789,7 +2789,7 @@ if (indiceGuion !== -1) {
     //Getting all data
 
     function GetAllDataRealTimeBrand() {
-      const dbRef = ref(realdb, "Usuarios/Marakas/zMarcas");
+      const dbRef = ref(realdb, "Usuarios/teto/zMarcas");
 
       onValue(dbRef, (snapshot) => {
         var productos = [];
@@ -2815,7 +2815,7 @@ if (indiceGuion !== -1) {
     function GetAllCategory() {
       const dbref = ref(realdb);
 
-      get(child(dbref, "Usuarios/Marakas/zCategorias")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zCategorias")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfCategory.push(cat.val());
 
@@ -2835,7 +2835,7 @@ if (indiceGuion !== -1) {
     function GetAllBrand() {
       const dbref = ref(realdb);
 
-      get(child(dbref, "Usuarios/Marakas/zMarcas")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zMarcas")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfBrand.push(cat.val());
 
@@ -2970,7 +2970,7 @@ function AddCTPCE(cat, index) {
 
     function GetAllColors() {
       const dbref = ref(realdb);
-      get(child(dbref, "Usuarios/Marakas/zColores/Header")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zColores/Header")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfColorsHeader.push(cat.val());
 
@@ -3014,7 +3014,7 @@ function AddCTPCE(cat, index) {
           btnHeaderLetras[i].style.color = ArrayOfColorsHeader[4];
         }
       });
-      get(child(dbref, "Usuarios/Marakas/zColores/ShopList")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zColores/ShopList")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfColorsShopList.push(cat.val());
         });
@@ -3032,7 +3032,7 @@ function AddCTPCE(cat, index) {
 
       });
 
-      get(child(dbref, "Usuarios/Marakas/zColores/Producto")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zColores/Producto")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfColorsProducto.push(cat.val());
         });
@@ -3072,7 +3072,7 @@ function AddCTPCE(cat, index) {
 
       });
 
-      get(child(dbref, "Usuarios/Marakas/zColores/Footer")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zColores/Footer")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfColorsFooter.push(cat.val());
         });
@@ -3106,7 +3106,7 @@ function AddCTPCE(cat, index) {
     function GetFont() {
       const dbref = ref(realdb);
 
-      get(child(dbref, "Usuarios/Marakas/zFuente")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zFuente")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfFont.push(cat.val());
         });
@@ -3134,7 +3134,7 @@ function AddCTPCE(cat, index) {
     function GetContacto() {
       const dbref = ref(realdb);
 
-      get(child(dbref, "Usuarios/Marakas")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfContacto.push(cat.val());
         });
@@ -3147,8 +3147,7 @@ function AddCTPCE(cat, index) {
 
     const modificarColoresHeader = document.getElementById("btnModifyColorsHeader");
     modificarColoresHeader.addEventListener('click', function () {
-
-      set(ref(realdb, "Usuarios/Marakas/zColores/Header"), {
+      set(ref(realdb, "Usuarios/teto/zColores/Header"), {
 
         color1: fondoHeader.value,
         color2: fondoNavegador.value,
@@ -3166,7 +3165,7 @@ function AddCTPCE(cat, index) {
 
     const modificarColoresShopList = document.getElementById("btnModifyColorsShopList");
     modificarColoresShopList.addEventListener('click', function () {
-      set(ref(realdb, "Usuarios/Marakas/zColores/ShopList"), {
+      set(ref(realdb, "Usuarios/teto/zColores/ShopList"), {
 
         color6: fondoShopList.value
 
@@ -3181,7 +3180,7 @@ function AddCTPCE(cat, index) {
 
     const modificarColoresProducto = document.getElementById("btnModifyColorsProducto");
     modificarColoresProducto.addEventListener('click', function () {
-      set(ref(realdb, "Usuarios/Marakas/zColores/Producto"), {
+      set(ref(realdb, "Usuarios/teto/zColores/Producto"), {
 
         color7: fondoProductos.value,
         color8: colorPrecio.value,
@@ -3199,7 +3198,7 @@ function AddCTPCE(cat, index) {
 
     const modificarColoresFooter = document.getElementById("btnModifyColorsFooter");
     modificarColoresFooter.addEventListener('click', function () {
-      set(ref(realdb, "Usuarios/Marakas/zColores/Footer"), {
+      set(ref(realdb, "Usuarios/teto/zColores/Footer"), {
 
         color11: colorFondoFooter.value,
         color12: colorLetrasFooter.value,
@@ -3215,7 +3214,7 @@ function AddCTPCE(cat, index) {
     })
     const modificarContacto = document.getElementById("btnModifyContacto");
     modificarContacto.addEventListener('click', function () {
-      update(ref(realdb, "Usuarios/Marakas"), {
+      update(ref(realdb, "Usuarios/teto"), {
 
         inputEmail: inputEmailModify.value,
         whatsappNumber: inputPhoneModify.value,
@@ -3248,7 +3247,7 @@ function AddCTPCE(cat, index) {
 
     function GetAllBanners() {
       const dbref = ref(realdb);
-      get(child(dbref, "Usuarios/Marakas/zBannersHeaderLinks")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zBannersHeaderLinks")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfBannersGet.push(cat.val());
 
@@ -3337,7 +3336,7 @@ function AddCTPCE(cat, index) {
     function recargarDivIndexCat() {
 
       // Realizar una solicitud fetch para obtener la nueva información
-      fetch('epanel-Marakas.html') // Cambia 'tu_archivo.html' por la URL correcta
+      fetch('epanel-teto.html') // Cambia 'tu_archivo.html' por la URL correcta
         .then(response => {
           if (!response.ok) {
             throw new Error('La solicitud no fue exitosa');
@@ -3370,7 +3369,7 @@ function AddCTPCE(cat, index) {
     function recargarDivIndexBrand() {
 
       // Realizar una solicitud fetch para obtener la nueva información
-      fetch('epanel-Marakas.html') // Cambia 'tu_archivo.html' por la URL correcta
+      fetch('epanel-teto.html') // Cambia 'tu_archivo.html' por la URL correcta
         .then(response => {
           if (!response.ok) {
             throw new Error('La solicitud no fue exitosa');
@@ -3474,7 +3473,7 @@ function AddCTPCE(cat, index) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/banners-head/imgBanneHead#" + (imgNo + 1);
+      const ImageAdress = "TheImages/teto/banners-head/imgBanneHead#" + (imgNo + 1);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -3501,7 +3500,7 @@ function AddCTPCE(cat, index) {
                 button: "Continuar!"
               }).then(() => {
 
-                update(ref(realdb, "Usuarios/Marakas/zBannersHeaderLinks"),
+                update(ref(realdb, "Usuarios/teto/zBannersHeaderLinks"),
                   {
                     banner1: ImageLinksArrayB
 
@@ -3588,7 +3587,7 @@ function AddCTPCE(cat, index) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/banners-head/imgBanneHead#" + (imgNo + 2);
+      const ImageAdress = "TheImages/teto/banners-head/imgBanneHead#" + (imgNo + 2);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -3615,7 +3614,7 @@ function AddCTPCE(cat, index) {
                 button: "Continuar!"
               }).then(() => {
 
-                update(ref(realdb, "Usuarios/Marakas/zBannersHeaderLinks"),
+                update(ref(realdb, "Usuarios/teto/zBannersHeaderLinks"),
                   {
                     banner2: ImageLinksArrayB1
 
@@ -3702,7 +3701,7 @@ function AddCTPCE(cat, index) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/banners-head/imgBanneHead#" + (imgNo + 3);
+      const ImageAdress = "TheImages/teto/banners-head/imgBanneHead#" + (imgNo + 3);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -3729,7 +3728,7 @@ function AddCTPCE(cat, index) {
                 button: "Continuar!"
               }).then(() => {
 
-                update(ref(realdb, "Usuarios/Marakas/zBannersHeaderLinks"),
+                update(ref(realdb, "Usuarios/teto/zBannersHeaderLinks"),
                   {
                     banner3: ImageLinksArrayB2
 
@@ -3816,7 +3815,7 @@ function AddCTPCE(cat, index) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/banners-head/imgBanneHead#" + (imgNo + 4);
+      const ImageAdress = "TheImages/teto/banners-head/imgBanneHead#" + (imgNo + 4);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -3843,7 +3842,7 @@ function AddCTPCE(cat, index) {
                 button: "Continuar!"
               }).then(() => {
 
-                update(ref(realdb, "Usuarios/Marakas/zBannersHeaderLinks"),
+                update(ref(realdb, "Usuarios/teto/zBannersHeaderLinks"),
                   {
                     banner4: ImageLinksArrayB3
 
@@ -3930,7 +3929,7 @@ function AddCTPCE(cat, index) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/banners-head/imgBanneHead#" + (imgNo + 5);
+      const ImageAdress = "TheImages/teto/banners-head/imgBanneHead#" + (imgNo + 5);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -3957,7 +3956,7 @@ function AddCTPCE(cat, index) {
                 button: "Continuar!"
               }).then(() => {
 
-                update(ref(realdb, "Usuarios/Marakas/zBannersHeaderLinks"),
+                update(ref(realdb, "Usuarios/teto/zBannersHeaderLinks"),
                   {
                     banner5: ImageLinksArrayB4
 
@@ -4044,7 +4043,7 @@ function AddCTPCE(cat, index) {
         contentType: imgToUpload.type
       };
       const storage = getStorage();
-      const ImageAdress = "TheImages/Marakas/banners-head/imgBanneHead#" + (imgNo + 6);
+      const ImageAdress = "TheImages/teto/banners-head/imgBanneHead#" + (imgNo + 6);
       const storageRef = sRef(storage, ImageAdress);
       const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -4071,7 +4070,7 @@ function AddCTPCE(cat, index) {
                 button: "Continuar!"
               }).then(() => {
 
-                update(ref(realdb, "Usuarios/Marakas/zBannersHeaderLinks"),
+                update(ref(realdb, "Usuarios/teto/zBannersHeaderLinks"),
                   {
                     banner6: ImageLinksArrayB5
 
@@ -4092,7 +4091,7 @@ function AddCTPCE(cat, index) {
 
       const dbref = ref(realdb);
 
-      get(child(dbref, "Usuarios/Marakas/zBannersHeaderLinks")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/zBannersHeaderLinks")).then((snapshot) => {
 
         snapshot.forEach(prod => {
           ArrayOfBanners.push(prod.val());
@@ -4216,7 +4215,7 @@ function AddCTPCE(cat, index) {
       const selectedFont = fontSelector.value;
       let fontTest = document.getElementById('vista-index')
       fontTest.style.fontFamily = selectedFont;
-      set(ref(realdb, "Usuarios/Marakas/zFuente"), {
+      set(ref(realdb, "Usuarios/teto/zFuente"), {
 
         fuente: selectedFont
 
@@ -4258,7 +4257,7 @@ function AddCTPCE(cat, index) {
           button: "OK!",
         });
       } else {
-        get(child(dbRef, "Usuarios/Marakas/Productos/" + skuProduct)).then((snapshot) => {
+        get(child(dbRef, "Usuarios/teto/Productos/" + skuProduct)).then((snapshot) => {
           if (snapshot.exists()) {
             swal({
               title: "Este Codigo de Producto Ya Existe!",
@@ -4268,7 +4267,7 @@ function AddCTPCE(cat, index) {
 
           }
           else {
-            set(ref(realdb, "Usuarios/Marakas/Productos/" + skuProduct), {
+            set(ref(realdb, "Usuarios/teto/Productos/" + skuProduct), {
 
               name: nameProduct,
               category: catProduct,
@@ -4293,7 +4292,7 @@ function AddCTPCE(cat, index) {
 
 
             const storage = getStorage();
-            const ImageAdress = "TheImages/Marakas/Productos/" + skuProduct + "/" + (imgNamePrincipal + "0");
+            const ImageAdress = "TheImages/teto/Productos/" + skuProduct + "/" + (imgNamePrincipal + "0");
             const storageRef = sRef(storage, ImageAdress);
             const UploadTask = uploadBytesResumable(storageRef, imgToUploadx, metadatax);
 
@@ -4309,7 +4308,7 @@ function AddCTPCE(cat, index) {
                   imgProduct.push(downloadURL);
                   if (IsAllImagesUploadedB5()) {
 
-                    update(ref(realdb, "Usuarios/Marakas/Productos/" + skuProduct),
+                    update(ref(realdb, "Usuarios/teto/Productos/" + skuProduct),
                       {
                         zimgProduct: imgProduct,
                         zimgSecundarias: null
@@ -4334,7 +4333,7 @@ function AddCTPCE(cat, index) {
 
 
               const storage = getStorage();
-              const ImageAdress = "TheImages/Marakas/Productos/" + skuProduct + "/" + (imgNamePrincipal + indName);
+              const ImageAdress = "TheImages/teto/Productos/" + skuProduct + "/" + (imgNamePrincipal + indName);
               const storageRef = sRef(storage, ImageAdress);
               const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -4350,7 +4349,7 @@ function AddCTPCE(cat, index) {
                     imgProductS.push(downloadURL);
                     if (IsAllImagesUploadedB5()) {
 
-                      update(ref(realdb, "Usuarios/Marakas/Productos/" + skuProduct),
+                      update(ref(realdb, "Usuarios/teto/Productos/" + skuProduct),
                         {
                           zimgProduct: imgProduct,
                           zimgSecundarias: imgProductS
@@ -4464,7 +4463,7 @@ function AddCTPCE(cat, index) {
       let descripProductEditar = document.getElementById('descripProductEdit');
 
       const dbRef = ref(realdb);
-      get(child(dbRef, "Usuarios/Marakas/Productos/" + skuEditar)).then((snapshot) => {
+      get(child(dbRef, "Usuarios/teto/Productos/" + skuEditar)).then((snapshot) => {
         if (snapshot.exists() && skuEditar != "") {
 
           snapshot.forEach(cat => {
@@ -4549,9 +4548,9 @@ function AddCTPCE(cat, index) {
           button: "OK!",
         });
       } else {
-        get(child(dbRef, "Usuarios/Marakas/Productos/" + skuProduct)).then((snapshot) => {
+        get(child(dbRef, "Usuarios/teto/Productos/" + skuProduct)).then((snapshot) => {
 
-          update(ref(realdb, "Usuarios/Marakas/Productos/" + skuProduct), {
+          update(ref(realdb, "Usuarios/teto/Productos/" + skuProduct), {
 
             name: nameProduct,
             category: catProduct,
@@ -4580,7 +4579,7 @@ function AddCTPCE(cat, index) {
 
 
             const storage = getStorage();
-            const ImageAdress = "TheImages/Marakas/Productos/" + skuProduct + "/" + (imgNamePrincipal + "0");
+            const ImageAdress = "TheImages/teto/Productos/" + skuProduct + "/" + (imgNamePrincipal + "0");
             const storageRef = sRef(storage, ImageAdress);
             const UploadTask = uploadBytesResumable(storageRef, imgToUploadx, metadatax);
 
@@ -4596,7 +4595,7 @@ function AddCTPCE(cat, index) {
                   imgProduct.push(downloadURL);
                   if (IsAllImagesUploadedB5()) {
 
-                    update(ref(realdb, "Usuarios/Marakas/Productos/" + skuProduct),
+                    update(ref(realdb, "Usuarios/teto/Productos/" + skuProduct),
                       {
                         zimgProduct: imgProduct,
                       })
@@ -4624,7 +4623,7 @@ function AddCTPCE(cat, index) {
 
 
               const storage = getStorage();
-              const ImageAdress = "TheImages/Marakas/Productos/" + skuProduct + "/" + (imgNamePrincipal + indName);
+              const ImageAdress = "TheImages/teto/Productos/" + skuProduct + "/" + (imgNamePrincipal + indName);
               const storageRef = sRef(storage, ImageAdress);
               const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
 
@@ -4640,7 +4639,7 @@ function AddCTPCE(cat, index) {
                     imgProductS.push(downloadURL);
                     if (IsAllImagesUploadedB5()) {
 
-                      update(ref(realdb, "Usuarios/Marakas/Productos/" + skuProduct),
+                      update(ref(realdb, "Usuarios/teto/Productos/" + skuProduct),
                         {
                           zimgSecundarias: imgProductS
 
@@ -4752,7 +4751,7 @@ function AddCTPCE(cat, index) {
 
       const dbref = ref(realdb);
 
-      get(child(dbref, "Usuarios/Marakas/Productos")).then((snapshot) => {
+      get(child(dbref, "Usuarios/teto/Productos")).then((snapshot) => {
         snapshot.forEach(cat => {
           ArrayOfProductsList.push(cat.val());
 
@@ -4797,7 +4796,7 @@ function AddCTPCE(cat, index) {
         })
           .then((willDelete) => {
             if (willDelete) {
-              remove(ref(realdb, "Usuarios/Marakas/Productos/" + sku), {
+              remove(ref(realdb, "Usuarios/teto/Productos/" + sku), {
                 name: null,
                 category: null,
                 sku: null,
@@ -4808,34 +4807,6 @@ function AddCTPCE(cat, index) {
                 zimgProduct: null,
                 zimgSecundarias: null
               });
-
-
-              const storage = getStorage();
-              const directorioRef = sRef(storage, 'TheImages/Marakas/Productos/'+ sku);
-
-              // Listar todos los archivos en el directorio
-              listAll(directorioRef)
-                .then((result) => {
-                  // Eliminar cada archivo en el directorio
-                  const promesasEliminacion = result.items.map((archivoRef) => {
-                    return deleteObject(archivoRef);
-                  });
-
-                  // Ejecutar las promesas de eliminación
-                  return Promise.all(promesasEliminacion);
-                })
-                .then(() => {
-                  // Si lo deseas, también puedes eliminar el directorio vacío después de eliminar los archivos
-                  return deleteObject(directorioRef);
-                })
-                .then(() => {
-                  console.log('Directorio y archivos eliminados correctamente.');
-                })
-                .catch((error) => {
-                  console.error('Error al intentar eliminar archivos o directorio:', error);
-                });
-
-              
               swal("Tu Producto Se Elimino con Exito!", {
                 icon: "success",
               });
@@ -4903,7 +4874,7 @@ function AddCTPCE(cat, index) {
     }
 
     function GetAllProducts() {
-      const dbref = ref(realdb, "Usuarios/Marakas/Productos");
+      const dbref = ref(realdb, "Usuarios/teto/Productos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -4992,7 +4963,7 @@ function AddCTPCE(cat, index) {
       var description = producto['Descripcion Breve'];
       var descriptionE = description.toString();
 
-      update(ref(realdb, "Usuarios/Marakas/Productos/" + skuE), {
+      update(ref(realdb, "Usuarios/teto/Productos/" + skuE), {
         name: nameE,
         category: categoryE,
         sku: skuE,
@@ -5062,7 +5033,7 @@ function AddCTPCE(cat, index) {
 
 
     function GetAllProductsEpanel() {
-      const dbref = ref(realdb, "Usuarios/Marakas/Productos");
+      const dbref = ref(realdb, "Usuarios/teto/Productos");
 
       onValue(dbref, (snapshot) => {
         var productos = [];
@@ -5178,7 +5149,7 @@ function AddCTPCE(cat, index) {
     }
 
     function GetAllInfoPedidos() {
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5193,7 +5164,7 @@ function AddCTPCE(cat, index) {
     document.getElementById('pagoLastPedido').addEventListener('change', function () {
 
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5204,14 +5175,14 @@ function AddCTPCE(cat, index) {
         var lastPedidoID = productos.length - 1;
         if (document.getElementById('pagoLastPedido').checked) {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
 
             Pagado: "Si"
 
           });
         } else {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
 
             Pagado: "No"
 
@@ -5224,7 +5195,7 @@ function AddCTPCE(cat, index) {
     document.getElementById('envioLastPedido').addEventListener('change', function () {
 
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5235,14 +5206,14 @@ function AddCTPCE(cat, index) {
         var lastPedidoID = productos.length - 1;
         if (document.getElementById('envioLastPedido').checked) {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
 
             Enviado: "Si"
 
           });
         } else {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
 
             Enviado: "No"
 
@@ -5287,7 +5258,7 @@ function AddCTPCE(cat, index) {
     document.getElementById('btnCancelarLastPedido').addEventListener('click', function () {
 
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5298,14 +5269,14 @@ function AddCTPCE(cat, index) {
         var lastPedidoID = productos.length - 1;
         if (document.getElementById('btnCancelarLastPedido').checked) {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
 
             Cancelado: "Si"
 
           });
         } else {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + productos[lastPedidoID]['nroPedido']), {
 
             Cancelado: "No"
 
@@ -5373,7 +5344,7 @@ function AddCTPCE(cat, index) {
     }
 
     function GetAllPedidos() {
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5391,7 +5362,7 @@ function AddCTPCE(cat, index) {
     btnTraerPedido.addEventListener('click', function () {
       const buscarPedidoInput = document.getElementById('skuBuscarPedido');
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5419,7 +5390,7 @@ function AddCTPCE(cat, index) {
     var descargaPedidoSolicitado = 0;
     function showPedidoSolicitado(pedido, index) {
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5504,7 +5475,7 @@ function AddCTPCE(cat, index) {
     document.getElementById('btnCancelarPedidoSolicitado').addEventListener('click', function () {
 
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5521,14 +5492,14 @@ function AddCTPCE(cat, index) {
           if (productos[index]['nroPedido'] == idPedidoNumber) {
             if (document.getElementById('btnCancelarPedidoSolicitado').checked) {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Cancelado: "Si"
 
               });
             } else {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Cancelado: "No"
 
@@ -5546,7 +5517,7 @@ function AddCTPCE(cat, index) {
     document.getElementById('pagoPedidoSolicitado').addEventListener('click', function () {
 
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5560,14 +5531,14 @@ function AddCTPCE(cat, index) {
         var lastPedidoID = productos.length - 1;
         if (document.getElementById('pagoPedidoSolicitado').checked) {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
             Pagado: "Si"
 
           });
         } else {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
             Pagado: "No"
 
@@ -5580,7 +5551,7 @@ function AddCTPCE(cat, index) {
     document.getElementById('envioPedidoSolicitado').addEventListener('click', function () {
 
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5594,14 +5565,14 @@ function AddCTPCE(cat, index) {
         var lastPedidoID = productos.length - 1;
         if (document.getElementById('envioPedidoSolicitado').checked) {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
             Enviado: "Si"
 
           });
         } else {
 
-          update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+          update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
             Enviado: "No"
 
@@ -5617,7 +5588,7 @@ function AddCTPCE(cat, index) {
 
       const inputCancelarPedido = document.getElementById('inputCancelarPedido').value;
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5633,7 +5604,7 @@ function AddCTPCE(cat, index) {
           if (productos[index]['nroPedido'] == idPedidoNumber) {
             if (document.getElementById('btnCancelarPedido-' + idPedidoNumber).checked) {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Cancelado: "Si"
 
@@ -5646,7 +5617,7 @@ function AddCTPCE(cat, index) {
               });
             } else {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Cancelado: "No"
 
@@ -5666,7 +5637,7 @@ function AddCTPCE(cat, index) {
 
       const inputCancelarPedido = document.getElementById('inputEnvioPedido').value;
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5682,14 +5653,14 @@ function AddCTPCE(cat, index) {
           if (productos[index]['nroPedido'] == idPedidoNumber) {
             if (document.getElementById('envioPedido-' + idPedidoNumber).checked) {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Enviado: "Si"
 
               });
             } else {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Enviado: "No"
 
@@ -5718,7 +5689,7 @@ function AddCTPCE(cat, index) {
 
       const inputCancelarPedido = document.getElementById('inputPagoPedido').value;
 
-      const dbref = ref(realdb, "Usuarios/Marakas/zPedidos");
+      const dbref = ref(realdb, "Usuarios/teto/zPedidos");
       onValue(dbref, (snapshot) => {
         var productos = [];
 
@@ -5734,14 +5705,14 @@ function AddCTPCE(cat, index) {
           if (productos[index]['nroPedido'] == idPedidoNumber) {
             if (document.getElementById('pagoPedido-' + idPedidoNumber).checked) {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Pagado: "Si"
 
               });
             } else {
 
-              update(ref(realdb, "Usuarios/Marakas/zPedidos/" + idPedidoNumber), {
+              update(ref(realdb, "Usuarios/teto/zPedidos/" + idPedidoNumber), {
 
                 Pagado: "No"
 
@@ -5772,7 +5743,7 @@ function AddCTPCE(cat, index) {
     const btnEstadoTienda = document.getElementById('estadoTienda');
 
     btnDeshabilitar.addEventListener('click', function(){
-      update(ref(realdb, "Usuarios/Marakas"), {
+      update(ref(realdb, "Usuarios/teto"), {
 
         zVvhabilitado: 1,
           
@@ -5789,7 +5760,7 @@ function AddCTPCE(cat, index) {
 
     
     btnHabilitar.addEventListener('click', function(){
-      update(ref(realdb, "Usuarios/Marakas"), {
+      update(ref(realdb, "Usuarios/teto"), {
 
         zVvhabilitado: 0,
           

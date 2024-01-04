@@ -1,0 +1,819 @@
+
+  <!DOCTYPE html>
+  <html lang="es">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <link rel="stylesheet" href="styles.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+      <title id="title-web"></title>
+      <!-- Favicon -->
+      <link id="favicon" rel="icon" type="image/png" sizes="16x16" href="#">
+      <style>
+          body {
+              display: none;
+              /* Oculta el contenido inicialmente */
+          }
+          #productosRelacionadosCategoria {
+              overflow: hidden;
+              width: 100%;
+              margin: auto;
+              position: relative;
+          }
+  
+          #productosRelacionados {
+              display: flex;
+              transition: transform 0.5s ease-in-out;
+          }
+  
+          .shop--CardPD {
+              min-width: 25%;
+              box-sizing: border-box;
+              overflow: hidden;
+          }
+  
+          #prevPD, #nextPD {
+              cursor: pointer;
+              font-size: 24px;
+              margin: auto 5px;
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+          }
+          
+          #prevPD {
+              left: 0;
+          }
+  
+          #nextPD {
+              right: 0;
+          }
+          @media (max-width: 600px) { 
+              .info-product {
+              display: none;
+          }
+          }
+  
+      </style>
+      <script>
+                  // Funciones para sumar y restar
+                  function sumar() {
+              var sumandoInput = document.getElementById("sumando");
+              var valorActual = parseInt(sumandoInput.value);
+              sumandoInput.value = valorActual + 1;
+          }
+  
+          function restar() {
+              var sumandoInput = document.getElementById("sumando");
+              var valorActual = parseInt(sumandoInput.value);
+              // Asegúrate de que el valor no sea negativo
+              if (valorActual > 0) {
+                  sumandoInput.value = valorActual - 1;
+              }
+          }
+  
+          function addToCart() {
+              const inputCant = document.getElementById('sumando').value;
+              agregarAlCarrito(document.getElementById("titleli").textContent, inputCant, document.getElementById("price").textContent);
+              document.getElementById('sumando').value = 0;
+          }
+  
+          let cantidadProductosEnCarrito = 0;
+  
+  
+  
+  function mostrarListaCarrito() {
+    const listaCarrito = document.getElementById('lista-carrito');
+    listaCarrito.style.display = 'block';
+    document.getElementById('total').textContent = "$"+total;
+    document.getElementById('titulo-de-lista').style.display = cantidadProductosEnCarrito > 0 ? 'block' : 'none';
+    document.getElementById('btnIniciarCompra').style.display = cantidadProductosEnCarrito > 0 ? 'block' : 'none';
+    document.getElementById('mensaje-carrito-vacio').style.display = cantidadProductosEnCarrito === 0 ? 'block' : 'none';
+  }
+  
+  function ocultarListaCarrito() {
+    const listaCarrito = document.getElementById('lista-carrito');
+    listaCarrito.style.display = 'none';
+  }
+  
+  
+  function limpiarCarrito(){
+      localStorage.setItem('productosEnCarrito', '');
+      location.reload();    
+  }
+  
+  let productosEnCarrito = [];
+  var total = 0;
+  
+  function agregarAlCarrito(titulo, inputCant, price) {
+              var cantidad = parseInt(inputCant, 10);
+              if (cantidad > 0) {
+                  const listaCarrito = document.getElementById('lista-productos');
+                  const nuevoItem = document.createElement('div');
+                  nuevoItem.className = 'item-carrito';
+  
+                  const cantidadProducto = document.createElement('span');
+                  cantidadProducto.className = 'cantidad-producto';
+                  cantidadProducto.textContent = `${cantidad}`;
+  
+  
+  
+                  const enlaceProducto = document.createElement('a');
+                  enlaceProducto.href = '#';
+                  enlaceProducto.textContent = getShortTitleCart(titulo);
+  
+                  const precioProducto = document.createElement('span');
+                  precioProducto.className = 'precio-producto';
+                  let prodCant = price.replace('$', '');
+                  let prodCant1 = prodCant.replace('.', '');
+                  let precio = prodCant1 * cantidad
+  
+                  precioProducto.textContent = `${precio}`;
+                  total = parseInt(total) + precio;
+                  nuevoItem.appendChild(cantidadProducto);
+                  nuevoItem.appendChild(enlaceProducto);
+                  nuevoItem.appendChild(precioProducto);
+  
+                  listaCarrito.appendChild(nuevoItem);
+  
+                  cantidadProductosEnCarrito += cantidad;
+                  document.getElementById('cantidad-carrito').textContent = `(${cantidadProductosEnCarrito})`;
+  
+                  cantidad.value = 1;
+  
+                  const nuevoProducto = {
+                      nombre: titulo,
+                      precio: "$" + precio,
+                      cantidad: parseFloat(cantidad)  // Convertir el precio a número
+                  };
+  
+                  // Agregar el producto al array
+                  productosEnCarrito.push(nuevoProducto);
+  
+                  // Obtener el array actual en el localStorage
+                  const carritoExistente = obtenerProductosDesdeLocalStorage();
+  
+                  // Modificar el array (agregar un nuevo elemento)
+                  carritoExistente.push(nuevoProducto);
+                  // Guardar el array actualizado en el localStorage
+                  guardarProductosEnLocalStorage(carritoExistente);
+  
+                  mostrarListaCarrito();
+              }
+  
+  
+              // Función para obtener el array desde el localStorage
+              function obtenerProductosDesdeLocalStorage() {
+                  const arrayEnLocalStorage = localStorage.getItem('productosEnCarrito');
+                  return arrayEnLocalStorage ? JSON.parse(arrayEnLocalStorage) : [];
+              }
+  
+              // Función para guardar el array en el localStorage
+              function guardarProductosEnLocalStorage(carritoExistente) {
+                  localStorage.setItem('productosEnCarrito', JSON.stringify(carritoExistente));
+              }
+          }
+  
+          function getShortTitleCart(title) {
+    if (title.length > 20) title = title.substring(0, 20);
+    else return title;
+    return title + "...";
+  }
+  
+  function goToCat() {
+           var Categoria = event.target.innerHTML;
+  
+           localStorage.titleCat = Categoria; 
+           window.location = "product-category.html";
+         }
+  
+                 // Función que asigna el evento de clic a todos los enlaces con la clase "miClase"
+         function goToBrand() {
+           var brand = event.target.innerHTML;
+  
+           localStorage.titleBrand = brand; 
+           window.location = "product-brand.html";
+         }
+      </script>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8899573033698105"
+     crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+      <div class="whatsapp-button">
+          <a id="btnWhatsApp" href="#" target="_blank">
+              <img src="../whatsapp-logo.png" alt="WhatsApp">
+          </a>
+      </div>
+      <!--================================
+              START HEADER AREA
+          =================================-->
+      <header id="header">
+          <div class="logo-header">
+              <a href="teto.html">
+                  <img id="logo-pc" src="#" alt="">
+                  <img id="logo-mobile" src="#" alt="">
+              </a>
+          </div>
+          <div class="searcher">
+              <div class="input-group mb-3">
+                  <input id="searchInput" type="text" class="form-control" placeholder="Buscar Producto..."
+                      aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
+                  <ul style="display: none;" id="resultsList"></ul>
+  
+                  <button class="btn btn-primary btn-header" type="button" id="btnSearchInput">Buscar</button>
+              </div>
+          </div>
+  
+  
+      </header>
+      <!--================================
+              END HEADER AREA
+          =================================-->
+      <!--================================
+              START NAV-SLIDER AREA
+          =================================-->
+      <section id="nav-slider-area">
+          <div id="nav-header">
+              <nav class="navbar navbar-expand-lg">
+                  <div class="container-fluid">
+                      <a class="navbar-brand link-header" href="teto.html">Home</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                          aria-label="Toggle Navigation">
+                          <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                          <ul class="navbar-nav">
+                              <li class="dropdown">
+                                  <a class="nav-link link-header" href="#">Categorias ▼</a>
+                                  <div id="cat-display" class="dropdown-content">
+  
+                                  </div>
+                              </li>
+                              <div id="brand-display">
+  
+                              </div>
+                              <li class="nav-item">
+                                  <a class="nav-link link-header" href="tienda.html">Tienda</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link link-header" href="contact.html">CONTACTO</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </nav>
+  
+              <div id="div-carrito">
+                  <!-- Botón de carrito con lista desplegable -->
+                  <div id="carrito" class="btn-header" onmouseover="mostrarListaCarrito()"
+                      onmouseout="ocultarListaCarrito()">
+                      <span id="cantidad-carrito">(0)</span> <span id="carrito-logo">🛒</span>
+  
+                      <div id="lista-carrito">
+                          <div id="titulo-de-lista">
+                              <h3>Carrito de Compras</h3>
+                          </div>
+                          <div id="lista-productos">
+  
+                          </div>
+                          <!-- Lista de productos en el carrito -->
+                          <div id="mensaje-carrito-vacio">
+                              <p>Tu carrito está vacío.</p>
+                              <a href="tienda.html">IR A TIENDA</a>
+                          </div>
+                          <div id="btnIniciarCompra">
+                              <div class="mb-3">
+                                  <span>TOTAL:</span>
+                                  <span style="float: right;" id="total"></span>
+                              </div>
+                              <div>
+                                  <a href="checkout.html" style="float: right;"
+                                      class="btn btn-primary btnCheckout">Iniciar Compra</a>
+                                  <button style="float: left;background-color: red;" onclick="limpiarCarrito()"
+                                      class="btn btn-primary btn--lg">Limpiar</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!--================================
+              END NAV-SLIDER AREA
+          =================================-->
+  
+  
+      <!--============================================
+          START SINGLE PRODUCT DESCRIPTION AREA
+      ==============================================-->
+      <div class="single-product-area">
+          <div class="single-product-img">
+              <div class="item__preview-thumb">
+                  <img id="prev-0" class="prevImg" src="" alt="">
+                  <img id="prev-1" class="prevImg" src="" alt="">
+                  <img id="prev-2" class="prevImg" src="" alt="">
+                  <img id="prev-3" class="prevImg" src="" alt="">
+                  <img id="prev-4" class="prevImg" src="" alt="">
+              </div>
+              <div class="item__preview-slider">
+                  <div class="prev-slide">
+                      <img id="bigimg" src=""
+                          alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                  </div>
+  
+              </div>
+              <!-- end /.item--preview-slider -->
+  
+          </div>
+          <!-- end /.item__preview-thumb-->
+          <div class="single-product-details">
+              <div class="product-title-area mb-3">
+                  <div class="product__title">
+                      <h4 id="titleli">Productos Cargados Recientemente</h4>
+                  </div>
+              </div>
+              <div class="pricePD">
+                  <span id="stockSpan"></span>
+  
+                  <h1 id="price">
+                      <sup>$</sup>999 -
+                  </h1><br>
+  
+              </div>
+              <div class="divSumandoPD mb-3">
+                  <div class="input-sumando">
+                      <div class="input-group">
+                          <button class="btn btn-outline-secondary" type="button" onclick="restar()"
+                              aria-expanded="false">-</button>
+                          <input type="text" style="text-align: center;" class="form-control" id="sumando" value="0"
+                              readonly>
+                          <button class="btn btn-outline-secondary" type="button" onclick="sumar()"
+                              aria-expanded="false">+</button>
+                      </div>
+  
+                  </div>
+                  <div id="btnAddToCart" class="addtocart-button">
+                      <button onclick="addToCart()" id="btnPurchase" class="btnAddToCart btn-header">Agregar Al Carrito</button>
+                  </div>
+                  <!-- end /.purchase-button -->
+              </div>
+  
+              <div class="fade show tab-pane product-tab active" id="product-details">
+                  <div class="tab-content-wrapper">
+                      <p id="description">Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut
+                          scelerisque the
+                          mattis, leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra,
+                          justo ut scel erisque the mattis, leo quam aliquet congue justo ut scelerisque. Praesent
+                          pharetra, justo ut scelerisque the mattis, leo quam aliquet congue justo ut scelerisque.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- end /.col-md-4 -->
+      <!--===========================================
+          END SINGLE PRODUCT DESCRIPTION AREA
+      ===============================================-->
+      <!--===========================================
+          START PRODUCTOS RELACIONADOS
+        ===============================================-->
+      <div class="productos-relacionados">
+          <h3>PRODUCTOS RELACIONADOS</h3>
+  
+          <div id="productosRelacionadosCategoria">
+              <div id="productosRelacionados">
+                  <!-- Tus imágenes aquí -->
+      
+              </div>
+              <div id="prevPD">&lt;</div>
+              <div id="nextPD">&gt;</div>
+          </div>
+      </div>
+  
+      <!--===========================================
+          END PRODUCTOS RELACIONADOS
+        ===============================================-->
+  
+      <!--================================ 
+            START FOOTER AREA
+        =================================-->
+      <footer id="footer-area">
+          <div style="margin: 1%;" class="subfoot-t1">
+              <p>© 2023 <a href="" class="linksFooter">teto</a>. All rights reserved. Created by <a href="#"
+                      class="linksFooter">MyEcom</a>.</p>
+          </div>
+  
+      </footer>
+      <!--================================
+          END FOOTER AREA
+      =================================-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+          crossorigin="anonymous"></script>
+      <script type="module" src="js.js"></script>
+  
+      <script type="module" >
+          
+      //INICIO CONEXION A FIREBASE
+      //CONECTAR FIREBASE
+      //FIREBASE 
+      // IMPORTS + CONFIGURATION
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
+      import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
+      from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
+  
+      import { getDatabase, onValue, ref, set,push, child, get, update, remove }
+      from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+  
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAeYmYuIobZrOhJ2UVg2K_bRNsIamNYa10",
+        authDomain: "myecom-415a4.firebaseapp.com",
+        databaseURL: "https://myecom-415a4-default-rtdb.firebaseio.com",
+        projectId: "myecom-415a4",
+        storageBucket: "myecom-415a4.appspot.com",
+        messagingSenderId: "219326371024",
+        appId: "1:219326371024:web:a13405d51310e091377ad5",
+        measurementId: "G-J7MJ3W5PZT"
+      };
+  
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const realdb = getDatabase();
+  
+  
+  
+          var productId = localStorage.id;
+          var xxr = productId.replace('"', '')
+          var xxrx = xxr.replace('"', '')
+  
+          window.onload = function () {
+              obtenerProductosDesdeLocalStorage();
+  
+  
+              
+  
+              GetAllInfo();
+  
+              EventosCambio();
+              GetAllProductsEpanel();
+  
+          }
+  
+          var prodRelacionados = "";
+          function putAllInfo(brand, category, description, name, price, sku, stock, zimgProduct, zimgSecundarias) {
+  
+              if(sku == xxrx) {
+              document.getElementById('titleli').textContent = name;
+              document.getElementById('price').textContent ="$"+ price;
+              document.getElementById('description').textContent = description;
+              document.getElementById('bigimg').src = zimgProduct;
+              document.getElementById('prev-0').src = zimgProduct;
+              document.getElementById('prev-1').src = zimgSecundarias[0];
+              document.getElementById('prev-2').src = zimgSecundarias[1];
+              document.getElementById('prev-3').src = zimgSecundarias[2];
+              document.getElementById('prev-4').src = zimgSecundarias[3];
+              prodRelacionados = category;
+  
+              //CARTEL STOCK
+          var stk = "";
+          if (stock <= 0) {
+              stk = "SIN STOCK"
+              document.getElementById('stockSpan').textContent = stk;
+              document.getElementById('stockSpan').style.backgroundColor = "red";
+              const btnAddCarrito = document.getElementById('btnPurchase');
+              btnAddCarrito.textContent = "SIN STOCK";
+              btnAddCarrito.disabled = !btnAddCarrito.disabled;
+  
+          } else {
+              stk = "EN STOCK"
+              document.getElementById('stockSpan').textContent = stk;
+              document.getElementById('stockSpan').style.backgroundColor = "green";
+  
+          }
+              } else {
+                      
+              }
+        }
+    
+        function readAllInfo(Productos) {
+  
+          Productos.forEach(element => {
+              putAllInfo(element.brand, element.category, element.description, element.name,
+              element.price, element.sku, element.stock, element.zimgProduct, element.zimgSecundarias)
+          });
+        }
+  
+          function GetAllInfo() {
+              const dbref = ref(realdb, "Usuarios/teto/Productos");
+    
+              onValue(dbref, (snapshot) => {
+                  var productos = [];
+  
+                  snapshot.forEach(childSnapshot => {
+                  productos.push(childSnapshot.val());
+                  });
+                  readAllInfo(productos);
+              })
+          }
+  
+  
+  
+  
+  
+          // INICIO CREAR FUNCION PARA CAMBIAR LA IMAGEN GRANDE SEGUN CUAL IMAGEN PREVIA SE TOQUE
+  
+          function tomarID(id) {
+              var indstart = id.indexOf('-') + 1;
+              var indend = id.length;
+              return Number(id.substring(indstart, indend));
+          }
+  
+          function cambiarBigImage(event) {
+              var index = tomarID(event.target.id);
+  
+              if (index == 0) {
+                  var prev = document.getElementById('prev-0').getAttribute('src');
+                  bigimg.src = prev;
+              }
+              if (index == 1) {
+                  var prev = document.getElementById('prev-1').getAttribute('src');
+                  bigimg.src = prev;
+              }
+  
+              if (index == 2) {
+                  var prev = document.getElementById('prev-2').getAttribute('src');
+                  bigimg.src = prev;
+              }
+  
+              if (index == 3) {
+                  var prev = document.getElementById('prev-3').getAttribute('src');
+                  bigimg.src = prev;
+              }
+  
+              if (index == 4) {
+                  var prev = document.getElementById('prev-4').getAttribute('src');
+                  bigimg.src = prev;
+              }
+  
+  
+          }
+  
+          function EventosCambio() {
+              var btns = document.getElementsByClassName('prevImg');
+  
+              for (let i = 0; i < btns.length; i++) {
+  
+                  btns[i].addEventListener('click', cambiarBigImage);
+  
+              }
+          }
+  
+          // FIN CREAR FUNCION PARA CAMBIAR LA IMAGEN GRANDE SEGUN CUAL IMAGEN PREVIA SE TOQUE
+  
+  
+  
+  
+          // Función para obtener los productos desde el localStorage
+          function obtenerProductosDesdeLocalStorage() {
+              const productosEnLocalStorage = localStorage.getItem('productosEnCarrito');
+              const productosEnCarrito = productosEnLocalStorage ? JSON.parse(productosEnLocalStorage) : [];
+              for (let index = 0; index < productosEnCarrito.length; index++) {
+                  const titulo = productosEnCarrito[index]['nombre'];
+                  const cantidad = productosEnCarrito[index]['cantidad'];
+                  const price = productosEnCarrito[index]['precio'];
+  
+                  const listaCarrito = document.getElementById('lista-productos');
+                  const listaCarritoPedido = document.getElementById('order-received');
+  
+                  const nuevoItem = document.createElement('div');
+                  nuevoItem.className = 'item-carrito';
+  
+                  const cantidadProducto = document.createElement('span');
+                  cantidadProducto.className = 'cantidad-producto';
+                  cantidadProducto.textContent = `${cantidad}`;
+  
+  
+  
+                  const enlaceProducto = document.createElement('a');
+                  enlaceProducto.className = 'title-product';
+                  enlaceProducto.href = '#';
+                  enlaceProducto.textContent = getShortTitleCart(titulo);
+  
+  
+                  const precioProducto = document.createElement('span');
+                  precioProducto.className = 'precio-producto';
+                  let prodCant = price.replace('$', '');
+                  let prodCant1 = prodCant.replace('.', '');
+                  let precio = prodCant1 
+  
+                  precioProducto.textContent = `${precio}`;
+                  total = parseInt(total) + parseInt(precio);
+                  nuevoItem.appendChild(cantidadProducto);
+                  nuevoItem.appendChild(enlaceProducto);
+                  nuevoItem.appendChild(precioProducto);
+                  document.getElementById('total').textContent = "$" + total;
+  
+                  // Supongamos que tienes un objeto llamado "miObjeto"
+                  var totalCheckOut = document.getElementById('total-checkout');
+  
+                  // Verificar si el objeto existe
+                  if (totalCheckOut !== null && typeof totalCheckOut !== 'undefined') {
+                      // El objeto existe, realiza la acción que deseas
+                      totalCheckOut.textContent = "$" + total / 2;
+                  }
+  
+  
+                  if (listaCarritoPedido !== null && typeof listaCarritoPedido !== 'undefined') {
+                      if (window.getComputedStyle(listaCarritoPedido).display === 'block') {
+                          document.getElementById('lista-productos-pedido').appendChild(nuevoItem);
+                      } else {
+                          listaCarrito.appendChild(nuevoItem);
+  
+                      }
+  
+                  } else {
+                      listaCarrito.appendChild(nuevoItem);
+                  }
+                  cantidadProductosEnCarrito += cantidad;
+                  document.getElementById('cantidad-carrito').textContent = `(${cantidadProductosEnCarrito})`;
+  
+  
+              }
+  
+  
+              return productosEnLocalStorage ? JSON.parse(productosEnLocalStorage) : [];
+          }
+  
+                //INICIO LISTADO PRODUCTOS 
+    
+    
+    
+  
+  
+        var stockCartel = 0;
+        var prodPanel = 0;
+        function AddProductToListEpanel(brand, category, description, name, price, sku, stock, zimgProduct, zimgSecundarias) {
+          if(zimgProduct == null){
+            zimgProduct = "../imagenPrinciaplBase.png";
+          }
+  
+          let html =
+          `<div id="product-`+ sku + `" class="Card pdProductos" ><a id="product-`+ sku + `" href="#" class="producto pdProductos"><img id="product-`+ sku + `" class="producto img-principal-product pdProductos" src="`+ zimgProduct + `" alt=""><img id="productS-`+ sku + `"  class="producto img-principal-product-secundaria pdProductos" src="`+ zimgSecundarias[0] + `" alt=""><div id="stock-`+ stockCartel + `" class="cartelitoStock pdProductos"></div><div id="product-`+ sku + `" class="info-product"><div id="product-`+ sku + `" class="productTitle pdProductos"><p  id="product-`+ sku + `" value="IPhone" style="font-weight: bold;" class=" producto colorLinks pdProductos">`+ getShortTitleProduct(name) + `</p></div><div id="product-`+ sku + `"  class="price fondoPColor pdProductos"><span id="product-`+ sku + `" class="producto precioProduct precioColor pdProductos">$`+ price + `</span></div></div></a></div>`
+    
+          let newCat = document.createElement('div');
+          newCat.classList.add("shop--Card");
+          newCat.classList.add("shop--CardPD");
+          newCat.classList.add("productoFiltro");
+          newCat.innerHTML = html;
+          var OuterDivShopList = document.getElementById("productosRelacionados");
+  
+          OuterDivShopList.append(newCat);
+         
+          var stkCartel = "stock-" + stockCartel;
+        if(stock <= 0)
+        {
+          document.getElementById(stkCartel).style.backgroundColor = "red";
+          document.getElementById(stkCartel).textContent = "SIN STOCK";
+        } else {
+          document.getElementById(stkCartel).style.backgroundColor = "green";
+          document.getElementById(stkCartel).textContent = "EN STOCK";
+        }
+        stockCartel++;
+        AssignAllEvents();
+  
+      }
+   
+    
+        function AddAllProductsToListEpanel(Productos) {
+  
+    
+          Productos.forEach(element => {
+            AddProductToListEpanel(element.brand, element.category, element.description, element.name,
+              element.price, element.sku, element.stock, element.zimgProduct , element.zimgSecundarias)
+          });
+        }
+    
+    
+        function GetAllProductsEpanel() {
+          const dbref = ref(realdb, "Usuarios/teto/Productos");
+    
+          onValue(dbref, (snapshot) => {
+            var productos = [];
+    
+            snapshot.forEach(childSnapshot => {
+              productos.push(childSnapshot.val());
+            });
+    
+            AddAllProductsToListEpanel(productos);
+          })
+        }
+  
+        function getShortTitleProduct(title) {
+          if (title.length > 24) title = title.substring(0, 24);
+          else return title;
+          return title + "...";
+        }
+  
+        const slider = document.getElementById('productosRelacionados');
+      const prevBtn = document.getElementById('prevPD');
+      const nextBtn = document.getElementById('nextPD');
+  
+      let counter = 0;
+      let autoSlideInterval;
+  
+      nextBtn.addEventListener('click', () => {
+          counter++;
+          updateSlider();
+          resetAutoSlide();
+      });
+  
+      prevBtn.addEventListener('click', () => {
+          counter--;
+          updateSlider();
+          resetAutoSlide();
+      });
+  
+      function updateSlider() {
+          const size = document.querySelector('.shop--CardPD').clientWidth;
+          slider.style.transform = `translateX(${-size * counter}px)`;
+  
+          // Slider infinito
+          if (counter === 4) {
+              setTimeout(() => {
+                  slider.style.transition = 'none';
+                  counter = 0;
+                  slider.style.transform = 'translateX(0)';
+                  setTimeout(() => {
+                      slider.style.transition = 'transform 0.5s ease-in-out';
+                  });
+              }, 500);
+          }
+  
+          if (counter === -1) {
+              setTimeout(() => {
+                  slider.style.transition = 'none';
+                  counter = 3;
+                  slider.style.transform = `translateX(${-size * counter}px)`;
+                  setTimeout(() => {
+                      slider.style.transition = 'transform 0.5s ease-in-out';
+                  });
+              }, 500);
+          }
+      }
+  
+      function autoSlide() {
+          counter++;
+          updateSlider();
+      }
+  
+      function resetAutoSlide() {
+          clearInterval(autoSlideInterval);
+          autoSlideInterval = setInterval(autoSlide, 3000); // Cambia la imagen cada 3 segundos
+      }
+  
+      // Inicia el slider automático al cargar la página
+      resetAutoSlide();
+  
+                          //CLICKEAR PRODUCTO E IR A PRODUCT DETAIL CON SUS STATS
+                          function GetProductIndex(id) {
+                        var indstart = id.indexOf('-') + 1  ;
+                        var indend = id.length;
+                        return Number(id.substring(indstart, indend));
+                    }
+                    
+                    function GotoProductDetails(event) {
+                        var index = GetProductIndex(event.target.id);
+                        localStorage.id = JSON.stringify(index);
+                        console.log(localStorage.id);
+                        window.location = "product-details.html";
+                    }
+        
+                    function AssignAllEvents() {
+                        var btns = document.getElementsByClassName('pdProductos');
+                        for (let i = 0; i < btns.length; i++) {
+                            btns[i].addEventListener('click', GotoProductDetails);
+        
+                        }
+                    }
+  
+  
+      </script>
+  </body>
+  
+  </html>
+  
