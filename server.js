@@ -61,7 +61,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-      <link rel="stylesheet" href="/tiendas/${nombreArchivo}/styles.css">
+      <link rel="stylesheet" href="https://myecom.com.ar/tiendas/${nombreArchivo}/styles.css">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
       <title id="title-web"></title>
@@ -129,10 +129,10 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
 
                     </div>
                     <li class="nav-item">
-                      <a class="nav-link link-header" href="/tiendas/${nombreArchivo}/tienda.html">Tienda</a>
+                      <a class="nav-link link-header" href="https://myecom.com.ar/tiendas/${nombreArchivo}/tienda.html">Tienda</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link link-header" href="/tiendas/${nombreArchivo}/contact.html">CONTACTO</a>
+                      <a class="nav-link link-header" href="https://myecom.com.ar/tiendas/${nombreArchivo}/contact.html">CONTACTO</a>
                     </li>
                   </ul>
                 </div>
@@ -154,7 +154,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
                   <!-- Lista de productos en el carrito -->
                   <div id="mensaje-carrito-vacio">
                     <p>Tu carrito está vacío.</p>
-                    <a href="/tiendas/${nombreArchivo}/tienda.html">IR A TIENDA</a>
+                    <a href="https://myecom.com.ar/tiendas/${nombreArchivo}/tienda.html">IR A TIENDA</a>
                   </div>
                   <div id="btnIniciarCompra">
                       <div class="mb-3">
@@ -162,7 +162,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
                         <span style="float: right;" id="total"></span>
                       </div>
                       <div>
-                          <a href="/tiendas/${nombreArchivo}/checkout.html" style="float: right;"  class="btn btn-primary btnCheckout">Iniciar Compra</a>
+                          <a href="https://myecom.com.ar/tiendas/${nombreArchivo}/checkout.html" style="float: right;"  class="btn btn-primary btnCheckout">Iniciar Compra</a>
                           <button style="float: left;background-color: red;"  onclick="limpiarCarrito()" class="btn btn-primary btn--lg">Limpiar</button>    
                       </div>
                   </div>
@@ -261,7 +261,7 @@ app.post('/crearArchivo/:nombreArchivo', (req, res) => {
           END FOOTER AREA
       =================================-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-      <script type="module" src="/tiendas/${nombreArchivo}/js.js" ></script>
+      <script type="module" src="https://myecom.com.ar/tiendas/${nombreArchivo}/js.js" ></script>
   
       <!--================================
           START SCRIPT BASE
@@ -477,7 +477,7 @@ function agregarAlCarrito(titulo, inputCant, price) {
           var Categoria = event.target.innerHTML;
 
           localStorage.titleCat = Categoria; 
-          window.location = "/tiendas/${nombreArchivo}/product-category.html";
+          window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-category.html";
         }
 
                 // Función que asigna el evento de clic a todos los enlaces con la clase "miClase"
@@ -485,7 +485,7 @@ function agregarAlCarrito(titulo, inputCant, price) {
           var brand = event.target.innerHTML;
 
           localStorage.titleBrand = brand; 
-          window.location = "/tiendas/${nombreArchivo}/product-brand.html";
+          window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-brand.html";
         }
 
       </script>
@@ -6270,7 +6270,7 @@ function agregarAlCarrito(titulo, inputCant, price) {
                         var index = GetProductIndex(event.target.id);
                         localStorage.id = JSON.stringify(index);
                         console.log(localStorage.id);
-                        window.location = "product-details.html";
+                        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
                     }
         
                     function AssignAllEvents() {
@@ -8265,7 +8265,7 @@ if (typeof document.getElementById('btnImgPrincipal') === "object" && document.g
                       var index = GetProductIndex(event.target.id);
                       localStorage.id = JSON.stringify(index);
                       console.log(localStorage.id);
-                      window.location = "product-details.html";
+                      window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
                   }
       
                   function AssignAllEvents() {
@@ -8293,7 +8293,7 @@ if (typeof document.getElementById('btnImgPrincipal') === "object" && document.g
           localStorage.id = JSON.stringify(index);
 
 
-          window.location = "product-details.html";
+          window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
       }
         
         const searchInput = document.getElementById("searchInput");
@@ -10386,7 +10386,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
       if (index == 1) {
@@ -10399,7 +10399,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
 
@@ -10413,7 +10413,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
 
@@ -10427,7 +10427,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
 
@@ -10441,7 +10441,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
       if (index == 5) {
@@ -10454,7 +10454,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
       if (index == 6) {
@@ -10467,7 +10467,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
 
@@ -10481,7 +10481,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
 
@@ -10495,7 +10495,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
 
@@ -10509,7 +10509,7 @@ if (indiceGuion !== -1) {
         localStorage.Titulo = titulo;
         localStorage.Imagen = bigimg;
         localStorage.Stock = stock;
-        window.location = "product-details.html";
+        window.location = "https://myecom.com.ar/tiendas/${nombreArchivo}/product-details.html";
 
       }
 
