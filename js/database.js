@@ -45,7 +45,7 @@ function addTiendasToList(product, index){
                 let html =
                 `
                         <img id="imgShop-" width="100%" style="padding-top:20%; padding-bottom:25%;" src="`+product['LinkOfLogo'][0]+`"  alt="images/cards/shop--card.png">
-                        <p class="pieShop" style="color:white;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
+                        <p class="pieShop" style="color:black;">Visitas: <span style="font-weight:bold;">`+product['zVistas']+`</span></p>
                         <div class="overlay-card">
                             <a href="tiendas/`+arrayDePalabras+`/`+arrayDePalabras+`.html" target="_blank" class="boton-card">Visitar Tienda</a>
                         </div>
@@ -293,7 +293,6 @@ if (typeof document.getElementById('btnCategoryPage') === "object" && document.g
 //TRAER TIENDAS// 
 
 function addTiendasToList(product, index){
-  let vacia = 0;      
   if(product['marketType'] == deturno && product['zVvhabilitado'] == 0){   
     const name = product['brandName'];
     const arrayDePalabras = name.replace(/\s+/g, '');   
@@ -311,23 +310,10 @@ function addTiendasToList(product, index){
             var OuterDiv = document.getElementById("shopsList"); 
 
             OuterDiv.append(newProd); 
-            vacia = 1;
           } else {
 
           }
           
-          if(vacia == 0){
-            let html =
-            `
-                  <h3>Aun no hay tiendas creadas en esta Categoria!</h3>
-            `
-            let newProd = document.createElement('div');
-            newProd.innerHTML = html;
-            var OuterDiv = document.getElementById("shopsList"); 
-
-            OuterDiv.append(newProd)
-
-          }
 }
 
 function addTiendas(){
@@ -339,9 +325,10 @@ function addTiendas(){
     let ArrayOfTiendas = [];
     get(child(dbref, "Usuarios/")).then((snapshot) => {
       snapshot.forEach(cat => {
+        
         ArrayOfTiendas.push(cat.val());
-      });
 
+      });
       for (let index = 0; index < ArrayOfTiendas.length; index++) {
 
         ArrayOfOrdenMasMenos.push(ArrayOfTiendas[index]['zVistas']);
@@ -356,7 +343,7 @@ function addTiendas(){
       var indexx = 0;
       var indexxx = 0;
       for (let index = 0; index < 15; index++) {
-        if(ArrayOfTiendas[indexxx]['zVistas'] == ArrayOfOrdenMasMenos[indexx]){
+        if(ArrayOfTiendas[indexxx]['zVistas'] == ArrayOfOrdenMasMenos[indexx] ){
           console.log(ArrayOfOrdenMasMenos[indexx]);
 
           addTiendasToList(ArrayOfTiendas[indexxx]);
@@ -549,7 +536,8 @@ if (typeof document.getElementById('btnAllMarkets') === "object" && document.get
 
 //TRAER TIENDAS// 
 function addTiendasToList(product, index){
-    if(product['brandName'][0] == "A" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "A" && product['zVvhabilitado'] == 0 
+    ||product['brandName'][0] == "a" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');  
         let html =
@@ -567,17 +555,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListA"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "B" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "B" && product['zVvhabilitado'] == 0
+    ||product['brandName'][0] == "A" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -595,18 +576,11 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListB"); 
 
-        OuterDiv.append(newProd); 
     }
 
-    if(product['brandName'][0] == "C" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "C" && product['zVvhabilitado'] == 0 
+    || product['brandName'][0] == "c" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -624,18 +598,11 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListC"); 
 
-        OuterDiv.append(newProd); 
     }
 
-    if(product['brandName'][0] == "D" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "D" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "d" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -653,18 +620,11 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListD"); 
 
-        OuterDiv.append(newProd); 
     }
 
-    if(product['brandName'][0] == "E" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "E" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "A" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -682,17 +642,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListE"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "F" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "F" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "f" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -710,18 +663,11 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListF"); 
 
-        OuterDiv.append(newProd); 
     }
 
-    if(product['brandName'][0] == "G" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "G" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "g" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -739,17 +685,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListG"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "H" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "H" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "h" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -767,18 +706,11 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListH"); 
 
-        OuterDiv.append(newProd); 
     }
 
-    if(product['brandName'][0] == "I" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "I" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "A" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -796,17 +728,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListI"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "J" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "J" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "j" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -824,17 +749,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListJ"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "K" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "K" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "k" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -852,17 +770,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListK"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "L" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "L" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "l" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -880,18 +791,11 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListL"); 
 
-        OuterDiv.append(newProd); 
     }
 
-    if(product['brandName'][0] == "M" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "M" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "m" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -909,17 +813,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListM"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "N" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "N" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "n" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -937,17 +834,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListN"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "Ñ" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "Ñ" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "ñ" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -965,17 +855,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListÑ"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "O" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "O" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "o" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -993,17 +876,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListO"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "P" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "P" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "p" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1021,17 +897,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListP"); 
-
-        OuterDiv.append(newProd); 
+ 
     }
-    if(product['brandName'][0] == "Q" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "Q" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "q" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1049,17 +918,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListQ"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "R" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "R" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "r" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1077,17 +939,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListR"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "S" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "S" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "s" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1105,17 +960,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListS"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "T" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "T" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "t" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1133,17 +981,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListT"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "U" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "U" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "u" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1161,17 +1002,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListU"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "V" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "V" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "v" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1189,17 +1023,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListV"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "W" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "W" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "w" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1217,17 +1044,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListW"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "X" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "X" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "x" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1245,17 +1065,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListX"); 
 
-        OuterDiv.append(newProd); 
     }
-    if(product['brandName'][0] == "Y" && product['zVvhabilitado'] == 0){
+    if(product['brandName'][0] == "Y" && product['zVvhabilitado'] == 0
+    || product['brandName'][0] == "y" && product['zVvhabilitado'] == 0){
         const name = product['brandName'];
         const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1273,17 +1086,10 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListY"); 
 
-        OuterDiv.append(newProd); 
     }
-        if(product['brandName'][0] == "Z" && product['zVvhabilitado'] == 0){
+        if(product['brandName'][0] == "Z" && product['zVvhabilitado'] == 0
+        || product['brandName'][0] == "z" && product['zVvhabilitado'] == 0){
             const name = product['brandName'];
             const arrayDePalabras = name.replace(/\s+/g, '');
         let html =
@@ -1301,15 +1107,7 @@ function addTiendasToList(product, index){
 
         OuterDiv.append(newProd); 
     } else {
-        let html =
-        `
-                <h3>Aun no hay tiendas que inicien con esta Letra, se el Primero!</h3>
-        `
-        let newProd = document.createElement('div');
-        newProd.innerHTML = html;
-        var OuterDiv = document.getElementById("shopsListZ"); 
 
-        OuterDiv.append(newProd); 
     }
 }
 

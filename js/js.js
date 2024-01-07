@@ -218,7 +218,7 @@ function isEmptyOrSpaces(str){
 
 function ValidationA(){
 
-    if(isEmptyOrSpaces(brandEmail.value) ||
+    if(isEmptyOrSpaces(brandUser.value) ||
         isEmptyOrSpaces(brandPassword.value)){
             swal({
             title: "No puedes dejar ningun campo vacio",

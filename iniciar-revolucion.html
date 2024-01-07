@@ -32,7 +32,7 @@
         <div class="mb-3 row">
           <h6>Ingresa tu Usuario.</h6>
           <div class="mb-3 col-md-12">
-            <input id="brandEmail" type="text" class="form-control" placeholder="Escribe tu Usuario" aria-label="Email"
+            <input id="brandUser" type="text" class="form-control" placeholder="Escribe tu Usuario" aria-label="Email"
               aria-describedby="basic-addon1">
           </div>
           <h6>Ingresa tu Contraseña</h6>
@@ -449,11 +449,12 @@
 
 
       btn.addEventListener('click', function () {
-        const name = brandEmail.value;
+        const name = brandUser.value;
         const arrayDePalabras = name.replace(/\s+/g, '');
         const nombreArchivo = arrayDePalabras;
 
       if (nombreArchivo.trim() !== '') {
+
         // Envía una solicitud al servidor para crear el archivo HTML con el nombre especificado
         fetch(`/crearArchivo/${nombreArchivo}`, {
           method: 'POST',
@@ -470,8 +471,8 @@
     function EmailValidation() {
       const dbRef = ref(realdb);
       const patron = /^[a-zA-Z0-9_.+-]/;
-      if (patron.test(brandEmail.value)) {
-        const email = brandEmail.value;
+      if (patron.test(brandUser.value)) {
+        const email = brandUser.value;
       let antesDelArroba = email.split('@')[0];
       get(child(dbRef, "Usuarios/" + antesDelArroba)).then((snapshot) => {
             if (snapshot.exists()) {
@@ -515,12 +516,12 @@
 
     function RegisterUser() {
       const dbRef = ref(realdb);
-      const name = brandEmail.value;
+      const name = brandUser.value;
         const arrayDePalabras = name.replace(/\s+/g, '');
           get(child(dbRef, "Usuarios/" + arrayDePalabras)).then((snapshot) => {
             if (snapshot.exists()) {
               swal({
-                title: "Email ya registrado!",
+                title: "Usuario ya registrado!",
                 icon: "warning",
                 button: "OK!",
               });
@@ -529,7 +530,7 @@
 
               set(ref(realdb, "Usuarios/" + arrayDePalabras),
                 {
-                  brandEmail: brandEmail.value,
+                  brandUser: brandUser.value,
                   brandPassword: encPass(),
                   titularName: titularName.value,
                   titularLastname: titularLastname,
@@ -870,7 +871,7 @@
             }
 
             function UploadAnImage(imgToUpload, imgNo){
-              const name = brandEmail.value;
+              const name = brandUser.value;
         const arrayDePalabras = name.replace(/\s+/g, '');
                 const metadata = {
                     contentType: imgToUpload.type
@@ -933,7 +934,7 @@
             }
 
             function UploadAnImageF(imgToUpload, imgNo){
-              const name = brandEmail.value;
+              const name = brandUser.value;
               const arrayDePalabras = name.replace(/\s+/g, '');
                 const metadata = {
                     contentType: imgToUpload.type

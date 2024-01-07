@@ -9257,7 +9257,7 @@ if (indiceGuion !== -1) {
       <div class="login-form mb-3">
         <h4 class="mb-3">Ingresar al EPanel</h4>
         <div class="form-group mb-3">
-          <input id="userInp" type="text" class="text_field" placeholder="Ingresar Email...">
+          <input id="userInp" type="text" class="text_field" placeholder="Ingresar Usuario...">
         </div>
 
         <div class="form-group mb-3">
@@ -11076,7 +11076,7 @@ if (indiceGuion !== -1) {
       get(child(dbRef, "Usuarios/${nombreArchivo}")).then((snapshot) => {
         if (snapshot.exists()) {
           let dbpass = decPass(snapshot.val().brandPassword);
-          let email = snapshot.val().brandEmail;
+          let email = snapshot.val().brandUser;
 
           if (dbpass == pass.value && email == username.value) {
             login(snapshot.val());
